@@ -1,0 +1,10 @@
+{
+    "version": "0.1.0",
+    "command": "Chrome",
+    "osx": {
+        "command": "/Applications/Firefox.app/Contents/MacOS/Firefox"
+    },
+    "args": [
+        "${file}"
+    ]
+}
