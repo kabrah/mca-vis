@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="multiline.css">
+    <script src="https://d3js.org/d3.v3.js" charset="utf-8"></script>
+</head>
+<body>
+<div class="chart-wrapper" id="chart-line1"></div>
+<script src="multiline.js" charset="utf-8"></script>
+<script type="text/javascript">
+    d3.csv('global-top5-m15.csv', function(error, data) {
+    data.forEach(function (d) {
+        d["Year"] = +d["Year"];
+        d["Road injury"] = +d["Road injury"];
+        d["Interpersonal violence"] = +d["Interpersonal violence"];
+        d["Self-harm"] = +d["Self-harm"];
+        d["Drowning"] = +d["Drowning"];
+    });
+
+    var chart = makeLineChart(data, 'year', {
+        'Road Injury': {column: 'Road injury'},
+        'Interpersonal Violence': {column: 'Interpersonal violence'},
+        'Self-harm': {column: 'Self-harm'},
+        'Drowning': {column: 'Drowning'}
+    }, {xAxis: 'Years', yAxis: 'Death rate (per 100000)'});
+    chart.bind("#chart-line1");
+    chart.render();
+
+});
+</script>
+</body>
+</html>

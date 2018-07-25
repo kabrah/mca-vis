@@ -1,7 +1,7 @@
 var ds;
 var dsPiv;
 
-function drawLine() {
+function drawLines() {
 
     var w = 300;
     var h = 400;
@@ -137,5 +137,5 @@ d3.csv("vis1-piv-data.csv", function(error, data) { //method that will pull in t
         console.log("yay! (pivot)");
         dsPiv = data;}
         
-        drawLine();
+        drawLines();
 });
