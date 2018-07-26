@@ -5,7 +5,7 @@
     <title></title>
     <link rel="stylesheet" type="text/css" href="test.css">
     <script src="http://d3js.org/d3.v3.js" charset="utf-8"></script>
-    <!--<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>-->
+    <!-- <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script> -->
 </head>
 <body>
 <div class="chart-wrapper" id="chart-line1"></div>
@@ -23,12 +23,12 @@
     });
 
     var chart = makeLineChart(data, 'Year', {
-        'Road Injury': {column: 'Road injury'},
-        'Interpersonal Violence': {column: 'Interpersonal violence'},
-        'Self-Harm': {column: 'Self-harm'},
-        'Drowning': {column: 'Drowning'},
-        'HIV/AIDS': {column: 'HIV/AIDS'},
-        'Tuberculosis': {column: 'Tuberculosis'}
+        'Road Injury': {column: 'Road injury', color: 'red'},
+        'Interpersonal Violence': {column: 'Interpersonal violence', color: 'orange'},
+        'Self-Harm': {column: 'Self-harm', color: 'blue'},
+        'Drowning': {column: 'Drowning', color: 'grey'},
+        'HIV/AIDS': {column: 'HIV/AIDS', color: 'green'},
+        'Tuberculosis': {column: 'Tuberculosis', color: 'purple'}
     }, {xAxis: 'Years', yAxis: 'Death rate (per 100000)'});
     chart.bind("#chart-line1");
     chart.render();

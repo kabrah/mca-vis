@@ -1,8 +1,9 @@
 function makeLineChart(dataset, xName, yObjs, axisLables) {
     var chartObj = {};
-    var color = d3.scale.category10();
+    //var color = d3.scale.category10();   --- and then below color(y) for arb stroke color
     chartObj.xAxisLable = axisLables.xAxis;
     chartObj.yAxisLable = axisLables.yAxis;
+    
     /*
      yObjsects format:
      {y1:{column:'',name:'name',color:'color'},y2}
@@ -132,7 +133,7 @@ function makeLineChart(dataset, xName, yObjs, axisLables) {
 
         // Draw Lines
         for (var y  in yObjs) {
-            yObjs[y].path = chartObj.svg.append("path").datum(chartObj.data).attr("class", "line").attr("d", yObjs[y].line).style("stroke", color(y)).attr("data-series", y).on("mouseover", function () {
+            yObjs[y].path = chartObj.svg.append("path").datum(chartObj.data).attr("class", "line").attr("d", yObjs[y].line).style("stroke", yObjs[y].color).attr("data-series", y).on("mouseover", function () {
                 focus.style("display", null);
             }).on("mouseout", function () {
                 focus.transition().delay(700).style("display", "none");
@@ -143,7 +144,7 @@ function makeLineChart(dataset, xName, yObjs, axisLables) {
         // Draw Axis
         chartObj.svg.append("g").attr("class", "x axis").attr("transform", "translate(0," + chartObj.height + ")").call(chartObj.xAxis).append("text").attr("class", "label").attr("x", chartObj.width / 2).attr("y", 30).style("text-anchor", "middle").text(chartObj.xAxisLable);
 
-        chartObj.svg.append("g").attr("class", "y axis").call(chartObj.yAxis).append("text").attr("class", "label").attr("transform", "rotate(-90)").attr("y", -42).attr("x", -chartObj.height / 2).attr("dy", ".71em").style("text-anchor", "middle").text(chartObj.yAxisLable);
+        chartObj.svg.append("g").attr("class", "y axis").call(chartObj.yAxis).append("text").attr("class", "label").attr("transform", "rotate(-90)").attr("y", -40).attr("x", -chartObj.height / 2).attr("dy", ".71em").style("text-anchor", "middle").text(chartObj.yAxisLable);
 
         //Draw tooltips
         var focus = chartObj.svg.append("g").attr("class", "focus").style("display", "none");
@@ -164,7 +165,7 @@ function makeLineChart(dataset, xName, yObjs, axisLables) {
         var legend = chartObj.mainDiv.append('div').attr("class", "legend");
         for (var y  in yObjs) {
             series = legend.append('div');
-            series.append('div').attr("class", "series-marker").style("background-color", color(y));
+            series.append('div').attr("class", "series-marker").style("background-color", yObjs[y].color);
             series.append('p').text(y);
             yObjs[y].legend = series;
         }
