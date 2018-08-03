@@ -95,7 +95,7 @@ function makeLineChart(dataset, xName, yObjs, axisLables) {
         if (!chartObj.svg) {return false;}
 
         /* Else Update the axis with the new scale */
-        chartObj.svg.select('.x.axis').attr("transform", "translate(0," + chartObj.height + ")").call(chartObj.xAxis);
+        chartObj.svg.select('.x.axis').attr("transform", "translate(0," + chartObj.height + ")").call(chartObj.xAxis).transition(); //!!!
         chartObj.svg.select('.x.axis .label').attr("x", chartObj.width / 2);
 
         chartObj.svg.select('.y.axis').call(chartObj.yAxis);

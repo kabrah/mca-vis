@@ -19,7 +19,8 @@
         d['Self-harm'] = +d['Self-harm'];
         d['Drowning'] = +d['Drowning'];
         d['HIV/AIDS'] = +d['HIV/AIDS'];
-        d['Tuberculosis'] = +d['Tuberculosis']
+        d['Tuberculosis'] = +d['Tuberculosis'];
+        //d['Another thing'] = +d['Another thing']
     });
 
     var chart = makeLineChart(data, 'Year', {
@@ -28,7 +29,8 @@
         'Self-Harm': {column: 'Self-harm', color: 'blue'},
         'Drowning': {column: 'Drowning', color: 'grey'},
         'HIV/AIDS': {column: 'HIV/AIDS', color: 'green'},
-        'Tuberculosis': {column: 'Tuberculosis', color: 'purple'}
+        'Tuberculosis': {column: 'Tuberculosis', color: 'purple'},
+        //'Another thing displ name' : {column: 'Another thing', color: ''}
     }, {xAxis: 'Years', yAxis: 'Death rate (per 100000)'});
     chart.bind("#chart-line1");
     chart.render();
