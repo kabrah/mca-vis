@@ -1,6 +1,6 @@
 {
     "version": "0.1.0",
-    "command": "Chrome",
+    "command": "Firefox",
     "osx": {
         "command": "/Applications/Firefox.app/Contents/MacOS/Firefox"
     },
