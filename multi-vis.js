@@ -186,12 +186,12 @@ function makeLineChart(dataset, xName, yObjs, axisLables) {
             minY = chartObj.height;
             for (var y  in yObjs) {
                 yObjs[y].tooltip.attr("transform", "translate(" + chartObj.xScale(chartObj.xFunct(d)) + "," + chartObj.yScale(yObjs[y].yFunct(d)) + ")");
-                yObjs[y].tooltip.select("text").text(chartObj.yFormatter(yObjs[y].yFunct(d)));
+                yObjs[y].tooltip.select("text").text(chartObj.yFormatter(yObjs[y].yFunct(d)) + " in " + chartObj.xFormatter(chartObj.xFunct(d)));
                 minY = Math.min(minY, chartObj.yScale(yObjs[y].yFunct(d)));
             }
 
             focus.select(".focus.line").attr("transform", "translate(" + chartObj.xScale(chartObj.xFunct(d)) + ")").attr("y1", minY);
-            focus.select(".focus.year").text("Year: " + chartObj.xFormatter(chartObj.xFunct(d)));
+            //focus.select(".focus.year").text("Year: " + chartObj.xFormatter(chartObj.xFunct(d)));
         }
 
     };

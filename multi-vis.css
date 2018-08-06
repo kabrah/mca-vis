@@ -36,7 +36,7 @@
 .chart-wrapper .axis path,
 .chart-wrapper .axis line {
     fill: none;
-    stroke: #1F1F2E;
+    stroke: grey;
     shape-rendering: crispEdges;
 
 }
