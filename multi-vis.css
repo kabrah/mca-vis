@@ -46,7 +46,7 @@
 
 .chart-wrapper .line {
   fill: none;
-  stroke-width: 7px; /* line thickness */
+  stroke-width: 4px; /* line thickness */
 }
 
 .chart-wrapper .legend  {

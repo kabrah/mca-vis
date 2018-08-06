@@ -48,7 +48,7 @@ function makeLineChart(dataset, xName, yObjs, axisLables) {
     chartObj.xFormatter = chartObj.formatAsNumber;
     chartObj.yFormatter = chartObj.formatAsFloat;
 
-    chartObj.bisectYear = d3.bisector(chartObj.xFunct).left; //< Can be overridden in definition
+    chartObj.bisectYear = d3.bisector(chartObj.xFunct).left; 
 
 //Create scale functions
     chartObj.xScale = d3.scale.linear().range([0, chartObj.width]).domain(d3.extent(chartObj.data, chartObj.xFunct)); //< Can be overridden in definition

@@ -3,8 +3,8 @@ var dsPiv;
 
 function drawLines() {
 
-    var w = 300;
-    var h = 400;
+    var w = 400;
+    var h = 800;
     padding = 20;
 
     var xScale = d3.scale.linear()
@@ -36,6 +36,10 @@ function drawLines() {
         height: h});
 
     var viz5 = svg.append("path")
+        .transition()
+        .delay(600)
+        .duration(500)
+        .ease("linear")
         .attr({
             d: lineFun5(dsPiv),
             "stroke": "green",
@@ -43,7 +47,10 @@ function drawLines() {
             "stroke-width": 2
         })
 
-    var viz15 = svg.append("path")
+    //var viz15 = svg.append("path")
+        .transition()
+        .delay(1200)
+        .duration(1000)
         .attr({
             d: lineFun15(dsPiv),
             "stroke": "red",
@@ -119,6 +126,7 @@ function drawIcons() {
         });
     }
 */
+/*
 d3.csv("vis1-data.csv", function(error, data) { //method that will pull in the csv data and parse it out into a dictionary or an object and callback
     if(error) {
         console.log(error);}
@@ -129,7 +137,7 @@ d3.csv("vis1-data.csv", function(error, data) { //method that will pull in the c
         drawDots();
 
 });
-
+*/
 d3.csv("vis1-piv-data.csv", function(error, data) { //method that will pull in the csv data and parse it out into a dictionary or an object and callback
     if(error) {
         console.log(error);}
