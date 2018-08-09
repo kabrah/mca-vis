@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="multi-vis.css">
+    <script src="http://d3js.org/d3.v3.js" charset="utf-8"></script>
+</head>
+<body>
+<div id="writer">
+    <span id='sentence'></span>
+    <span id='char'></span>
+</div>
+<script type="text/javascript">
+
+var w = 700;
+var h = 700;
+var padding = 10;
+
+var dailyDeaths = 3025;
+var dailyDeathsArray = [];
+
+for (var i = 1; i <= dailyDeaths; i++) {
+   dailyDeathsArray.push(i);
+}
+
+var svgContainer = d3.select("body")
+    .append("svg")
+    .attr("width", w)
+    .attr("height", h);
+
+var circle = svgContainer
+    .selectAll("circle")
+    .data(dailyDeathsArray)
+    .enter()
+    .append("circle")
+    .attr("cx", w/2)
+    .attr("cy", h/2)
+    .attr("r", h/2);
+
+var circles = circle
+    .transition()
+    .duration(7000)
+//    .ease("elastic")
+    .attr("cx", function(d,i) { return (d % Math.sqrt(dailyDeaths))*(w/Math.sqrt(dailyDeaths)) + padding; })
+    .attr("cy", function(d,i) {return ((d-(d % Math.sqrt(dailyDeaths))) / Math.sqrt(dailyDeaths))*(h/Math.sqrt(dailyDeaths)) + padding;})
+    .attr("r", function(d) { return 0; });
+
+var text = svgContainer  
+    .append("text")
+    .text("3'000")
+    .attr("x", w/2)
+    .attr("y", h/2)
+    .attr("text-anchor", "middle")
+    .attr("font-family", "courier new")
+    .attr("font-size", "150px")
+    .style("fill", "white")
+    .transition()
+    .delay(4000)
+    .duration(5000)
+    .tween("text", function () {
+            var newText = " deaths a day.";
+            var textLength = newText.length;
+            return function (t) {
+                this.textContent = "3'000" + newText.slice(0, 
+                                   Math.round( t * textLength) );
+            };
+        })
+
+    .attr("font-size", "40px")
+    .style("fill", "black");
+
+ /*   
+var circleLine = circles    
+    .transition()
+    .delay(5000)
+    .duration(7000)
+    .attr("cx", function(d) {return d*(w/dailyDeaths);})
+    .attr("cy", h/2)
+    .attr("r", 0)
+    .attr("fill", "white");
+/*
+    var viz = svg.append("path")
+        .transition()
+        .delay(600)
+        .duration(500)
+        .ease("linear")
+        .attr({
+            id: "age5",
+            d: lineFun5(dsPiv),
+            "stroke": "green",
+            "fill": "none",
+            "stroke-width": 5
+        })
+        .transition()
+        .delay(1200)
+        .duration(1000)
+        .attr({
+            d: lineFun15(dsPiv),
+            "stroke": "red",
+            "fill": "none",
+            "stroke-width": 5
+        }); 
+*/
+</script>
+</body>
+</html>

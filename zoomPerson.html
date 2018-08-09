@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="multi-vis.css">
+    <script src="http://d3js.org/d3.v3.js" charset="utf-8"></script>
+</head>
+<body>
+<div id="writer">
+    <span id='sentence'></span>
+    <span id='char'></span>
+</div>
+<script type="text/javascript">
+
+var w = 600;
+var h = 600;
+var padding = -20;
+
+var dailyDeaths = 3025;
+var dailyDeathsArray = [];
+
+for (var i = 1; i <= dailyDeaths; i++) {
+   dailyDeathsArray.push(i);
+}
+
+var svgContainer = d3.select("body")
+    .append("svg")
+    .attr("width", w)
+    .attr("height", h);
+
+var ellipse = svgContainer
+    .selectAll("ellipse")
+    .data(dailyDeathsArray)
+    .enter()
+    .append("ellipse")
+    .attr("cx", w/2)
+    .attr("cy", function(d,i) {if (i%2 == 0) {return h/6 ;} else {return 2*h/3 + padding * 2;}})
+    .attr("rx", function(d,i) {if (i%2 == 0) {return (w+padding)/6;} else {return (w+ padding)/3.5;}})
+    .attr("ry", function(d,i) {if (i%2 == 0) {return (h+padding)/6;} else {return (h+ padding)/3;}});
+
+var ellipses = ellipse
+    .transition()
+    .delay(1000)
+    .duration(3000)
+    .ease("quad")
+    .attr("cx", function(d,i) { return (d % Math.sqrt(dailyDeaths))*(w/Math.sqrt(dailyDeaths)) + padding; })
+    .attr("cy", function(d,i) {return ((d-(d % Math.sqrt(dailyDeaths))) / Math.sqrt(dailyDeaths))*(h/Math.sqrt(dailyDeaths)) + padding;})
+    .attr("rx", function(d) {if (d > 3000) {return 0;} else {return 3;}})
+    .attr("ry", function(d) {if (d > 3000) {return 0;} else {return 3;}});
+
+var ellipses = ellipse
+    .transition()
+    .delay(5000)
+    .duration(4000)
+    .attr("rx", 0)
+    .attr("ry", 0);
+
+var text = svgContainer  
+    .append("text")
+    .text("3'000")
+    .attr("x", w/2)
+    .attr("y", h/2)
+    .attr("text-anchor", "middle")
+    .attr("font-family", "courier new")
+    .attr("font-size", "80px")
+    .style("fill", "white")
+    .transition()
+ //   .ease("bounce")
+    .delay(3000)
+    .duration(4000)
+    .tween("text", function () {
+            var newText = " deaths a day.";
+            var textLength = newText.length;
+            return function (t) {
+                this.textContent = "3'000" + newText.slice(0, 
+                                   Math.round( t * textLength) );
+            };
+        })
+
+    .attr("font-size", "40px")
+    .style("fill", "black");
+
+ /*   
+var circleLine = circles    
+    .transition()
+    .delay(5000)
+    .duration(7000)
+    .attr("cx", function(d) {return d*(w/dailyDeaths);})
+    .attr("cy", h/2)
+    .attr("r", 0)
+    .attr("fill", "white");
+/*
+    var viz = svg.append("path")
+        .transition()
+        .delay(600)
+        .duration(500)
+        .ease("linear")
+        .attr({
+            id: "age5",
+            d: lineFun5(dsPiv),
+            "stroke": "green",
+            "fill": "none",
+            "stroke-width": 5
+        })
+        .transition()
+        .delay(1200)
+        .duration(1000)
+        .attr({
+            d: lineFun15(dsPiv),
+            "stroke": "red",
+            "fill": "none",
+            "stroke-width": 5
+        }); 
+*/
+</script>
+</body>
+</html>

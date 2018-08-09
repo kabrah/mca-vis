@@ -3,8 +3,8 @@ var dsPiv;
 
 function drawLines() {
 
-    var w = 400;
-    var h = 800;
+    var w = 800;
+    var h = 1000;
     padding = 20;
 
     var xScale = d3.scale.linear()
@@ -35,19 +35,18 @@ function drawLines() {
         width: w,
         height: h});
 
-    var viz5 = svg.append("path")
+    var viz = svg.append("path")
         .transition()
         .delay(600)
         .duration(500)
         .ease("linear")
         .attr({
+            id: "age5",
             d: lineFun5(dsPiv),
             "stroke": "green",
             "fill": "none",
-            "stroke-width": 2
+            "stroke-width": 5
         })
-
-    //var viz15 = svg.append("path")
         .transition()
         .delay(1200)
         .duration(1000)
@@ -55,10 +54,9 @@ function drawLines() {
             d: lineFun15(dsPiv),
             "stroke": "red",
             "fill": "none",
-            "stroke-width": 2
+            "stroke-width": 5
         });
-
-
+    
 
 }
 
