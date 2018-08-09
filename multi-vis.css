@@ -64,10 +64,11 @@
     flex-grow: 0;
 }
 .chart-wrapper .legend p {
-    display:inline;
+    display:inline-block;
     font-size: 12;
     font-family: 'Courier New';
 }
+
 .chart-wrapper .legend .series-marker {
     height: 0.8em;
     width: 0.8em;
@@ -76,17 +77,18 @@
     display: inline-block;
     margin-right: 4px;
     margin-bottom: -0.16rem;
+
 }
 
 .chart-wrapper .overlay {
-  fill: none;
-  pointer-events: all;
+    fill: none;
+    pointer-events: all;
 }
 
 .chart-wrapper .focus circle {
   fill: black;
   stroke: black;
-  stroke-width: 1.5px;
+  stroke-width: 1px;
   fill-opacity: 15%;
 }
 .chart-wrapper .focus rect {
