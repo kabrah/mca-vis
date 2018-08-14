@@ -15,12 +15,12 @@
 
 var w = 600;
 var h = 600;
-var padding = 30;
+var margin = {right: 10, left: 10};
 
-var dailyDeaths = 3025;
+var dailyDeaths = 3025; // next highest square number, all additional circles have opacity 0
 var dailyDeathsArray = [];
+var sqrtDeaths = Math.sqrt(dailyDeaths);
 
-var counterLimit = [3000]
 
 for (var i = 1; i <= dailyDeaths; i++) {
    dailyDeathsArray.push(i);
@@ -45,21 +45,32 @@ var circles = circle
     .transition()
     .delay(500)
     .duration(5500)
-    .attr("cx", function(d,i) {return (d % Math.sqrt(dailyDeaths))*(w/Math.sqrt(dailyDeaths)) - padding; })
-    .attr("cy", function(d,i) {return ((d-(d % Math.sqrt(dailyDeaths))) / Math.sqrt(dailyDeaths))*(h/Math.sqrt(dailyDeaths)) - padding;})
+    .attr("cx", function(d,i) {
+        var a = d % sqrtDeaths;
+        var b = w - (margin.right + margin.left)
+        var c = sqrtDeaths
+        return a * b / c + margin.left ;})
+    .attr("cy", function(d,i) {
+        var a = (d - (d % sqrtDeaths)) / sqrtDeaths;
+        var b = h - (margin.right + margin.left);
+        var c = sqrtDeaths;
+        return a * b / c + margin.left ;})
     .attr("r", 4)
-    .style("opacity", function(d) {if (d > 3000) {return 0;} else {return 0.9;}})
+    .style("opacity", function(d) {
+        if (d > 3000) {return 0;} 
+        else {return 0.9;}
+    })
     .attr("fill", d3.rgb(Math.random()*255, Math.random()*255, Math.random()*255))
 
 var circlesDis = circles
     .transition()
     .delay(function(d,i) {return 6000 + i*5})
     .duration(5000)
-    .attr('transform', function (d) {return "rotate(" + (-1)**Math.round(Math.random())  * Math.random() * Math.PI +")";})
+    .attr('transform', function (d) {
+        return "rotate(" + (-1) ** Math.round(Math.random())  * Math.random() * Math.PI + ")";})
     .attr("r", 0);
 
 var text = svgContainer
-    .data([3000])
     .append("text")
     .text("That is")
     .attr("x", w/2)
@@ -70,14 +81,11 @@ var text = svgContainer
     .transition()
     .delay(6000)
     .duration(18500)
-    .tween("text", function (d) {
-            var i = d3.interpolate(1, d),
-                prec = (d + "").split("."),
-                round = (prec.length > 1) ? Math.pow(10, prec[1].length) :1;
+    .tween("text", function () {
+            var i = d3.interpolate(1, 3000)
             return function (t) {
-                this.textContent = Math.round(i(t)*round)/round + " adolescent deaths a day.";
-            };
-        })
+                this.textContent = Math.round(i(t)) + " adolescent deaths a day.";
+            };  })
     .attr("font-size", "30px");
 
 </script>
