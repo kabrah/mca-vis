@@ -15,10 +15,12 @@
 
 var w = 600;
 var h = 600;
-var padding = -20;
+var padding = 30;
 
 var dailyDeaths = 3025;
 var dailyDeathsArray = [];
+
+var counterLimit = [3000]
 
 for (var i = 1; i <= dailyDeaths; i++) {
    dailyDeathsArray.push(i);
@@ -29,90 +31,55 @@ var svgContainer = d3.select("body")
     .attr("width", w)
     .attr("height", h);
 
-var ellipse = svgContainer
-    .selectAll("ellipse")
+var circle = svgContainer
+    .selectAll("circle")
     .data(dailyDeathsArray)
     .enter()
-    .append("ellipse")
+    .append("circle")
     .attr("cx", w/2)
-    .attr("cy", function(d,i) {if (i%2 == 0) {return h/6 ;} else {return 2*h/3 + padding * 2;}})
-    .attr("rx", function(d,i) {if (i%2 == 0) {return (w+padding)/6;} else {return (w+ padding)/3.5;}})
-    .attr("ry", function(d,i) {if (i%2 == 0) {return (h+padding)/6;} else {return (h+ padding)/3;}});
+    .attr("cy", h/2)
+    .attr("r", h/4)
+    .attr("fill", d3.rgb(Math.random()*255, Math.random()*255, Math.random()*255));
 
-var ellipses = ellipse
+var circles = circle
     .transition()
-    .delay(1000)
-    .duration(3000)
-    .ease("quad")
-    .attr("cx", function(d,i) { return (d % Math.sqrt(dailyDeaths))*(w/Math.sqrt(dailyDeaths)) + padding; })
-    .attr("cy", function(d,i) {return ((d-(d % Math.sqrt(dailyDeaths))) / Math.sqrt(dailyDeaths))*(h/Math.sqrt(dailyDeaths)) + padding;})
-    .attr("rx", function(d) {if (d > 3000) {return 0;} else {return 3;}})
-    .attr("ry", function(d) {if (d > 3000) {return 0;} else {return 3;}});
+    .delay(500)
+    .duration(5500)
+    .attr("cx", function(d,i) {return (d % Math.sqrt(dailyDeaths))*(w/Math.sqrt(dailyDeaths)) - padding; })
+    .attr("cy", function(d,i) {return ((d-(d % Math.sqrt(dailyDeaths))) / Math.sqrt(dailyDeaths))*(h/Math.sqrt(dailyDeaths)) - padding;})
+    .attr("r", 4)
+    .style("opacity", function(d) {if (d > 3000) {return 0;} else {return 0.9;}})
+    .attr("fill", d3.rgb(Math.random()*255, Math.random()*255, Math.random()*255))
 
-var ellipses = ellipse
+var circlesDis = circles
     .transition()
-    .delay(5000)
-    .duration(4000)
-    .attr("rx", 0)
-    .attr("ry", 0);
+    .delay(function(d,i) {return 6000 + i*5})
+    .duration(5000)
+    .attr('transform', function (d) {return "rotate(" + (-1)**Math.round(Math.random())  * Math.random() * Math.PI +")";})
+    .attr("r", 0);
 
-var text = svgContainer  
+var text = svgContainer
+    .data([3000])
     .append("text")
-    .text("3'000")
+    .text("That is")
     .attr("x", w/2)
     .attr("y", h/2)
     .attr("text-anchor", "middle")
     .attr("font-family", "courier new")
-    .attr("font-size", "80px")
-    .style("fill", "white")
+    .attr("font-size", "30px")
     .transition()
- //   .ease("bounce")
-    .delay(3000)
-    .duration(4000)
-    .tween("text", function () {
-            var newText = " deaths a day.";
-            var textLength = newText.length;
+    .delay(6000)
+    .duration(18500)
+    .tween("text", function (d) {
+            var i = d3.interpolate(1, d),
+                prec = (d + "").split("."),
+                round = (prec.length > 1) ? Math.pow(10, prec[1].length) :1;
             return function (t) {
-                this.textContent = "3'000" + newText.slice(0, 
-                                   Math.round( t * textLength) );
+                this.textContent = Math.round(i(t)*round)/round + " adolescent deaths a day.";
             };
         })
+    .attr("font-size", "30px");
 
-    .attr("font-size", "40px")
-    .style("fill", "black");
-
- /*   
-var circleLine = circles    
-    .transition()
-    .delay(5000)
-    .duration(7000)
-    .attr("cx", function(d) {return d*(w/dailyDeaths);})
-    .attr("cy", h/2)
-    .attr("r", 0)
-    .attr("fill", "white");
-/*
-    var viz = svg.append("path")
-        .transition()
-        .delay(600)
-        .duration(500)
-        .ease("linear")
-        .attr({
-            id: "age5",
-            d: lineFun5(dsPiv),
-            "stroke": "green",
-            "fill": "none",
-            "stroke-width": 5
-        })
-        .transition()
-        .delay(1200)
-        .duration(1000)
-        .attr({
-            d: lineFun15(dsPiv),
-            "stroke": "red",
-            "fill": "none",
-            "stroke-width": 5
-        }); 
-*/
 </script>
 </body>
 </html>

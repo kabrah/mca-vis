@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -40,7 +41,8 @@ var circle = svgContainer
 
 var circles = circle
     .transition()
-    .duration(7000)
+    .delay(4000)
+    .duration(18000)
 //    .ease("elastic")
     .attr("cx", function(d,i) { return (d % Math.sqrt(dailyDeaths))*(w/Math.sqrt(dailyDeaths)) + padding; })
     .attr("cy", function(d,i) {return ((d-(d % Math.sqrt(dailyDeaths))) / Math.sqrt(dailyDeaths))*(h/Math.sqrt(dailyDeaths)) + padding;})
@@ -48,7 +50,7 @@ var circles = circle
 
 var text = svgContainer  
     .append("text")
-    .text("3'000")
+    .text("That is")
     .attr("x", w/2)
     .attr("y", h/2)
     .attr("text-anchor", "middle")
@@ -59,10 +61,10 @@ var text = svgContainer
     .delay(4000)
     .duration(5000)
     .tween("text", function () {
-            var newText = " deaths a day.";
+            var newText = "3'000 deaths a day.";
             var textLength = newText.length;
             return function (t) {
-                this.textContent = "3'000" + newText.slice(0, 
+                this.textContent = newText.slice(0, 
                                    Math.round( t * textLength) );
             };
         })

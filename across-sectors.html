@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="multi-vis.css">
+    <script src="http://d3js.org/d3.v3.js" charset="utf-8"></script>
+</head>
+<body>
+<div id="writer">
+    <span id='sentence'></span>
+    <span id='char'></span>
+</div>
+<script type="text/javascript">
+
+var w = 600;
+var h = 600;
+var padding = 100;
+var mergedRadius = 15;
+var data = [];
+
+var textArray1 = [{"text": "across", "x": 1*w/5, "y": 2*h/5, "size": 22, "text2": "and address", "x2" : w/4, "y2": h/3, "size2": 33}, 
+                    {"text":"sectors", "x": 3*w/5, "y" : 3*h/5, "size": 88, "text2": "mental", "x2" : 2*w/5, "y2": h/2, "size2": 88},
+                    {"text": "", "x" : w/4, "y": h/4, "size": 33, "text2": "health.", "x2" : 2*w/3, "y2": 2*h/3, "size2": 66} ]
+
+
+for (var i = 1; i <= 4; i++) {
+   data.push(i);
+}
+
+
+var svgContainer = d3.select("body")
+    .append("svg")
+    .attr("width", w)
+    .attr("height", h);
+
+var sectorCircle = svgContainer
+    .selectAll("circle")
+    .data(data)
+    .enter()
+    .append("circle")
+    .attr("cx", function(d) {if (d%2 == 0) {return w - padding ;} else {return padding;}})
+    .attr("cy", function(d) {if (d <= 2) {return padding;} else {return h - padding;}})
+    .attr("r", padding)
+    .attr("fill", function() {return d3.rgb(Math.random()*255, Math.random()*255, Math.random()*255);});
+
+var moveCircle = sectorCircle
+    .transition()
+    .delay(1000)
+    .duration(1000)
+    .attr('transform', function (d) {return "rotate(" + 8 * Math.PI +")"})
+    .attr("r", function() {return Math.random()*w/2}) ;
+
+var mergeCircles = moveCircle
+    .transition()
+    .delay(2000)
+    .duration(2500)
+    .ease("bounce")
+    .attr("cx", h/2)
+    .attr("cy", w/2)
+    .attr("r", w/2)
+    .style("opacity", 0.2);
+
+var colorSpace = mergeCircles
+    .transition()
+    .delay(3500)
+    .duration(4000)    
+    .ease("linear")
+    .attr("r", w*2)
+    .attrTween("fill", function() {return d3.interpolateRgb(this.getAttribute("fill"), d3.rgb(Math.random()*255, Math.random()*255, Math.random()*255));})
+    .style("opacity", 0.1);
+
+var text1 = svgContainer
+    .selectAll("text")
+    .data(textArray1)
+    .enter()
+    .append("text")
+    .text(function(d) {return d["text"];})
+    .attr("x", function(d) {return d["x"];})
+    .attr("y", function(d) {return d["y"];})
+    .attr("font-size", function(d) {return d["size"];})
+    .attr("font-family", "courier new")
+    .attr("text-anchor", "middle")
+    .transition()
+    .delay(5000)
+    .duration(4000)
+    //.attr("font-size", "60px")
+    .tween("text", function (d) {
+            var newText = d["text2"];
+            var textLength = newText.length;
+            return function (t) {
+                this.textContent = newText.substr(0, 
+                                   Math.round( t * textLength) );
+            };  })
+    .attr("x", function(d) {return d["x2"];})
+    .attr("y", function(d) {return d["y2"];})
+    .attr("font-size", function(d) {return d["size2"];});
+      
+var brainImage = svgContainer
+    .append("svg:image")
+    .attr("xlink:href", "edulastic.com/blog/common-core-knowledge-quiz/.png")
+    .attr("x", 0)
+    .attr("y", 0)
+    .attr("width", w)
+    .attr("height", h)
+    .style("opacity", 0)
+    .transition()
+    .ease("elastic")
+    .delay(5000)
+    .duration(1000)
+    .style("opacity", 0.3);
+    
+var text2 = svgContainer  
+    .selectAll("text")
+    .data(textArray2)
+    .enter()
+    .append("text")
+    .text(null)
+    .attr("x", function(d) {return d["x"];})
+    .attr("y", function(d) {return d["y"];})
+    .attr("font-size", function(d) {return d["size"];})
+    .attr("font-family", "courier new")
+    .attr("text-anchor", "middle")
+    .style("opacity", 0)
+    .transition()
+    .delay(5000)
+    .duration(500)
+    .text(function(d) {return this.textContent = d["text"].slice(0, Math.round (d * d["text"].length));})
+    .style("opacity", 1);
+
+
+
+/*
+var text = svgContainer  
+    .append("text")
+    .text("3'000")
+    .attr("x", w/2)
+    .attr("y", h/2)
+    .attr("text-anchor", "middle")
+    .attr("font-family", "courier new")
+    .attr("font-size", "80px")
+    .style("fill", "white")
+    .transition()
+ //   .ease("bounce")
+    .delay(3000)
+    .duration(4000)
+    .tween("text", function () {
+            var newText = " deaths a day.";
+            var textLength = newText.length;
+            return function (t) {
+                this.textContent = "3'000" + newText.slice(0, 
+                                   Math.round( t * textLength) );
+            };
+        })
+
+    .attr("font-size", "40px")
+    .style("fill", "black");
+
+*/
+</script>
+</body>
+</html>
