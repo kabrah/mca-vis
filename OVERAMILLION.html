@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="multi-vis.css">
+    <script src="http://d3js.org/d3.v3.js" charset="utf-8"></script>
+</head>
+<body>
+<script type="text/javascript">
+
+var w = 600;
+var h = 600;
+
+var words = [
+{"word": "over", "x": w/6, "y": h/7, "size": "25px"},
+{"word": "1.1 million", "x": w/4, "y": h/4, "size": "60px"},
+{"word": "adolescents", "x": 5*w/16, "y": 3*h/8, "size": "60px"},
+{"word": "aged", "x": 2*w/3, "y": 8*h/18, "size": "18px"},
+{"word": "10-19", "x": 2*w/3 + 30, "y": 8*h/18 + 30, "size": "20px"},
+{"word": "die", "x": w/4, "y": 9*h/16, "size": "50px"},
+{"word": "every year", "x": w/3, "y": 5*h/8, "size": "30px"}    ]
+
+var svgContainer = d3.select("body")
+    .append("svg")
+    .attr("width", w)
+    .attr("height", h);
+
+var text = svgContainer
+    .selectAll("text")
+    .data(words)
+    .enter()
+    .append("text")
+    .text(function(d) {return d["word"];})
+    .attr("x", function(d) {return d["x"];})
+    .attr("y", function(d) {return d["y"];})
+    .attr("font-size", function(d) {return d["size"];})
+    .attr("font-family", "courier new")
+    //.attr("text-anchor", "middle");
+
+</script>
+</body>
+</html>

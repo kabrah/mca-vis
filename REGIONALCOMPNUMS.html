@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="multi-vis.css">
+    <script src="http://d3js.org/d3.v3.js" charset="utf-8"></script>
+</head>
+<body>
+<script type="text/javascript">
+var ds;
+
+var w = 600;
+var h = 600;
+
+function addComp() {
+    var color = d3.scale.category10();
+
+    var svgContainer = d3.select("body")
+        .append("svg")
+        .attr("width", w)
+        .attr("height", h);
+
+    var region = svgContainer
+        .selectAll("text")
+        .data(ds)
+        .enter()
+        .append("text")
+        .text(function(d) {return d["region"] + " likelier "+ Math.round(d["dr_m"]/d["dr_f"]*10)/10;})
+        .attr("x", w/2)
+        .attr("y", function(d,i) {return h/4 + i * 30;})
+        .attr("font-size", "20px")
+        .attr("font-family", "courier new")
+        .attr("text-anchor", "middle")
+        .attr("fill", function(d,i) {return color[i*2];});
+}
+
+
+d3.csv("vis3.csv", function(error, data) { //method that will pull in the csv data and parse it out into a dictionary or an object and callback
+    if(error) {
+        console.log(error);}
+    else {
+        console.log("yay! (pivot)");
+        ds = data;}
+        
+        addComp();
+});
+
+
+</script>
+</body>
+</html>
