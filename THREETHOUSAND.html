@@ -72,8 +72,8 @@ var text = svgContainer
     .attr("x", w/2)
     .attr("y", h/2)
     .attr("text-anchor", "middle")
-    .attr("font-family", "courier new")
-    .attr("font-size", "30px")
+    .attr("font-family", "adobe-garamond-pro")
+    .attr("font-size", "40px")
     .transition()
     .delay(6000)
     .duration(18500)
@@ -82,7 +82,7 @@ var text = svgContainer
             return function (t) {
                 this.textContent = Math.round(i(t)) + " adolescent deaths a day.";
             };  })
-    .attr("font-size", "30px");
+    .attr("font-size", "40px");
 
 </script>
 </body>

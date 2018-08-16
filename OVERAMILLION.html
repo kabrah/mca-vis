@@ -13,13 +13,13 @@ var w = 600;
 var h = 600;
 
 var words = [
-{"word": "over", "x": w/6, "y": h/7, "size": "25px"},
-{"word": "1.1 million", "x": w/4, "y": h/4, "size": "60px"},
-{"word": "adolescents", "x": 5*w/16, "y": 3*h/8, "size": "60px"},
-{"word": "aged", "x": 2*w/3, "y": 8*h/18, "size": "18px"},
-{"word": "10-19", "x": 2*w/3 + 30, "y": 8*h/18 + 30, "size": "20px"},
-{"word": "die", "x": w/4, "y": 9*h/16, "size": "50px"},
-{"word": "every year", "x": w/3, "y": 5*h/8, "size": "30px"}    ]
+{"word": "over", "x": w/8, "y": h/7, "size": "20px"},
+{"word": "1.1 million", "x": w/7, "y": h/4, "size": "60px"},
+{"word": "adolescents", "x": 5*w/18, "y": 3*h/8, "size": "80px"},
+{"word": "aged", "x": 2*w/5, "y": 8*h/18, "size": "18px"},
+{"word": "10-19", "x": 2*w/5 + 30, "y": 8*h/18 + 30, "size": "20px"},
+{"word": "die", "x": w/6, "y": 9*h/16, "size": "90px"},
+{"word": "every year.", "x": 3*w/10, "y": 5*h/8, "size": "40px"}    ]
 
 var svgContainer = d3.select("body")
     .append("svg")
@@ -35,7 +35,7 @@ var text = svgContainer
     .attr("x", function(d) {return d["x"];})
     .attr("y", function(d) {return d["y"];})
     .attr("font-size", function(d) {return d["size"];})
-    .attr("font-family", "courier new")
+    .attr("font-family", "adobe-garamond-pro")
     //.attr("text-anchor", "middle");
 
 </script>

@@ -13,10 +13,14 @@ var w = 600;
 var h = 600;
 
 var words = [
-{"word": "Boys in that age group are", "x": w/2, "y": h/6, "size": "20px"},
-{"word": "particularly vulnerable,", "x": w/2, "y": h/3, "size": "40px"},
-{"word": "not just globally, but in almost", "x": w/2, "y": h/2, "size": "20px"},
-{"word": "every region.", "x": w/2, "y": 2*h/3, "size": "50px"} ]
+{"word": "boys", "x": w/5, "y": h/5, "size": "90px"},
+{"word": "Between the ages of 15 and 19,", "x": w/2, "y": h/12, "size": "20px"},
+{"word": "are", "x": w/6, "y": 7*h/27, "size": "20px"},
+{"word": "particularly vulnerable,", "x": w/2, "y": h/3, "size": "50px"},
+{"word": "not just", "x": w/2, "y": 5*h/12, "size": "20px"},
+{"word": "globally, ", "x": w/2, "y": 16*h/30, "size": "60px"},
+{"word": "but in almost", "x": w/2, "y": 15*h/24, "size": "30px"},
+{"word": "every region.", "x": w/2, "y": 17*h/24, "size": "60px"} ]
 
 var svgContainer = d3.select("body")
     .append("svg")
@@ -32,7 +36,7 @@ var text = svgContainer
     .attr("x", function(d) {return d["x"];})
     .attr("y", function(d) {return d["y"];})
     .attr("font-size", function(d) {return d["size"];})
-    .attr("font-family", "courier new")
+    .attr("font-family", "adobe-garamond-pro")
     .attr("text-anchor", "middle");
 
 
