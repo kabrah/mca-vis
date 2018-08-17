@@ -14,7 +14,7 @@ var dsPiv;
 function drawLines() {
 
     var w = 800;
-    var h = 1000;
+    var h = 600;
     padding = 20;
 
     var xScale = d3.scale.linear()
@@ -26,7 +26,7 @@ function drawLines() {
     
     var yScale = d3.scale.linear()
         .domain([
-            0, //usually y-axis starts at zero, but this could of course alternatively by the min sales value
+            d3.min(dsPiv, function(d){return d.nr_deaths_5;}), //usually y-axis starts at zero, but this could of course alternatively by the min sales value
             d3.max(dsPiv, function(d){return d.nr_deaths_5;})
         ])
         .range([h-padding, 0+padding]); //top left not bottom left coord system so h,0 not 0,h
@@ -58,8 +58,8 @@ function drawLines() {
             "stroke-width": 5
         })
         .transition()
-        .delay(1200)
-        .duration(1000)
+        .delay(5000)
+        .duration(2000)
         .attr({
             d: lineFun15(dsPiv),
             "stroke": "red",
@@ -67,10 +67,34 @@ function drawLines() {
             "stroke-width": 5
         });
     
+    var underNine = svg.append("text")
+        .text("While there has been significant improvement for children under the age of 10")
+        .attr("x", w/2)
+        .attr("y", 30)
+        .attr("font-size", "20px")
+        .attr("text-anchor", "middle")
+        .attr("font-family", "adobe-garamond-pro")
+        .transition()
+        .delay(5000)
+        .duration(2000)
+        .attr("x", 0)
+        .attr("text-anchor", "end");
 
+    var overFifteen = svg.append("text")
+        .text("This has not been the case for 15 to 19 year olds")
+        .attr("x", w/2)
+        .attr("y", h + padding)
+        .attr("font-size", "20px")
+        .attr("text-anchor", "start")
+        .attr("font-family", "adobe-garamond-pro")
+        .transition()
+        .delay(5000)
+        .duration(2000)
+        .attr("y", 3*h/4)
+        .attr("text-anchor", "middle");
 }
 
-d3.csv("vis1-piv-data.csv", function(error, data) { //method that will pull in the csv data and parse it out into a dictionary or an object and callback
+d3.csv("2under-ten.csv", function(error, data) { //method that will pull in the csv data and parse it out into a dictionary or an object and callback
     if(error) {
         console.log(error);}
     else {

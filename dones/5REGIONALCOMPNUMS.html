@@ -52,7 +52,7 @@ function addComp() {
         .text("In")
         .attr("x", w/2)
         .attr("y", h/6)
-        .attr("font-size", "15px")
+        .attr("font-size", "25px")
         .attr("font-family", "adobe-garamond-pro")
         .attr("text-anchor", "middle");
 
@@ -61,7 +61,7 @@ function addComp() {
         .text("of deaths in that agegroup were boys.")
         .attr("x", w/2)
         .attr("y", 2*h/3)
-        .attr("font-size", "15px")
+        .attr("font-size", "25px")
         .attr("font-family", "adobe-garamond-pro")
         .attr("text-anchor", "middle");
 
@@ -100,7 +100,7 @@ function addComp() {
         .attr("x", function(d) {return w * d["dr_m"]/(1*d["dr_m"]+1*d["dr_f"]);});
 }
 
-d3.csv("vis3.csv", function(error, data) { //method that will pull in the csv data and parse it out into a dictionary or an object and callback
+d3.csv("5regional-comparison.csv", function(error, data) { //method that will pull in the csv data and parse it out into a dictionary or an object and callback
     if(error) {
         console.log(error);}
     else {

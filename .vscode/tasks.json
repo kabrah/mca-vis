@@ -1,5 +1,18 @@
 {
     "version": "0.1.0",
+    "command": "Chrome",
+    "osx": {
+        "command": "/Applications/Firefox.app/Contents/MacOS/Firefox"
+    },
+    "args": [
+        "${file}"
+    ]
+}
+
+/*
+
+{
+    "version": "0.1.0",
     "command": "Firefox",
     "osx": {
         "command": "C:\\Program Files\\Mozilla Firefox\\firefox.exe"
@@ -8,3 +21,5 @@
         "${file}"
     ]
 }
+
+*/

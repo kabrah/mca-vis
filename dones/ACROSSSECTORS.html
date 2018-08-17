@@ -98,14 +98,13 @@ var text1 = svgContainer
       
 var brainImage = svgContainer
     .append("svg:image")
-    .attr("xlink:href", "edulastic.com/blog/common-core-knowledge-quiz/.png")
+    .attr("xlink:href", "mental-health.png") //"edulastic.com/blog/common-core-knowledge-quiz/.png"
     .attr("x", 0)
     .attr("y", 0)
     .attr("width", w)
     .attr("height", h)
     .style("opacity", 0)
     .transition()
-    .ease("elastic")
     .delay(5000)
     .duration(1000)
     .style("opacity", 0.3);
