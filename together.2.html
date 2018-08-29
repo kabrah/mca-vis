@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="X-UA-Compatible" content="IE=8">
     <title>Page Title</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="http://d3js.org/d3.v3.js" charset="utf-8"></script>
@@ -22,7 +22,64 @@
     <svg id="graph-last" width="100%" height="600"></svg>
 
     <script type="text/javascript">
+    
+    function backgrounds() {
+        d3.select("body")
+            .append("svg")
+            .attr("width", "100%")
+            .attr("height", "100%")
+            .append("rect")
+            .attr("width", "100%")
+            .attr("height", "100%")
+            .attr("fill", "fill", function() {return d3.rgb(Math.random()*255, Math.random()*255, Math.random()*255);})
+            .style("opacity", 0.2);
 
+        d3.select("svg#graph1")
+            .append("rect")
+            .attr("width", "100%")
+            .attr("height", "100%")
+            .attr("fill", function() {return d3.rgb(Math.random()*255, Math.random()*255, Math.random()*255);})
+            .style("opacity", 0.05);
+        
+        d3.select("svg#graph2")
+            .append("rect")
+            .attr("width", "100%")
+            .attr("height", "100%")
+            .attr("fill", function() {return d3.rgb(Math.random()*255, Math.random()*255, Math.random()*255);})
+            .style("opacity", 0.05);
+
+        d3.select("svg#graph3")
+            .append("rect")
+            .attr("width", "100%")
+            .attr("height", "100%")
+            .attr("fill", function() {return d3.rgb(Math.random()*255, Math.random()*255, Math.random()*255);})
+            .style("opacity", 0.05);
+
+        d3.select("svg#graph4")
+            .append("rect")
+            .attr("width", "100%")
+            .attr("height", "100%")
+            .attr("fill", function() {return d3.rgb(Math.random()*255, Math.random()*255, Math.random()*255);})
+            .style("opacity", 0.05);
+
+        d3.select("svg#graph5")
+            .append("rect")
+            .attr("width", "100%")
+            .attr("height", "100%")
+            .attr("fill", function() {return d3.rgb(Math.random()*255, Math.random()*255, Math.random()*255);})
+            .style("opacity", 0.05);
+        
+        d3.select("svg#graph-last")
+            .append("rect")
+            .attr("width", "100%")
+            .attr("height", "100%")
+            .attr("fill", function() {return d3.rgb(Math.random()*255, Math.random()*255, Math.random()*255);})
+            .style("opacity", 0.05);
+        
+    }
+
+backgrounds();
+        
         function getWidth() {
   if (self.innerWidth) {
     return self.innerWidth;
@@ -67,7 +124,8 @@ var text = svgContainer
     .attr("y", function(d) {return d["y"];})
     .attr("font-size", function(d) {return d["size"];})
     .attr("font-family", "adobe-garamond-pro")
-    .attr("text-anchor", "middle");
+    .attr("text-anchor", "middle")
+    .style("fill", "rgb(47,79,120)");
         };
         
         function thirdVis() {
@@ -110,9 +168,9 @@ function drawLines() {
         height: h
     });
 
+
     var viz = svg.append("path")
         .transition()
-        .delay(600)
         .duration(500)
         .ease("linear")
         .attr({
@@ -123,7 +181,7 @@ function drawLines() {
             "stroke-width": 5
         })
         .transition()
-        .delay(5000)
+        .delay(4000)
         .duration(2000)
         .attr({
             d: lineFun15(dsPiv),
@@ -133,30 +191,33 @@ function drawLines() {
         });
 
     var underNine = svg.append("text")
-        .text("While there has been significant improvement for children under the age of 10")
+        .text("While there has been significant improvement for children under the age of 10,")
         .attr("x", w / 2)
-        .attr("y", 30)
-        .attr("font-size", "20px")
+        .attr("y", 50)
+        .attr("font-size", "40px")
         .attr("text-anchor", "middle")
         .attr("font-family", "adobe-garamond-pro")
         .transition()
-        .delay(5000)
         .duration(2000)
+        .delay(4000)
         .attr("x", 0)
-        .attr("text-anchor", "end");
+        .attr("text-anchor", "end")
+        .style("fill", "rgb(47,79,120)");
 
     var overFifteen = svg.append("text")
-        .text("This has not been the case for 15 to 19 year olds")
+        .text("this has not been the case for 15 to 19 year olds.")
         .attr("x", w / 2)
-        .attr("y", h + padding)
-        .attr("font-size", "20px")
-        .attr("text-anchor", "start")
+        .attr("y", h + padding * 2)
+        .attr("font-size", "40px")
+        .attr("text-anchor", "middle")
         .attr("font-family", "adobe-garamond-pro")
         .transition()
-        .delay(5000)
+        .delay(4000)
         .duration(2000)
         .attr("y", 3 * h / 4)
-        .attr("text-anchor", "middle");
+        .attr("text-anchor", "middle")
+        .style("fill", "rgb(47,79,120)");
+
 }
 
 d3.csv("2under-ten.csv", function (error, data) { //method that will pull in the csv data and parse it out into a dictionary or an object and callback
@@ -199,7 +260,7 @@ d3.csv("2under-ten.csv", function (error, data) { //method that will pull in the
                     .append("circle")
                     .attr("cx", w / 2)
                     .attr("cy", h / 2)
-                    .attr("r", h / 4)
+                    .attr("r", h/2 - 5)
                     .attr("fill", d3.rgb(Math.random() * 255, Math.random() * 255, Math.random() * 255));
 
                 var circles = circle
@@ -236,12 +297,13 @@ d3.csv("2under-ten.csv", function (error, data) { //method that will pull in the
 
                 var text = svgContainer
                     .append("text")
-                    .text("That is")
+                    .text(" ")
                     .attr("x", w / 2)
                     .attr("y", h / 2)
                     .attr("text-anchor", "middle")
                     .attr("font-family", "adobe-garamond-pro")
                     .attr("font-size", "40px")
+                    .style("fill", "rgb(47,79,120)")
                     .transition()
                     .delay(6000)
                     .duration(18500)
@@ -261,13 +323,14 @@ d3.csv("2under-ten.csv", function (error, data) { //method that will pull in the
         var h = 600;
 
         var words = [
-            { "word": "over", "x": w / 8, "y": h / 7, "size": "20px" },
-            { "word": "1.1 million", "x": w / 7, "y": h / 4, "size": "60px" },
-            { "word": "adolescents", "x": 5 * w / 18, "y": 3 * h / 8, "size": "80px" },
-            { "word": "aged", "x": 2 * w / 5, "y": 8 * h / 18, "size": "18px" },
-            { "word": "10-19", "x": 2 * w / 5 + 30, "y": 8 * h / 18 + 30, "size": "20px" },
-            { "word": "die", "x": w / 6, "y": 9 * h / 16, "size": "90px" },
-            { "word": "every year.", "x": 3 * w / 10, "y": 5 * h / 8, "size": "40px" }]
+            { "word": "over", "x": w / 4, "y": h / 7, "size": "20px" },
+            { "word": "1.1 million", "x": w / 3, "y": h / 4, "size": "60px" },
+            { "word": "adolescents", "x": w / 2, "y": 3.5 * h / 8, "size": "110px" },
+            { "word": "aged", "x": 3 * w / 5, "y": 9 * h / 18, "size": "18px" },
+            { "word": "10-19", "x": 3 * w / 5 + 30, "y": 9 * h / 18 + 30, "size": "20px" },
+            { "word": "die", "x": w / 3, "y": 10 * h / 16, "size": "110px" },
+            { "word": "every year.", "x":  2* w / 5, "y": 6 * h / 8, "size": "40px" },
+            {"word": "That is", "x": w /2, "y": 7.5 * h /8, "size": "40px"}]
 
         var svgContainer = d3.select("svg#graph1")
             .append("svg")
@@ -284,7 +347,9 @@ d3.csv("2under-ten.csv", function (error, data) { //method that will pull in the
             .attr("y", function (d) { return d["y"]; })
             .attr("font-size", function (d) { return d["size"]; })
             .attr("font-family", "adobe-garamond-pro")
-        //.attr("text-anchor", "middle");
+            .attr("text-anchor", "middle")
+            .style("fill", "rgb(47,79,120)");
+
 };
 
         function fifthVis() {
@@ -314,6 +379,12 @@ function addComp() {
         .attr("width", w)
         .attr("height", h);
 
+    svgContainer.append("rect")
+        .attr("width", "100%")
+        .attr("height", "100%")
+        .attr("fill", function() {return d3.rgb(Math.random()*255, Math.random()*255, Math.random()*255);})
+        .style("opacity", 0.05);
+
     var region = svgContainer
         .selectAll("text")
         .data(ds)
@@ -334,7 +405,8 @@ function addComp() {
         .attr("y", h/6)
         .attr("font-size", "25px")
         .attr("font-family", "adobe-garamond-pro")
-        .attr("text-anchor", "middle");
+        .attr("text-anchor", "middle")
+        .style("fill", "rgb(47,79,120)");
 
     var text2 = svgContainer
         .append("text")
@@ -343,7 +415,8 @@ function addComp() {
         .attr("y", 2*h/3)
         .attr("font-size", "25px")
         .attr("font-family", "adobe-garamond-pro")
-        .attr("text-anchor", "middle");
+        .attr("text-anchor", "middle")
+        .style("fill", "rgb(47,79,120)");
 
     var boyRectangles = svgContainer
         .selectAll("rect.boys")
@@ -355,7 +428,7 @@ function addComp() {
         .attr("width", 0)
         .attr("height", "27px")
         .attr("fill", "blue")
-        .style("opacity", 0.1)
+        .style("opacity", 0.2)
         .transition()
         .delay(500)
         .duration(1000)
@@ -447,7 +520,7 @@ var colorSpace = mergeCircles
     .ease("linear")
     .attr("r", w*2)
     .attrTween("fill", function() {return d3.interpolateRgb(this.getAttribute("fill"), d3.rgb(Math.random()*255, Math.random()*255, Math.random()*255));})
-    .style("opacity", 0.1);
+    .style("opacity", 0.2);
 
 var text1 = svgContainer
     .selectAll("text")
@@ -460,6 +533,7 @@ var text1 = svgContainer
     .attr("font-size", function(d) {return d["size"];})
     .attr("font-family", "courier new")
     .attr("text-anchor", "middle")
+    .style("fill", "rgb(47,79,120)")
     .transition()
     .delay(5000)
     .duration(4000)
@@ -500,6 +574,7 @@ var text2 = svgContainer
     .attr("font-family", "courier new")
     .attr("text-anchor", "middle")
     .style("opacity", 0)
+    .style("fill", "rgb(47,79,120)")
     .transition()
     .delay(5000)
     .duration(500)
@@ -558,7 +633,7 @@ var text = svgContainer
             var distance = window.pageYOffset;      // Distance from the page top
             
             // After certain distance
-            if (distance >= 800 && isThird == false) {
+            if (distance >= 1000 && isThird == false) {
                 // Update isThird
                 isThird = true;
                 
@@ -575,13 +650,12 @@ var text = svgContainer
                 fifthVis();
             }
 
-            else if (distance >= 2100 && isLast == false) {
+            else if (distance >= 2400 && isLast == false) {
                 isLast = true;
                 lastVis();
             }
             
         }        
-
 
     </script>
 </body>
