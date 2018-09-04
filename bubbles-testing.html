@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<body>
+    <button id ="bygroup">By Group</button>
+    <button id="bychange">By Improvement</button>
+    <button id="combined">Combined</button>
+    <div id="chart"></div>
+<script src="https://d3js.org/d3.v4.min.js"></script>
+<script>
+
+var rawData;
+var h = 600;
+var w = 900;
+
+/*d3.csv("bubbledata.csv", function(error, data) { //method that will pull in the csv data and parse it out into a dictionary or an object and callback
+    if(error) {
+        console.log(error);}
+    else {
+        console.log("yay! (pivot)");
+        rawData = data;
+        }
+    });
+*/
+var svgContainer = d3.select("#chart")
+    .append("svg")
+    .attr("height", h)
+    .attr("width", w)
+    .append("g")
+    .attr("transform", "translate(0,0)");
+
+
+var radiusScale = d3.scaleSqrt().domain([0, 30]).range([10,50]);
+
+var improvementScaleX = d3.forceX(function(d) {
+    if (3 <= (d.twothousand - d.twothousandsixteen)) {return 150;}
+        else if (2 <= (d.twothousand - d.twothousandsixteen) && (d.twothousand - d.twothousandsixteen) < 3) {return 300;}
+        else if (1 <= (d.twothousand - d.twothousandsixteen) && (d.twothousand - d.twothousandsixteen) < 2) {return 450;}
+        else if (0 <= (d.twothousand - d.twothousandsixteen) < 1) {return 600;}
+        else {return 750;}
+}
+);
+
+var forceX = d3.forceX(function(d) {
+    if (d.age == 10) {return w/4;}
+    else {return 3*w /4}
+}
+).strength(0.05);
+
+var forceY = d3.forceY(function(d) {
+    if (d.sex == 1) {return h/4;}
+    else {return 3*h /4}
+}
+).strength(0.05);
+
+var forceCollide = d3.forceCollide(function(d) {return radiusScale(d.twothousandsixteen) -1;});
+
+var simulation = d3.forceSimulation()
+    .force("x", forceX)
+    .force("y", forceY)
+    .force("collide", forceCollide);
+
+d3.queue()
+    .defer(d3.csv, "bubbledata.csv")
+    .await(ready)
+
+function ready (error, datapoints) {
+
+var circles = svgContainer.selectAll(".cause")
+    .data(datapoints)
+    .enter()
+    .append("circle")
+    .attr("class", "cause")
+    .attr("r", function(d) {return radiusScale(d.twothousandsixteen);})
+    .attr("fill", function(d) {
+        if (3 <= (d.twothousand - d.twothousandsixteen)) {return "#228B22";}
+        else if (2 <= (d.twothousand - d.twothousandsixteen) && (d.twothousand - d.twothousandsixteen) < 3) {return "#98FB98";}
+        else if (1 <= (d.twothousand - d.twothousandsixteen) && (d.twothousand - d.twothousandsixteen) < 2) {return "#C0C0C0";}
+        else if (0 <= (d.twothousand - d.twothousandsixteen) < 1) {return "#A52A2A";}
+        else {return "#800000";}
+    })
+    .attr("stroke", "grey")
+    .attr("stroke-width", "2px")
+    .on("click", function(d) {console.log(d);})
+
+
+    d3.select("#bygroup")
+        .on("click", function() {
+            simulation
+            .force("x", forceX)
+            .force("y", forceY)
+            .alphaTarget(0.3)
+            .restart();
+        })
+
+    d3.select("#combined")
+        .on("click", function() {
+            simulation
+            .force("x", d3.forceX(w/2).strength(0.1))
+            .force("y", d3.forceY(h/2).strength(0.1))
+            .alphaTarget(0.3)
+            .restart();
+        })
+
+    d3.select("#bychange")
+        .on("click", function() {
+            simulation
+            .force("x", improvementScaleX.strength(0.2))
+            .force("y", d3.forceY(h/2).strength(0.2))
+            .alphaTarget(0.5)
+            .restart();
+        }) 
+
+
+    simulation.nodes(datapoints)
+        .on("tick", ticked)
+
+    function ticked() {
+        circles
+            .attr("cx", function(d) {return d.x;})
+            .attr("cy", function(d) {return d.y;})
+    }
+}
+</script>

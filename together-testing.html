@@ -19,6 +19,9 @@
     <svg id="graph3" width="100%" height="600"></svg>
     <svg id="graph4" width="100%" height="600"></svg>
     <svg id="graph5" width="100%" height="600"></svg>
+    <svg id="graph6" width="100%" height="400"></svg>
+    <svg id="graph7" width="100%" height="400"></svg>
+    <svg id="graph8" width="100%" height="200"></svg>
     <svg id="graph-last" width="100%" height="600"></svg>
 
     <script type="text/javascript">
@@ -68,6 +71,27 @@
             .attr("height", "100%")
             .attr("fill", function() {return d3.rgb(Math.random()*255, Math.random()*255, Math.random()*255);})
             .style("opacity", 0.05);
+
+        d3.select("svg#graph6")
+            .append("rect")
+            .attr("width", "100%")
+            .attr("height", "100%")
+            .attr("fill", function() {return d3.rgb(Math.random()*255, Math.random()*255, Math.random()*255);})
+            .style("opacity", 0.05);
+
+        d3.select("svg#graph7")
+            .append("rect")
+            .attr("width", "100%")
+            .attr("height", "100%")
+            .attr("fill", function() {return d3.rgb(Math.random()*255, Math.random()*255, Math.random()*255);})
+            .style("opacity", 0.05);
+        
+        d3.select("svg#graph8")
+            .append("rect")
+            .attr("width", "100%")
+            .attr("height", "100%")
+            .attr("fill", function() {return d3.rgb(Math.random()*255, Math.random()*255, Math.random()*255);})
+            .style("opacity", 0.05);
         
         d3.select("svg#graph-last")
             .append("rect")
@@ -100,9 +124,9 @@ var w = getWidth();
 var h = 600;
 
 var words = [
-{"word": "boys", "x": w/5, "y": h/5, "size": "90px"},
-{"word": "Between the ages of 15 and 19,", "x": w/2, "y": h/12, "size": "20px"},
-{"word": "are", "x": w/6, "y": 7*h/27, "size": "20px"},
+{"word": "boys", "x": w/4, "y": h/5, "size": "90px"},
+{"word": "Between the ages of 15 and 19,", "x": w/2, "y": h/12, "size": "28px"},
+{"word": "are", "x": 2*w/7, "y": 7*h/27, "size": "25px"},
 {"word": "particularly vulnerable,", "x": w/2, "y": h/3, "size": "50px"},
 {"word": "not just", "x": w/2, "y": 5*h/12, "size": "20px"},
 {"word": "globally, ", "x": w/2, "y": 16*h/30, "size": "60px"},
@@ -170,9 +194,6 @@ function drawLines() {
 
 
     var viz = svg.append("path")
-        .transition()
-        .duration(500)
-        .ease("linear")
         .attr({
             id: "age5",
             d: lineFun5(dsPiv),
@@ -180,8 +201,9 @@ function drawLines() {
             "fill": "none",
             "stroke-width": 5
         })
+        .style("opacity", 0.8)
         .transition()
-        .delay(4000)
+        .delay(3000)
         .duration(2000)
         .attr({
             d: lineFun15(dsPiv),
@@ -193,30 +215,31 @@ function drawLines() {
     var underNine = svg.append("text")
         .text("While there has been significant improvement for children under the age of 10,")
         .attr("x", w / 2)
-        .attr("y", 50)
-        .attr("font-size", "40px")
+        .attr("y", 100)
+        .attr("font-size", "30px")
         .attr("text-anchor", "middle")
         .attr("font-family", "adobe-garamond-pro")
+        .style("fill", "rgb(47,79,120)")
         .transition()
         .duration(2000)
-        .delay(4000)
+        .delay(3000)
         .attr("x", 0)
-        .attr("text-anchor", "end")
-        .style("fill", "rgb(47,79,120)");
+        .attr("text-anchor", "end");
+        
 
     var overFifteen = svg.append("text")
         .text("this has not been the case for 15 to 19 year olds.")
         .attr("x", w / 2)
         .attr("y", h + padding * 2)
-        .attr("font-size", "40px")
+        .attr("font-size", "55px")
         .attr("text-anchor", "middle")
         .attr("font-family", "adobe-garamond-pro")
+        .style("fill", "rgb(47,79,120)")
         .transition()
-        .delay(4000)
+        .delay(3000)
         .duration(2000)
         .attr("y", 3 * h / 4)
-        .attr("text-anchor", "middle")
-        .style("fill", "rgb(47,79,120)");
+        .attr("text-anchor", "middle");
 
 }
 
@@ -260,7 +283,7 @@ d3.csv("2under-ten.csv", function (error, data) { //method that will pull in the
                     .append("circle")
                     .attr("cx", w / 2)
                     .attr("cy", h / 2)
-                    .attr("r", h/2 - 5)
+                    .attr("r", h/2 - 50)
                     .attr("fill", d3.rgb(Math.random() * 255, Math.random() * 255, Math.random() * 255));
 
                 var circles = circle
@@ -330,7 +353,7 @@ d3.csv("2under-ten.csv", function (error, data) { //method that will pull in the
             { "word": "10-19", "x": 3 * w / 5 + 30, "y": 9 * h / 18 + 30, "size": "20px" },
             { "word": "die", "x": w / 3, "y": 10 * h / 16, "size": "110px" },
             { "word": "every year.", "x":  2* w / 5, "y": 6 * h / 8, "size": "40px" },
-            {"word": "That is", "x": w /2, "y": 7.5 * h /8, "size": "40px"}]
+            {"word": "That's", "x": w /2, "y": 7.5 * h /8, "size": "40px"}]
 
         var svgContainer = d3.select("svg#graph1")
             .append("svg")
@@ -464,6 +487,114 @@ d3.csv("5regional-comparison.csv", function(error, data) { //method that will pu
 });
         };
         
+        function sixthVis() {
+        
+        var w = getWidth();
+        var h = 400;
+
+        var causes = ["Road Injuries", "Interpersonal Violence", "Self-harm"]
+
+        var svgContainer = d3.select("svg#graph6")
+            .append("svg")
+            .attr("width", w)
+            .attr("height", h);
+
+        var causesText = svgContainer
+            .selectAll("text")
+            .data(causes)
+            .enter()
+            .append("text")
+            .text(function (d) {return d;})
+            .attr("x", w/2)
+            .attr("y", -100)
+            .attr("font-size", "70px")
+            .attr("font-family", "adobe-garamond-pro")
+            .attr("text-anchor", "middle")
+            .style("fill", "rgb(47,79,120)")
+            .transition()
+            .delay(function(d,i) {return 1300 + i*500;})
+            .duration(2000)
+            .attr("y", function(d,i) {return h/3 + 30 + i * 100;});
+
+        var topText = svgContainer
+            .append("text")
+            .text("For 15 to 19 year-old boys, the top 3 causes of death are")
+            .attr("x", w/2)
+            .attr("y", h/4 - 50)
+            .attr("font-size", "30px")
+            .attr("font-family", "adobe-garamond-pro")
+            .attr("text-anchor", "middle")
+            .style("fill", "rgb(47,79,120)");
+
+
+};
+
+        function seventhVis() {
+        
+        var w = getWidth();
+        var h = 400;
+
+        var causes = ["Road Injuries", "Interpersonal Violence", "Self-harm"]
+
+        var svgContainer = d3.select("svg#graph7")
+            .append("svg")
+            .attr("width", w)
+            .attr("height", h);
+
+        var causesText = svgContainer
+            .selectAll("text")
+            .data(causes)
+            .enter()
+            .append("text")
+            .text(function (d) {return d;})
+            .attr("x", w/2)
+            .attr("y", -100)
+            .attr("font-size", "70px")
+            .attr("font-family", "adobe-garamond-pro")
+            .attr("text-anchor", "middle")
+            .style("fill", "rgb(47,79,120)")
+            .transition()
+            .delay(function(d,i) {return 1300 + i*500;})
+            .duration(2000)
+            .attr("y", function(d,i) {return h/3 + 30 + i * 100;});
+
+        var topText = svgContainer
+            .append("text")
+            .text("and globally, very little progress has been made in decreasing deaths due to")
+            .attr("x", w/2)
+            .attr("y", h/4 - 50)
+            .attr("font-size", "30px")
+            .attr("font-family", "adobe-garamond-pro")
+            .attr("text-anchor", "middle")
+            .style("fill", "rgb(47,79,120)");
+
+
+};
+        
+        function eightVis() {
+            var w = getWidth();
+        var h = 200;
+
+        var causes = ["Road Injuries", "Interpersonal Violence", "Self-harm"]
+
+        var svgContainer = d3.select("svg#graph8")
+            .append("svg")
+            .attr("width", w)
+            .attr("height", h);
+
+        var topText = svgContainer
+            .append("text")
+            .text("So if we really want to decrease adolescent deaths, we will have to")
+            .attr("x", w/2)
+            .attr("y", h/2)
+            .attr("font-size", "30px")
+            .attr("font-family", "adobe-garamond-pro")
+            .attr("text-anchor", "middle")
+            .style("fill", "rgb(47,79,120)");
+
+
+};
+
         function lastVis() {
 var w = getWidth();
 var h = 600;
@@ -471,9 +602,9 @@ var padding = 100;
 var mergedRadius = 15;
 var data = [];
 
-var textArray1 = [{"text": "across", "x": 1*w/5, "y": 2*h/5, "size": 22, "text2": "and address", "x2" : w/4, "y2": h/3, "size2": 33}, 
-                    {"text":"sectors", "x": 3*w/5, "y" : 3*h/5, "size": 88, "text2": "mental", "x2" : 2*w/5, "y2": h/2, "size2": 88},
-                    {"text": "", "x" : w/4, "y": h/4, "size": 33, "text2": "health.", "x2" : 2*w/3, "y2": 2*h/3, "size2": 66} ]
+var textArray1 = [{"text": "work", "x": w/5, "y": 2*h/5, "size": 22, "text2": "and address", "x2" : w/3, "y2": h/3, "size2": 33}, 
+                    {"text":"across", "x": w/3, "y" : 3*h/5, "size": 88, "text2": "mental", "x2" : w/2, "y2": h/2, "size2": 88},
+                    {"text": "sectors", "x" : w/2, "y": 4*h/5, "size": 88, "text2": "health.", "x2" : 2*w/3, "y2": 2*h/3, "size2": 66} ]
 
 
 for (var i = 1; i <= 4; i++) {
@@ -531,7 +662,7 @@ var text1 = svgContainer
     .attr("x", function(d) {return d["x"];})
     .attr("y", function(d) {return d["y"];})
     .attr("font-size", function(d) {return d["size"];})
-    .attr("font-family", "courier new")
+    .attr("font-family", "adobe-garamond-pro")
     .attr("text-anchor", "middle")
     .style("fill", "rgb(47,79,120)")
     .transition()
@@ -571,7 +702,7 @@ var text2 = svgContainer
     .attr("x", function(d) {return d["x"];})
     .attr("y", function(d) {return d["y"];})
     .attr("font-size", function(d) {return d["size"];})
-    .attr("font-family", "courier new")
+    .attr("font-family", "adobe-garamond-pro")
     .attr("text-anchor", "middle")
     .style("opacity", 0)
     .style("fill", "rgb(47,79,120)")
@@ -617,17 +748,22 @@ var text = svgContainer
         var isThird;    // Boolean signals isThird completion
         var isSecond;
         var isFifth;
+        var isSixth;
+        var isSeventh;
         var isLast;
 
         window.onload = function(){
             isThird = false;
             isSecond = false;
             isFifth = false;
+            isSixth = false;
+            isSeventh = false;
             isLast = false;
         }
         
         firstVis();
         fourthVis();
+        eightVis();
 
         function scrollDown() {
             var distance = window.pageYOffset;      // Distance from the page top
@@ -645,16 +781,26 @@ var text = svgContainer
                 secondVis();
             }
 
-            else if (distance >= 1800 && isFifth == false) {
+            else if (distance >= 1900 && isFifth == false) {
                 isFifth = true;
                 fifthVis();
             }
 
-            else if (distance >= 2400 && isLast == false) {
+            else if (distance >= 2300 && isSixth == false) {
+                isSixth = true;
+                sixthVis();
+            }
+
+            else if (distance >= 2800 && isSeventh == false) {
+                isSeventh = true;
+                seventhVis();
+            }
+
+            else if(distance >= 3700 && isLast == false) {
                 isLast = true;
                 lastVis();
             }
-            
+    
         }        
 
     </script>
