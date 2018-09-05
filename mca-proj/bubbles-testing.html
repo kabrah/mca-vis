@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<style>
+
+.button {
+	-moz-box-shadow:inset 0px 1px 0px 0px #ffffff;
+	-webkit-box-shadow:inset 0px 1px 0px 0px #ffffff;
+	box-shadow:inset 0px 1px 0px 0px #ffffff;
+	background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #f9f9f9), color-stop(1, #e9e9e9));
+	background:-moz-linear-gradient(top, #f9f9f9 5%, #e9e9e9 100%);
+	background:-webkit-linear-gradient(top, #f9f9f9 5%, #e9e9e9 100%);
+	background:-o-linear-gradient(top, #f9f9f9 5%, #e9e9e9 100%);
+	background:-ms-linear-gradient(top, #f9f9f9 5%, #e9e9e9 100%);
+	background:linear-gradient(to bottom, #f9f9f9 5%, #e9e9e9 100%);
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#f9f9f9', endColorstr='#e9e9e9',GradientType=0);
+	background-color:#f9f9f9;
+	-moz-border-radius:6px;
+	-webkit-border-radius:6px;
+	border-radius:6px;
+	border:1px solid #dcdcdc;
+	display:inline-block;
+	cursor:pointer;
+	color: "rgb(47,79,120)";
+	font-family:"adobe-garamond-pro";
+	font-size:15px;
+	padding:6px 24px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #ffffff;
+}
+.button:hover {
+	background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #e9e9e9), color-stop(1, #f9f9f9));
+	background:-moz-linear-gradient(top, #e9e9e9 5%, #f9f9f9 100%);
+	background:-webkit-linear-gradient(top, #e9e9e9 5%, #f9f9f9 100%);
+	background:-o-linear-gradient(top, #e9e9e9 5%, #f9f9f9 100%);
+	background:-ms-linear-gradient(top, #e9e9e9 5%, #f9f9f9 100%);
+	background:linear-gradient(to bottom, #e9e9e9 5%, #f9f9f9 100%);
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#e9e9e9', endColorstr='#f9f9f9',GradientType=0);
+	background-color:#e9e9e9;
+}
+.button:active {
+	position:relative;
+	top:1px;
+}
+
+</style>
+<body>
+    <button id ="bygroup" class="button">By Group</button>
+    <button id="bychange" class="button">By Improvement</button>
+    <button id="combined" class="button">Combined</button>
+    <div id="chart"></div>
+<script src="https://d3js.org/d3.v4.min.js"></script>
+<script>
+
+var rawData;
+var h = 600;
+var w = 900;
+
+/*d3.csv("bubbledata.csv", function(error, data) { //method that will pull in the csv data and parse it out into a dictionary or an object and callback
+    if(error) {
+        console.log(error);}
+    else {
+        console.log("yay! (pivot)");
+        rawData = data;
+        }
+    });
+*/
+var svgContainer = d3.select("#chart")
+    .append("svg")
+    .attr("height", h)
+    .attr("width", w)
+    .append("g")
+    .attr("transform", "translate(0,0)");
+
+
+var radiusScale = d3.scaleSqrt().domain([0, 30]).range([10,50]);
+
+var improvementScaleX = d3.forceX(function(d) {
+    if (3 <= (d.twothousand - d.twothousandsixteen)) {return 150;}
+        else if (2 <= (d.twothousand - d.twothousandsixteen) && (d.twothousand - d.twothousandsixteen) < 3) {return 300;}
+        else if (1 <= (d.twothousand - d.twothousandsixteen) && (d.twothousand - d.twothousandsixteen) < 2) {return 450;}
+        else if (0 <= (d.twothousand - d.twothousandsixteen) < 1) {return 600;}
+        else {return 750;}
+}
+);
+
+var forceX = d3.forceX(function(d) {
+    if (d.age == 10) {return w/4;}
+    else {return 3*w /4}
+}
+).strength(0.05);
+
+var forceY = d3.forceY(function(d) {
+    if (d.sex == 1) {return h/4;}
+    else {return 3*h /4}
+}
+).strength(0.05);
+
+var forceCollide = d3.forceCollide(function(d) {return radiusScale(d.twothousandsixteen) -1;});
+
+var simulation = d3.forceSimulation()
+    .force("x", forceX)
+    .force("y", forceY)
+    .force("collide", forceCollide);
+
+d3.queue()
+    .defer(d3.csv, "bubbledata.csv")
+    .await(ready)
+
+function ready (error, datapoints) {
+
+var circles = svgContainer.selectAll(".cause")
+    .data(datapoints)
+    .enter()
+    .append("circle")
+    .attr("class", "cause")
+    .attr("r", function(d) {return radiusScale(d.twothousandsixteen);})
+    .attr("fill", function(d) {
+        if (3 <= (d.twothousand - d.twothousandsixteen)) {return "#228B22";}
+        else if (2 <= (d.twothousand - d.twothousandsixteen) && (d.twothousand - d.twothousandsixteen) < 3) {return "#98FB98";}
+        else if (1 <= (d.twothousand - d.twothousandsixteen) && (d.twothousand - d.twothousandsixteen) < 2) {return "#C0C0C0";}
+        else if (0 <= (d.twothousand - d.twothousandsixteen) < 1) {return "#A52A2A";}
+        else {return "#800000";}
+    })
+    .attr("stroke", "grey")
+    .attr("stroke-width", "2px")
+    .on("click", function(d) {console.log(d);})
+
+
+    d3.select("#bygroup")
+        .on("click", function() {
+            simulation
+            .force("x", forceX)
+            .force("y", forceY)
+            .alphaTarget(0.3)
+            .restart();
+        })
+
+    d3.select("#combined")
+        .on("click", function() {
+            simulation
+            .force("x", d3.forceX(w/2).strength(0.1))
+            .force("y", d3.forceY(h/2).strength(0.1))
+            .alphaTarget(0.3)
+            .restart();
+        })
+
+    d3.select("#bychange")
+        .on("click", function() {
+            simulation
+            .force("x", improvementScaleX.strength(0.2))
+            .force("y", d3.forceY(h/2).strength(0.2))
+            .alphaTarget(0.5)
+            .restart();
+        }) 
+
+
+    simulation.nodes(datapoints)
+        .on("tick", ticked)
+
+    function ticked() {
+        circles
+            .attr("cx", function(d) {return d.x;})
+            .attr("cy", function(d) {return d.y;})
+    }
+}
+</script>

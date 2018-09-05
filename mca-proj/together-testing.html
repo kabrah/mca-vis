@@ -1,0 +1,809 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=8">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="http://d3js.org/d3.v3.js" charset="utf-8"></script>
+    <style>
+        div {
+            height: 20px;
+        }
+    </style>
+</head>
+<body onscroll="scrollDown()">
+    <svg id="graph1" width="100%" height="600"></svg> <!--tested with width="900"-->
+    <svg id="graph2" width="100%" height="600"></svg>
+    <svg id="graph3" width="100%" height="600"></svg>
+    <svg id="graph4" width="100%" height="600"></svg>
+    <svg id="graph5" width="100%" height="600"></svg>
+    <svg id="graph6" width="100%" height="400"></svg>
+    <svg id="graph7" width="100%" height="400"></svg>
+    <svg id="graph8" width="100%" height="200"></svg>
+    <svg id="graph-last" width="100%" height="600"></svg>
+
+    <script type="text/javascript">
+    
+    function backgrounds() {
+        d3.select("body")
+            .append("svg")
+            .attr("width", "100%")
+            .attr("height", "100%")
+            .append("rect")
+            .attr("width", "100%")
+            .attr("height", "100%")
+            .attr("fill", "fill", function() {return d3.rgb(Math.random()*255, Math.random()*255, Math.random()*255);})
+            .style("opacity", 0.2);
+
+        d3.select("svg#graph1")
+            .append("rect")
+            .attr("width", "100%")
+            .attr("height", "100%")
+            .attr("fill", function() {return d3.rgb(Math.random()*255, Math.random()*255, Math.random()*255);})
+            .style("opacity", 0.05);
+        
+        d3.select("svg#graph2")
+            .append("rect")
+            .attr("width", "100%")
+            .attr("height", "100%")
+            .attr("fill", function() {return d3.rgb(Math.random()*255, Math.random()*255, Math.random()*255);})
+            .style("opacity", 0.05);
+
+        d3.select("svg#graph3")
+            .append("rect")
+            .attr("width", "100%")
+            .attr("height", "100%")
+            .attr("fill", function() {return d3.rgb(Math.random()*255, Math.random()*255, Math.random()*255);})
+            .style("opacity", 0.05);
+
+        d3.select("svg#graph4")
+            .append("rect")
+            .attr("width", "100%")
+            .attr("height", "100%")
+            .attr("fill", function() {return d3.rgb(Math.random()*255, Math.random()*255, Math.random()*255);})
+            .style("opacity", 0.05);
+
+        d3.select("svg#graph5")
+            .append("rect")
+            .attr("width", "100%")
+            .attr("height", "100%")
+            .attr("fill", function() {return d3.rgb(Math.random()*255, Math.random()*255, Math.random()*255);})
+            .style("opacity", 0.05);
+
+        d3.select("svg#graph6")
+            .append("rect")
+            .attr("width", "100%")
+            .attr("height", "100%")
+            .attr("fill", function() {return d3.rgb(Math.random()*255, Math.random()*255, Math.random()*255);})
+            .style("opacity", 0.05);
+
+        d3.select("svg#graph7")
+            .append("rect")
+            .attr("width", "100%")
+            .attr("height", "100%")
+            .attr("fill", function() {return d3.rgb(Math.random()*255, Math.random()*255, Math.random()*255);})
+            .style("opacity", 0.05);
+        
+        d3.select("svg#graph8")
+            .append("rect")
+            .attr("width", "100%")
+            .attr("height", "100%")
+            .attr("fill", function() {return d3.rgb(Math.random()*255, Math.random()*255, Math.random()*255);})
+            .style("opacity", 0.05);
+        
+        d3.select("svg#graph-last")
+            .append("rect")
+            .attr("width", "100%")
+            .attr("height", "100%")
+            .attr("fill", function() {return d3.rgb(Math.random()*255, Math.random()*255, Math.random()*255);})
+            .style("opacity", 0.05);
+        
+    }
+
+backgrounds();
+        
+        function getWidth() {
+  if (self.innerWidth) {
+    return self.innerWidth;
+  }
+
+  if (document.documentElement && document.documentElement.clientWidth) {
+    return document.documentElement.clientWidth;
+  }
+
+  if (document.body) {
+    return document.body.clientWidth;
+  }
+}
+        
+        function fourthVis() {
+
+var w = getWidth();
+var h = 600;
+
+var words = [
+{"word": "boys", "x": w/4, "y": h/5, "size": "90px"},
+{"word": "Between the ages of 15 and 19,", "x": w/2, "y": h/12, "size": "28px"},
+{"word": "are", "x": 2*w/7, "y": 7*h/27, "size": "25px"},
+{"word": "particularly vulnerable,", "x": w/2, "y": h/3, "size": "50px"},
+{"word": "not just", "x": w/2, "y": 5*h/12, "size": "20px"},
+{"word": "globally, ", "x": w/2, "y": 16*h/30, "size": "60px"},
+{"word": "but in almost", "x": w/2, "y": 15*h/24, "size": "30px"},
+{"word": "every region.", "x": w/2, "y": 17*h/24, "size": "60px"} ]
+
+var svgContainer = d3.select("svg#graph4")
+    .append("svg")
+    .attr("width", w)
+    .attr("height", h);
+
+var text = svgContainer
+    .selectAll("text")
+    .data(words)
+    .enter()
+    .append("text")
+    .text(function(d) {return d["word"];})
+    .attr("x", function(d) {return d["x"];})
+    .attr("y", function(d) {return d["y"];})
+    .attr("font-size", function(d) {return d["size"];})
+    .attr("font-family", "adobe-garamond-pro")
+    .attr("text-anchor", "middle")
+    .style("fill", "rgb(47,79,120)");
+        };
+        
+        function thirdVis() {
+
+var ds;
+var dsPiv;
+
+function drawLines() {
+
+    var w = getWidth();
+    var h = 600;
+    padding = 20;
+
+    var xScale = d3.scale.linear()
+        .domain([
+            d3.min(dsPiv, function (d) { return d.year; }),
+            d3.max(dsPiv, function (d) { return d.year; })
+        ])
+        .range([0 + padding, w - padding]);
+
+    var yScale = d3.scale.linear()
+        .domain([
+            d3.min(dsPiv, function (d) { return d.nr_deaths_5; }), //usually y-axis starts at zero, but this could of course alternatively by the min sales value
+            d3.max(dsPiv, function (d) { return d.nr_deaths_5; })
+        ])
+        .range([h - padding, 0 + padding]); //top left not bottom left coord system so h,0 not 0,h
+
+    var lineFun5 = d3.svg.line()
+        .x(function (d) { return xScale(d.year); })
+        .y(function (d) { return yScale(d.nr_deaths_5); })
+        .interpolate("linear");
+
+    var lineFun15 = d3.svg.line()
+        .x(function (d) { return xScale(d.year); })
+        .y(function (d) { return yScale(d.nr_deaths_15); })
+        .interpolate("linear");
+
+    var svg = d3.select("svg#graph3").append("svg").attr({
+        width: w,
+        height: h
+    });
+
+
+    var viz = svg.append("path")
+        .attr({
+            id: "age5",
+            d: lineFun5(dsPiv),
+            "stroke": "green",
+            "fill": "none",
+            "stroke-width": 5
+        })
+        .style("opacity", 0.8)
+        .transition()
+        .delay(3000)
+        .duration(2000)
+        .attr({
+            d: lineFun15(dsPiv),
+            "stroke": "red",
+            "fill": "none",
+            "stroke-width": 5
+        });
+
+    var underNine = svg.append("text")
+        .text("While there has been significant improvement for children under the age of 10,")
+        .attr("x", w / 2)
+        .attr("y", 100)
+        .attr("font-size", "30px")
+        .attr("text-anchor", "middle")
+        .attr("font-family", "adobe-garamond-pro")
+        .style("fill", "rgb(47,79,120)")
+        .transition()
+        .duration(2000)
+        .delay(3000)
+        .attr("x", 0)
+        .attr("text-anchor", "end");
+        
+
+    var overFifteen = svg.append("text")
+        .text("this has not been the case for 15 to 19 year olds.")
+        .attr("x", w / 2)
+        .attr("y", h + padding * 2)
+        .attr("font-size", "55px")
+        .attr("text-anchor", "middle")
+        .attr("font-family", "adobe-garamond-pro")
+        .style("fill", "rgb(47,79,120)")
+        .transition()
+        .delay(3000)
+        .duration(2000)
+        .attr("y", 3 * h / 4)
+        .attr("text-anchor", "middle");
+
+}
+
+d3.csv("under-ten.csv", function (error, data) { //method that will pull in the csv data and parse it out into a dictionary or an object and callback
+    if (error) {
+        console.log(error);
+    }
+    else {
+        console.log("yay! (pivot)");
+        dsPiv = data;
+    }
+
+    drawLines();
+});
+
+};
+
+        function secondVis() {
+                var w = getWidth();
+                var h = 600;
+                var margin = { right: 10, left: 10 };
+
+                var dailyDeaths = 3025; // next highest square number, all additional circles have opacity 0
+                var dailyDeathsArray = [];
+                var sqrtDeaths = Math.sqrt(dailyDeaths);
+
+
+                for (var i = 1; i <= dailyDeaths; i++) {
+                    dailyDeathsArray.push(i);
+                }
+                
+                var svgContainer = d3.select("svg#graph2")
+                    .append("svg")
+                    .attr("width", w)
+                    .attr("height", h);
+
+                var circle = svgContainer
+                    .selectAll("circle")
+                    .data(dailyDeathsArray)
+                    .enter()
+                    .append("circle")
+                    .attr("cx", w / 2)
+                    .attr("cy", h / 2)
+                    .attr("r", h/2 - 50)
+                    .attr("fill", d3.rgb(Math.random() * 255, Math.random() * 255, Math.random() * 255));
+
+                var circles = circle
+                    .transition()
+                    .delay(500)
+                    .duration(5500)
+                    .attr("cx", function (d, i) {
+                        var a = d % sqrtDeaths;
+                        var b = w - (margin.right + margin.left)
+                        var c = sqrtDeaths
+                        return a * b / c + margin.left;
+                    })
+                    .attr("cy", function (d, i) {
+                        var a = (d - (d % sqrtDeaths)) / sqrtDeaths;
+                        var b = h - (margin.right + margin.left);
+                        var c = sqrtDeaths;
+                        return a * b / c + margin.left;
+                    })
+                    .attr("r", 4)
+                    .style("opacity", function (d) {
+                        if (d > 3000) { return 0; }
+                        else { return 0.9; }
+                    })
+                    .attr("fill", d3.rgb(Math.random() * 255, Math.random() * 255, Math.random() * 255))
+
+                var circlesDis = circles
+                    .transition()
+                    .delay(function (d, i) { return 6000 + i * 5 })
+                    .duration(5000)
+                    .attr('transform', function (d) {
+                        return "rotate(" + (-1) ** Math.round(Math.random()) * Math.random() * Math.PI + ")";
+                    })
+                    .attr("r", 0);
+
+                var text = svgContainer
+                    .append("text")
+                    .text(" ")
+                    .attr("x", w / 2)
+                    .attr("y", h / 2)
+                    .attr("text-anchor", "middle")
+                    .attr("font-family", "adobe-garamond-pro")
+                    .attr("font-size", "40px")
+                    .style("fill", "rgb(47,79,120)")
+                    .transition()
+                    .delay(6000)
+                    .duration(18500)
+                    .tween("text", function () {
+                        var i = d3.interpolate(1, 3000)
+                        return function (t) {
+                            this.textContent = Math.round(i(t)) + " adolescent deaths a day.";
+                        };
+                    })
+                    .attr("font-size", "40px");
+
+
+                }
+        
+        function firstVis() {
+        var w = getWidth();
+        var h = 600;
+
+        var words = [
+            { "word": "over", "x": w / 4, "y": h / 7, "size": "20px" },
+            { "word": "1.1 million", "x": w / 3, "y": h / 4, "size": "60px" },
+            { "word": "adolescents", "x": w / 2, "y": 3.5 * h / 8, "size": "110px" },
+            { "word": "aged", "x": 3 * w / 5, "y": 9 * h / 18, "size": "18px" },
+            { "word": "10-19", "x": 3 * w / 5 + 30, "y": 9 * h / 18 + 30, "size": "20px" },
+            { "word": "die", "x": w / 3, "y": 10 * h / 16, "size": "110px" },
+            { "word": "every year.", "x":  2* w / 5, "y": 6 * h / 8, "size": "40px" },
+            {"word": "That's", "x": w /2, "y": 7.5 * h /8, "size": "40px"}]
+
+        var svgContainer = d3.select("svg#graph1")
+            .append("svg")
+            .attr("width", w)
+            .attr("height", h);
+
+        var text = svgContainer
+            .selectAll("text")
+            .data(words)
+            .enter()
+            .append("text")
+            .text(function (d) { return d["word"]; })
+            .attr("x", function (d) { return d["x"]; })
+            .attr("y", function (d) { return d["y"]; })
+            .attr("font-size", function (d) { return d["size"]; })
+            .attr("font-family", "adobe-garamond-pro")
+            .attr("text-anchor", "middle")
+            .style("fill", "rgb(47,79,120)");
+
+};
+
+        function fifthVis() {
+            var ds;
+
+var w = getWidth();
+var h = 600;
+
+var regName = {"afr_lmic": "African Region LMICs", "amr_lmic": "Region of the Americas LMICs", "emr_lmic": "Eastern Mediterranean Region LMICs", "eur_lmic": "European Region LMICs", "sear_lmic": "South-East Asian Region LMICs", "wpr_lmic": "Western Pacific Region LMICs", "hi": "High Income Countries"};
+
+function tweenText( newValue ) {
+    return function() {
+    var currentValue = +this.textContent;
+      
+    var i = d3.interpolateRound( currentValue, newValue );
+      
+    return function(t) {
+        this.textContent = i(t);};
+    }
+  }
+
+function addComp() {
+    var color = d3.scale.category10();
+
+    var svgContainer = d3.select("svg#graph5")
+        .append("svg")
+        .attr("width", w)
+        .attr("height", h);
+
+    svgContainer.append("rect")
+        .attr("width", "100%")
+        .attr("height", "100%")
+        .attr("fill", function() {return d3.rgb(Math.random()*255, Math.random()*255, Math.random()*255);})
+        .style("opacity", 0.05);
+
+    var region = svgContainer
+        .selectAll("text")
+        .data(ds)
+        .enter()
+        .append("text")
+        .text(function(d) {return regName[d["region"]] + ", " + Math.round((d["dr_m"]/(1*d["dr_m"]+1*d["dr_f"]))*100) + "%";})
+        .attr("x", w/2)
+        .attr("y", function(d,i) {return h/4 + 32*i;})
+        .attr("font-size", "20px")
+        .attr("font-family", "adobe-garamond-pro")
+        .attr("text-anchor", "middle")
+        .style("fill", function(d,i) {return color(i);});
+
+    var text = svgContainer
+        .append("text")
+        .text("In")
+        .attr("x", w/2)
+        .attr("y", h/6)
+        .attr("font-size", "25px")
+        .attr("font-family", "adobe-garamond-pro")
+        .attr("text-anchor", "middle")
+        .style("fill", "rgb(47,79,120)");
+
+    var text2 = svgContainer
+        .append("text")
+        .text("of deaths in that agegroup were boys.")
+        .attr("x", w/2)
+        .attr("y", 2*h/3)
+        .attr("font-size", "25px")
+        .attr("font-family", "adobe-garamond-pro")
+        .attr("text-anchor", "middle")
+        .style("fill", "rgb(47,79,120)");
+
+    var boyRectangles = svgContainer
+        .selectAll("rect.boys")
+        .data(ds)
+        .enter()
+        .append("rect")
+        .attr("x", 0)
+        .attr("y", function(d,i) {return h/4 + 32*i - 20;})
+        .attr("width", 0)
+        .attr("height", "27px")
+        .attr("fill", "blue")
+        .style("opacity", 0.2)
+        .transition()
+        .delay(500)
+        .duration(1000)
+        .ease("bounce")
+        .attr("width", function(d) {return w * d["dr_m"]/(1*d["dr_m"]+1*d["dr_f"]);});
+
+    var girlRectangles = svgContainer
+        .selectAll("rect.girls")
+        .data(ds)
+        .enter()
+        .append("rect")
+        .attr("x", w)
+        .attr("y", function(d,i) {return h/4 + 32*i - 20;})
+        .attr("width", function(d) {return w * d["dr_f"]/(1*d["dr_m"]+1*d["dr_f"]);})
+        .attr("height", "27px")
+        .attr("fill", "red")
+        .style("opacity", 0.1)
+        .transition()
+        .delay(500)
+        .duration(1000)
+        .ease("bounce")
+        .attr("x", function(d) {return w * d["dr_m"]/(1*d["dr_m"]+1*d["dr_f"]);});
+}
+
+d3.csv("reg-comp.csv", function(error, data) { //method that will pull in the csv data and parse it out into a dictionary or an object and callback
+    if(error) {
+        console.log(error);}
+    else {
+        console.log("yay! (pivot)");
+        ds = data;}
+        
+        addComp();
+});
+        };
+        
+        function sixthVis() {
+        
+        var w = getWidth();
+        var h = 400;
+
+        var causes = ["Road Injuries", "Interpersonal Violence", "Self-harm"]
+
+        var svgContainer = d3.select("svg#graph6")
+            .append("svg")
+            .attr("width", w)
+            .attr("height", h);
+
+        var causesText = svgContainer
+            .selectAll("text")
+            .data(causes)
+            .enter()
+            .append("text")
+            .text(function (d) {return d;})
+            .attr("x", w/2)
+            .attr("y", -100)
+            .attr("font-size", "70px")
+            .attr("font-family", "adobe-garamond-pro")
+            .attr("text-anchor", "middle")
+            .style("fill", "rgb(47,79,120)")
+            .transition()
+            .delay(function(d,i) {return 1300 + i*500;})
+            .duration(2000)
+            .attr("y", function(d,i) {return h/3 + 30 + i * 100;});
+
+        var topText = svgContainer
+            .append("text")
+            .text("For 15 to 19 year-old boys, the top 3 causes of death are")
+            .attr("x", w/2)
+            .attr("y", h/4 - 50)
+            .attr("font-size", "30px")
+            .attr("font-family", "adobe-garamond-pro")
+            .attr("text-anchor", "middle")
+            .style("fill", "rgb(47,79,120)");
+
+
+};
+
+        function seventhVis() {
+        
+        var w = getWidth();
+        var h = 400;
+
+        var causes = ["Road Injuries", "Interpersonal Violence", "Self-harm"]
+
+        var svgContainer = d3.select("svg#graph7")
+            .append("svg")
+            .attr("width", w)
+            .attr("height", h);
+
+        var causesText = svgContainer
+            .selectAll("text")
+            .data(causes)
+            .enter()
+            .append("text")
+            .text(function (d) {return d;})
+            .attr("x", w/2)
+            .attr("y", -100)
+            .attr("font-size", "70px")
+            .attr("font-family", "adobe-garamond-pro")
+            .attr("text-anchor", "middle")
+            .style("fill", "rgb(47,79,120)")
+            .transition()
+            .delay(function(d,i) {return 1300 + i*500;})
+            .duration(2000)
+            .attr("y", function(d,i) {return h/3 + 30 + i * 100;});
+
+        var topText = svgContainer
+            .append("text")
+            .text("and globally, very little progress has been made in decreasing deaths due to")
+            .attr("x", w/2)
+            .attr("y", h/4 - 50)
+            .attr("font-size", "30px")
+            .attr("font-family", "adobe-garamond-pro")
+            .attr("text-anchor", "middle")
+            .style("fill", "rgb(47,79,120)");
+
+
+};
+        
+        function eightVis() {
+            var w = getWidth();
+        var h = 200;
+
+        var causes = ["Road Injuries", "Interpersonal Violence", "Self-harm"]
+
+        var svgContainer = d3.select("svg#graph8")
+            .append("svg")
+            .attr("width", w)
+            .attr("height", h);
+
+        var topText = svgContainer
+            .append("text")
+            .text("So if we really want to decrease adolescent deaths, we will have to")
+            .attr("x", w/2)
+            .attr("y", h/2)
+            .attr("font-size", "30px")
+            .attr("font-family", "adobe-garamond-pro")
+            .attr("text-anchor", "middle")
+            .style("fill", "rgb(47,79,120)");
+
+
+};
+
+        function lastVis() {
+var w = getWidth();
+var h = 600;
+var padding = 100;
+var mergedRadius = 15;
+var data = [];
+
+var textArray1 = [{"text": "work", "x": w/5, "y": 2*h/5, "size": 22, "text2": "and address", "x2" : w/3, "y2": h/3, "size2": 33}, 
+                    {"text":"across", "x": w/3, "y" : 3*h/5, "size": 88, "text2": "mental", "x2" : w/2, "y2": h/2, "size2": 88},
+                    {"text": "sectors", "x" : w/2, "y": 4*h/5, "size": 88, "text2": "health.", "x2" : 2*w/3, "y2": 2*h/3, "size2": 66} ]
+
+
+for (var i = 1; i <= 4; i++) {
+   data.push(i);
+}
+
+
+var svgContainer = d3.select("svg#graph-last")
+    .append("svg")
+    .attr("width", w)
+    .attr("height", h);
+
+var sectorCircle = svgContainer
+    .selectAll("circle")
+    .data(data)
+    .enter()
+    .append("circle")
+    .attr("cx", function(d) {if (d%2 == 0) {return w - padding ;} else {return padding;}})
+    .attr("cy", function(d) {if (d <= 2) {return padding;} else {return h - padding;}})
+    .attr("r", padding)
+    .attr("fill", function() {return d3.rgb(Math.random()*255, Math.random()*255, Math.random()*255);});
+
+var moveCircle = sectorCircle
+    .transition()
+    .delay(1000)
+    .duration(1000)
+    .attr('transform', function (d) {return "rotate(" + 8 * Math.PI +")"})
+    .attr("r", function() {return Math.random()*w/2}) ;
+
+var mergeCircles = moveCircle
+    .transition()
+    .delay(2000)
+    .duration(2500)
+    .ease("bounce")
+    .attr("cx", h/2)
+    .attr("cy", w/2)
+    .attr("r", w/2)
+    .style("opacity", 0.2);
+
+var colorSpace = mergeCircles
+    .transition()
+    .delay(3500)
+    .duration(4000)    
+    .ease("linear")
+    .attr("r", w*2)
+    .attrTween("fill", function() {return d3.interpolateRgb(this.getAttribute("fill"), d3.rgb(Math.random()*255, Math.random()*255, Math.random()*255));})
+    .style("opacity", 0.2);
+
+var text1 = svgContainer
+    .selectAll("text")
+    .data(textArray1)
+    .enter()
+    .append("text")
+    .text(function(d) {return d["text"];})
+    .attr("x", function(d) {return d["x"];})
+    .attr("y", function(d) {return d["y"];})
+    .attr("font-size", function(d) {return d["size"];})
+    .attr("font-family", "adobe-garamond-pro")
+    .attr("text-anchor", "middle")
+    .style("fill", "rgb(47,79,120)")
+    .transition()
+    .delay(5000)
+    .duration(4000)
+    //.attr("font-size", "60px")
+    .tween("text", function (d) {
+            var newText = d["text2"];
+            var textLength = newText.length;
+            return function (t) {
+                this.textContent = newText.substr(0, 
+                                   Math.round( t * textLength) );
+            };  })
+    .attr("x", function(d) {return d["x2"];})
+    .attr("y", function(d) {return d["y2"];})
+    .attr("font-size", function(d) {return d["size2"];});
+      
+var brainImage = svgContainer
+    .append("svg:image")
+    .attr("xlink:href", "mental-health.png") //"edulastic.com/blog/common-core-knowledge-quiz/.png"
+    .attr("x", 0)
+    .attr("y", 0)
+    .attr("width", w)
+    .attr("height", h)
+    .style("opacity", 0)
+    .transition()
+    .delay(5000)
+    .duration(1000)
+    .style("opacity", 0.3);
+    
+var text2 = svgContainer  
+    .selectAll("text")
+    .data(textArray2)
+    .enter()
+    .append("text")
+    .text(null)
+    .attr("x", function(d) {return d["x"];})
+    .attr("y", function(d) {return d["y"];})
+    .attr("font-size", function(d) {return d["size"];})
+    .attr("font-family", "adobe-garamond-pro")
+    .attr("text-anchor", "middle")
+    .style("opacity", 0)
+    .style("fill", "rgb(47,79,120)")
+    .transition()
+    .delay(5000)
+    .duration(500)
+    .text(function(d) {return this.textContent = d["text"].slice(0, Math.round (d * d["text"].length));})
+    .style("opacity", 1);
+
+
+
+/*
+var text = svgContainer  
+    .append("text")
+    .text("3'000")
+    .attr("x", w/2)
+    .attr("y", h/2)
+    .attr("text-anchor", "middle")
+    .attr("font-family", "courier new")
+    .attr("font-size", "80px")
+    .style("fill", "white")
+    .transition()
+ //   .ease("bounce")
+    .delay(3000)
+    .duration(4000)
+    .tween("text", function () {
+            var newText = " deaths a day.";
+            var textLength = newText.length;
+            return function (t) {
+                this.textContent = "3'000" + newText.slice(0, 
+                                   Math.round( t * textLength) );
+            };
+        })
+
+    .attr("font-size", "40px")
+    .style("fill", "black");
+
+*/
+
+
+        };
+        
+        var isThird;    // Boolean signals isThird completion
+        var isSecond;
+        var isFifth;
+        var isSixth;
+        var isSeventh;
+        var isLast;
+
+        window.onload = function(){
+            isThird = false;
+            isSecond = false;
+            isFifth = false;
+            isSixth = false;
+            isSeventh = false;
+            isLast = false;
+        }
+        
+        firstVis();
+        fourthVis();
+        eightVis();
+
+        function scrollDown() {
+            var distance = window.pageYOffset;      // Distance from the page top
+            
+            // After certain distance
+            if (distance >= 1000 && isThird == false) {
+                // Update isThird
+                isThird = true;
+                
+                thirdVis();
+            }
+
+            else if (distance >= 300 && isSecond == false) {
+                isSecond = true;
+                secondVis();
+            }
+
+            else if (distance >= 1900 && isFifth == false) {
+                isFifth = true;
+                fifthVis();
+            }
+
+            else if (distance >= 2300 && isSixth == false) {
+                isSixth = true;
+                sixthVis();
+            }
+
+            else if (distance >= 2800 && isSeventh == false) {
+                isSeventh = true;
+                seventhVis();
+            }
+
+            else if(distance >= 3700 && isLast == false) {
+                isLast = true;
+                lastVis();
+            }
+    
+        }        
+
+    </script>
+</body>
+
+</html>
