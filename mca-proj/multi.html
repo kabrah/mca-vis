@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+<meta charset="utf-8"/>
+</head>
+<body>
+<script type="text/javascript">
+
+var margin = {
+  top: 60,
+  right: 200,
+  bottom: 60,
+  left: 60
+};
+
+function getWidth() {
+  if (self.innerWidth) {
+    return self.innerWidth;
+  }
+
+  if (document.documentElement && document.documentElement.clientWidth) {
+    return document.documentElement.clientWidth;
+  }
+
+  if (document.body) {
+    return document.body.clientWidth;
+  }
+}
+
+var wL = getWidth();
+var hL = 600;
+var w = wL - margin.left - margin.right;
+var h = hL - margin.top - margin.bottom;
+var ds;
+
+var div = d3.select("body").append("div")   
+    .style("position", "absolute")
+    .style("text-align", "center")
+    .style("width", "200px")
+    .style("height", "40px")
+    .style("padding", "2px")
+    .style("font", "adobe-garamond-pro")
+    .style("color","black")
+    .style("background", "white")
+    .style("border-radius", "8px")
+    .style("border", "solid 1px grey")
+    .style("opacity", 0);
+
+d3.csv("boyscauses.csv", function (error, data) { //method that will pull in the csv data and parse it out into a dictionary or an object and callback
+    if (error) {
+        console.log(error);
+    }
+    else {
+        console.log("yay! (pivot)");
+        ds = data;
+        drawCircles();}
+ } );
+
+var colorMap = {
+    "Drowning": "blue", 
+    "Interpersonal violence": "orange", 
+    "Self-harm": "green", 
+    "Road injury": "purple", 
+    "HIV/AIDS": "yellow", 
+    "Tuberculosis": "grey", 
+    "Fakecause": "red"};
+
+var placeMap = {
+    "Drowning": 175, 
+    "Interpersonal violence": 200, 
+    "Self-harm": 225, 
+    "Road injury": 250, 
+    "HIV/AIDS": 275, 
+    "Tuberculosis": 300, 
+    "Fakecause": 325};
+
+var causeList = ["Drowning", "Interpersonal violence", "Self-harm", "Road injury", "HIV/AIDS", "Tuberculosis", "Fakecause"];
+var yearScale = d3.scale.linear().domain([2000, 2016]).range([margin.left, w - margin.right]);
+
+function drawCircles() {
+var svgContainer = d3.select("body")
+    .append("svg")
+    .attr("width", wL)
+    .attr("height", hL);
+
+var circles = svgContainer
+    .selectAll("circle")
+    .data(ds)
+    .enter()
+    .append("circle")
+    .attr("cx", function(d,i) {return yearScale(d.year);})
+    .attr("cy", function(d) {if (d.global == 1) {return h - (20 + d.death_rate * 10);} else {return h;}})
+    .attr("r", 8)
+    .attr("fill", function(d) {return colorMap[d.cause];})
+    .attr("stroke", "black")
+    .attr("stroke-width", "1px")
+    .style("opacity", function(d) {if (d.global == 1) {return 0.8;} else {return 0;}})
+    .on("mouseover", mouseover)
+    .on("mouseout", mouseout);
+
+/*var circleTrans = circles
+    .transition()
+    .delay(1500)
+    .duration(1000)
+    .attr("cy", function(d) {if (d.mod_reg == "fake") {return h - (20 + d.death_rate * 10);} else {return h;}})
+    .style("opacity", function(d) {if (d.mod_reg == "fake") {return 0.8;} else {return 0;}});
+*/
+
+var legend = svgContainer
+    .selectAll("text")
+    .data(ds)
+    .enter()
+    .append("text")
+    .attr("x", w - 130)
+    .attr("y", function(d) {return placeMap[d.cause];})
+    .text(function(d) {return d.cause})
+    .style("font-weight", "bold")
+    .style("opacity", function(d) {if (d.year == 2000) {return 0.8;} else {return 0;}})
+    .attr("fill", function(d) {return colorMap[d.cause];});
+
+var x_axis = d3.svg.axis()
+    .scale(yearScale)
+    .ticks(17)
+    .orient("top")
+    .tickFormat(d3.format("d"));
+
+var axis = svgContainer.append("g")
+    .attr("class", "axis")
+    .attr("transform", "translate(0, 550)")
+    .call(x_axis);
+
+var axisText = axis
+    .selectAll("text")	
+    .attr("transform", "translate(0, 25)")
+    .attr("font-family", "adobe-garamond-pro")
+    .attr("font-size", "15px")
+    .style("fill", "rgb(47,79,120)");
+    
+var axisLine = axis
+    //.selectAll("line")
+    .attr("fill", "none")
+    .attr("stroke", "rgb(47,79,120)")
+    .attr("shape-rendering", "crispEdges");
+
+function mouseover(d) {
+    div.html("Cause: " + d.cause + ", Death rate ("+ d.year + "): " + Math.round( d.death_rate * 10 ) / 10)
+    .style("left", (d3.event.pageX) + "px")
+    .style("top",  (d3.event.pageY) + "px")
+    .style("opacity", 1);
+    d3.select(this).attr("r", 14).style("opacity", 1);
+}
+
+function mouseout() {
+    div.style("opacity", 1e-6);
+    d3.select(this).attr("r", 8).style("opacity", 0.8);
+}
+
+
+d3.select("body").append("button")
+    .text("Fake data button text")
+    .on("click", function(d) {
+    circles
+    .transition()
+    .delay(100)
+    .duration(1000)
+    .attr("cy", function(d) {if (d.mod_reg == "fake") {return h - (20 + d.death_rate * 10);} else {return h;}})
+    .style("opacity", function(d) 
+    {if (d.mod_reg == "fake") {return 0.8;} 
+    else {return 0;}})
+;});
+
+};
+</script>
+</body>
+</html>

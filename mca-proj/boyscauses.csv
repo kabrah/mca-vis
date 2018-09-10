@@ -1,0 +1,206 @@
+year,global,mod_reg,cause,death_rate
+2000,1,,Road injury,24.81491
+2001,1,,Road injury,24.60715
+2002,1,,Road injury,24.57009
+2003,1,,Road injury,24.36426
+2004,1,,Road injury,24.3332
+2005,1,,Road injury,24.49329
+2006,1,,Road injury,24.81148
+2007,1,,Road injury,25.03485
+2008,1,,Road injury,25.03248
+2009,1,,Road injury,24.89419
+2010,1,,Road injury,25.02619
+2011,1,,Road injury,25.28791
+2012,1,,Road injury,25.1755
+2013,1,,Road injury,25.0866
+2014,1,,Road injury,25.36673
+2015,1,,Road injury,25.20026
+2016,1,,Road injury,25.34118
+2000,1,,Interpersonal violence,15.40465
+2001,1,,Interpersonal violence,15.36295
+2002,1,,Interpersonal violence,15.12762
+2003,1,,Interpersonal violence,14.30942
+2004,1,,Interpersonal violence,13.59446
+2005,1,,Interpersonal violence,13.4734
+2006,1,,Interpersonal violence,13.50908
+2007,1,,Interpersonal violence,13.27326
+2008,1,,Interpersonal violence,13.64429
+2009,1,,Interpersonal violence,13.95361
+2010,1,,Interpersonal violence,14.00872
+2011,1,,Interpersonal violence,14.13594
+2012,1,,Interpersonal violence,14.45846
+2013,1,,Interpersonal violence,14.10699
+2014,1,,Interpersonal violence,14.1943
+2015,1,,Interpersonal violence,14.29031
+2016,1,,Interpersonal violence,14.29266
+2000,1,,Self-harm,11.32654
+2001,1,,Self-harm,10.94388
+2002,1,,Self-harm,10.50885
+2003,1,,Self-harm,10.17333
+2004,1,,Self-harm,9.967706
+2005,1,,Self-harm,9.655033
+2006,1,,Self-harm,9.462996
+2007,1,,Self-harm,9.315815
+2008,1,,Self-harm,9.251637
+2009,1,,Self-harm,9.082187
+2010,1,,Self-harm,8.844912
+2011,1,,Self-harm,8.801079
+2012,1,,Self-harm,8.786357
+2013,1,,Self-harm,8.59198
+2014,1,,Self-harm,8.564882
+2015,1,,Self-harm,8.577831
+2016,1,,Self-harm,8.372128
+2000,1,,Drowning,8.071383
+2001,1,,Drowning,7.692232
+2002,1,,Drowning,7.422422
+2003,1,,Drowning,7.12977
+2004,1,,Drowning,6.966559
+2005,1,,Drowning,6.808494
+2006,1,,Drowning,6.652787
+2007,1,,Drowning,6.580279
+2008,1,,Drowning,6.526474
+2009,1,,Drowning,6.364213
+2010,1,,Drowning,6.190629
+2011,1,,Drowning,6.042299
+2012,1,,Drowning,6.078373
+2013,1,,Drowning,6.012463
+2014,1,,Drowning,5.961607
+2015,1,,Drowning,5.882197
+2016,1,,Drowning,5.799833
+2000,1,,HIV/AIDS,1.776352
+2001,1,,HIV/AIDS,1.972733
+2002,1,,HIV/AIDS,2.176021
+2003,1,,HIV/AIDS,2.411804
+2004,1,,HIV/AIDS,2.679116
+2005,1,,HIV/AIDS,2.896323
+2006,1,,HIV/AIDS,3.123968
+2007,1,,HIV/AIDS,3.376208
+2008,1,,HIV/AIDS,3.571751
+2009,1,,HIV/AIDS,3.752154
+2010,1,,HIV/AIDS,3.923697
+2011,1,,HIV/AIDS,4.225986
+2012,1,,HIV/AIDS,4.606813
+2013,1,,HIV/AIDS,4.848764
+2014,1,,HIV/AIDS,4.964231
+2015,1,,HIV/AIDS,4.958679
+2016,1,,HIV/AIDS,4.909272
+2000,1,,Tuberculosis,7.227336
+2001,1,,Tuberculosis,6.926029
+2002,1,,Tuberculosis,6.593017
+2003,1,,Tuberculosis,6.289042
+2004,1,,Tuberculosis,5.990503
+2005,1,,Tuberculosis,5.803628
+2006,1,,Tuberculosis,5.58367
+2007,1,,Tuberculosis,5.421118
+2008,1,,Tuberculosis,5.24395
+2009,1,,Tuberculosis,5.092757
+2010,1,,Tuberculosis,4.990633
+2011,1,,Tuberculosis,4.878267
+2012,1,,Tuberculosis,4.79522
+2013,1,,Tuberculosis,4.704692
+2014,1,,Tuberculosis,4.709909
+2015,1,,Tuberculosis,4.553625
+2016,1,,Tuberculosis,4.407242
+
+2000,,fake,Road injury,20.81491
+2001,,fake,Road injury,20.60715
+2002,,fake,Road injury,20.57009
+2003,,fake,Road injury,20.36426
+2004,,fake,Road injury,21.3332
+2005,,fake,Road injury,21.49329
+2006,,fake,Road injury,22.81148
+2007,,fake,Road injury,23.03485
+2008,,fake,Road injury,24.03248
+2009,,fake,Road injury,26.89419
+2010,,fake,Road injury,10.02619
+2011,,fake,Road injury,12.28791
+2012,,fake,Road injury,12.1755
+2013,,fake,Road injury,21.0866
+2014,,fake,Road injury,22.36673
+2015,,fake,Road injury,22.20026
+2016,,fake,Road injury,22.34118
+2000,,fake,Interpersonal violence,10.40465
+2001,,fake,Interpersonal violence,10.36295
+2002,,fake,Interpersonal violence,10.12762
+2003,,fake,Interpersonal violence,10.30942
+2004,,fake,Interpersonal violence,11.59446
+2005,,fake,Interpersonal violence,11.4734
+2006,,fake,Interpersonal violence,11.50908
+2007,,fake,Interpersonal violence,11.27326
+2008,,fake,Interpersonal violence,11.64429
+2009,,fake,Interpersonal violence,11.95361
+2010,,fake,Interpersonal violence,11.00872
+2011,,fake,Interpersonal violence,12.13594
+2012,,fake,Interpersonal violence,12.45846
+2013,,fake,Interpersonal violence,12.10699
+2014,,fake,Interpersonal violence,12.1943
+2015,,fake,Interpersonal violence,12.29031
+2016,,fake,Interpersonal violence,12.29266
+2000,,fake,Self-harm,9.32654
+2001,,fake,Self-harm,9.94388
+2002,,fake,Self-harm,9.50885
+2003,,fake,Self-harm,6.17333
+2004,,fake,Self-harm,6.967706
+2005,,fake,Self-harm,6.655033
+2006,,fake,Self-harm,6.462996
+2007,,fake,Self-harm,6.315815
+2008,,fake,Self-harm,6.251637
+2009,,fake,Self-harm,6.082187
+2010,,fake,Self-harm,5.844912
+2011,,fake,Self-harm,5.801079
+2012,,fake,Self-harm,5.786357
+2013,,fake,Self-harm,5.59198
+2014,,fake,Self-harm,5.564882
+2015,,fake,Self-harm,5.577831
+2016,,fake,Self-harm,5.372128
+2000,,fake,Fakecause,11.3071383
+2001,,fake,Fakecause,11.692232
+2002,,fake,Fakecause,11.422422
+2003,,fake,Fakecause,21.12977
+2004,,fake,Fakecause,11.966559
+2005,,fake,Fakecause,12.808494
+2006,,fake,Fakecause,12.652787
+2007,,fake,Fakecause,21.580279
+2008,,fake,Fakecause,21.526474
+2009,,fake,Fakecause,41.364213
+2010,,fake,Fakecause,31.190629
+2011,,fake,Fakecause,27.042299
+2012,,fake,Fakecause,22.078373
+2013,,fake,Fakecause,23.012463
+2014,,fake,Fakecause,21.961607
+2015,,fake,Fakecause,21.882197
+2016,,fake,Fakecause,21.799833
+2000,,fake,Drowning,3.3071383
+2001,,fake,Drowning,3.692232
+2002,,fake,Drowning,2.422422
+2003,,fake,Drowning,2.12977
+2004,,fake,Drowning,1.966559
+2005,,fake,Drowning,1.808494
+2006,,fake,Drowning,1.652787
+2007,,fake,Drowning,1.580279
+2008,,fake,Drowning,1.526474
+2009,,fake,Drowning,1.364213
+2010,,fake,Drowning,1.190629
+2011,,fake,Drowning,7.042299
+2012,,fake,Drowning,2.078373
+2013,,fake,Drowning,3.012463
+2014,,fake,Drowning,1.961607
+2015,,fake,Drowning,1.882197
+2016,,fake,Drowning,1.799833
+2000,,fake,HIV/AIDS,1.776352
+2001,,fake,HIV/AIDS,1.972733
+2002,,fake,HIV/AIDS,2.176021
+2003,,fake,HIV/AIDS,2.411804
+2004,,fake,HIV/AIDS,10.679116
+2005,,fake,HIV/AIDS,10.896323
+2006,,fake,HIV/AIDS,9.123968
+2007,,fake,HIV/AIDS,8.376208
+2008,,fake,HIV/AIDS,7.571751
+2009,,fake,HIV/AIDS,6.752154
+2010,,fake,HIV/AIDS,6.923697
+2011,,fake,HIV/AIDS,6.225986
+2012,,fake,HIV/AIDS,6.606813
+2013,,fake,HIV/AIDS,6.848764
+2014,,fake,HIV/AIDS,4.964231
+2015,,fake,HIV/AIDS,4.958679
+2016,,fake,HIV/AIDS,4.909272

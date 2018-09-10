@@ -47,6 +47,7 @@
     <button id ="bygroup" class="button">By Group</button>
     <button id="bychange" class="button">By Improvement</button>
     <button id="combined" class="button">Combined</button>
+    <p> </p>
     <div id="chart"></div>
 <script src="https://d3js.org/d3.v4.min.js"></script>
 <script>
@@ -84,25 +85,56 @@ var svgContainer = d3.select("#chart")
     .append("g")
     .attr("transform", "translate(0,0)");
 
+var background = svgContainer    
+    .append("rect")
+        .attr("width", "100%")
+        .attr("height", "100%")
+        .attr("fill", function() {return d3.rgb(Math.random()*255, Math.random()*255, Math.random()*255);})
+        .style("opacity", 0.06);
+
 var div = d3.select("body").append("div")   
     .style("position", "absolute")
     .style("text-align", "center")
     .style("width", "200px")
-    .style("height", "80px")
+    .style("height", "100px")
     .style("padding", "2px")
     .style("font", "adobe-garamond-pro")
-    .style("color","black")
+    .style("color","rgb(47,79,120)")
     .style("background", "white")
     .style("border-radius", "8px")
     .style("border", "solid 1px grey")
     .style("opacity", 0);
 
+var labelDat =[{"text": "Boys aged 10 to 14", "x": 50, "y": h/4},
+{"text": "Girls aged 10 to 14", "x": 50, "y": 3*h/4},
+{"text": "Boys aged 10 to 14", "x": w/2, "y": h/4},
+{"text": "Girls aged 10 to 14", "x": w/2, "y": 3*h/4}] 
+
+var labels = svgContainer
+    .selectAll("text")
+    .data(labelDat)
+    .enter()
+    .append("text")
+    .text(function(d) {return d["text"];})
+    .attr("x", function(d) {return d["x"];})
+    .attr("y", function(d) {return d["y"];})
+    .attr("font-family", "adobe-garamond-pro")
+    .attr("fill", "rgb(47,79,120)")
+    .attr("font-size", 18);
 
 var radiusScale = d3.scaleSqrt().domain([0, 30]).range([10,60]);
 
 var impScaleX = d3.scaleLinear().domain([0.7,-0.8]).range([50, w-50]);
 
 var improvementScaleX = d3.forceX(function(d) {return impScaleX((d.twothousand-d.twothousandsixteen)/d.twothousandsixteen);});
+
+function percImpr(d) {
+        if ((d.twothousand-d.twothousandsixteen)/d.twothousandsixteen >= 0.4) {return "> 40% improvement";}
+        else if ((d.twothousand-d.twothousandsixteen)/d.twothousandsixteen >= 0.3 && (d.twothousand-d.twothousandsixteen)/d.twothousandsixteen < 0.4) {return "30-40% improvement";}
+        else if ((d.twothousand-d.twothousandsixteen)/d.twothousandsixteen >= 0.2 && (d.twothousand-d.twothousandsixteen)/d.twothousandsixteen < 0.3) {return "20-30% improvement";}
+        else if ((d.twothousand-d.twothousandsixteen)/d.twothousandsixteen >= 0.1 && (d.twothousand-d.twothousandsixteen)/d.twothousandsixteen < 0.2) {return "10-20% improvement";}
+        else {return "< 10% improvement";}
+    }
 
 var forceX = d3.forceX(function(d) {
     if (d.age == 10) {return w/4;}
@@ -148,6 +180,7 @@ var circles = svgContainer.selectAll(".cause")
     .on("mouseover", mouseover)
     .on("mouseout", mouseout);
 
+
     d3.select("#bygroup")
         .on("click", function() {
             simulation
@@ -155,6 +188,7 @@ var circles = svgContainer.selectAll(".cause")
             .force("y", forceY)
             .alphaTarget(0.3)
             .restart();
+            labels.style("opacity", 1);
         })
 
     d3.select("#combined")
@@ -164,6 +198,7 @@ var circles = svgContainer.selectAll(".cause")
             .force("y", d3.forceY(h/2).strength(0.1))
             .alphaTarget(0.3)
             .restart();
+            labels.style("opacity", 0);
         })
 
     d3.select("#bychange")
@@ -173,6 +208,7 @@ var circles = svgContainer.selectAll(".cause")
             .force("y", d3.forceY(h/2).strength(0.2))
             .alphaTarget(0.4)
             .restart();
+            labels.style("opacity", 0);
         }) 
 
 
@@ -205,7 +241,7 @@ function sexText(s) {
 }
 
 function mouseover(d) {
-    div.html("Cause: " + d.causename + ", Death rate 2016: " + Math.round( d.twothousandsixteen * 10 ) / 10 + ", Death rate 2000: " + Math.round( d.twothousand * 10 ) / 10 + ", Age:" 
+    div.html("Cause: " + d.causename + ", Death rate 2016: " + Math.round( d.twothousandsixteen * 10 ) / 10 + ", Death rate 2000: " + Math.round( d.twothousand * 10 ) / 10 + ", " + percImpr(d) + ", Age:" 
 + ageText(d.age) + ", Sex: " + sexText(d.sex))
     .style("left", (d3.event.pageX) + "px")
     .style("top",  (d3.event.pageY) + "px")
