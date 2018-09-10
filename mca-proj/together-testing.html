@@ -8,9 +8,49 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="http://d3js.org/d3.v3.js" charset="utf-8"></script>
     <style>
-        div {
-            height: 20px;
+    div {
+         height: 20px;
         }
+    
+.button {
+	-moz-box-shadow:inset 0px 1px 0px 0px #ffffff;
+	-webkit-box-shadow:inset 0px 1px 0px 0px #ffffff;
+	box-shadow:inset 0px 1px 0px 0px #ffffff;
+	background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #f9f9f9), color-stop(1, #e9e9e9));
+	background:-moz-linear-gradient(top, #f9f9f9 5%, #e9e9e9 100%);
+	background:-webkit-linear-gradient(top, #f9f9f9 5%, #e9e9e9 100%);
+	background:-o-linear-gradient(top, #f9f9f9 5%, #e9e9e9 100%);
+	background:-ms-linear-gradient(top, #f9f9f9 5%, #e9e9e9 100%);
+	background:linear-gradient(to bottom, #f9f9f9 5%, #e9e9e9 100%);
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#f9f9f9', endColorstr='#e9e9e9',GradientType=0);
+	background-color:#f9f9f9;
+	-moz-border-radius:6px;
+	-webkit-border-radius:6px;
+	border-radius:6px;
+	border:1px solid #dcdcdc;
+	display:inline-block;
+	cursor:pointer;
+	color: "rgb(47,79,120)";
+	font-family:"adobe-garamond-pro";
+	font-size:15px;
+	padding:6px 24px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #ffffff;
+}
+.button:hover {
+	background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #e9e9e9), color-stop(1, #f9f9f9));
+	background:-moz-linear-gradient(top, #e9e9e9 5%, #f9f9f9 100%);
+	background:-webkit-linear-gradient(top, #e9e9e9 5%, #f9f9f9 100%);
+	background:-o-linear-gradient(top, #e9e9e9 5%, #f9f9f9 100%);
+	background:-ms-linear-gradient(top, #e9e9e9 5%, #f9f9f9 100%);
+	background:linear-gradient(to bottom, #e9e9e9 5%, #f9f9f9 100%);
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#e9e9e9', endColorstr='#f9f9f9',GradientType=0);
+	background-color:#e9e9e9;
+}
+.button:active {
+	position:relative;
+	top:1px;
+}
     </style>
 </head>
 <body onscroll="scrollDown()">
@@ -23,6 +63,7 @@
     <svg id="graph7" width="100%" height="400"></svg>
     <svg id="graph8" width="100%" height="200"></svg>
     <svg id="graph-last" width="100%" height="600"></svg>
+    <a href="bubbles-testing.html"><button class="button">Find out about the top causes of death in other age and sex groups</button>></a>
 
     <script type="text/javascript">
     
@@ -104,7 +145,7 @@
 
 backgrounds();
         
-        function getWidth() {
+function getWidth() {
   if (self.innerWidth) {
     return self.innerWidth;
   }
@@ -118,7 +159,7 @@ backgrounds();
   }
 }
         
-        function fourthVis() {
+function fourthVis() {
 
 var w = getWidth();
 var h = 600;
@@ -152,7 +193,7 @@ var text = svgContainer
     .style("fill", "rgb(47,79,120)");
         };
         
-        function thirdVis() {
+function thirdVis() {
 
 var ds;
 var dsPiv;
@@ -257,7 +298,7 @@ d3.csv("under-ten.csv", function (error, data) { //method that will pull in the 
 
 };
 
-        function secondVis() {
+function secondVis() {
                 var w = getWidth();
                 var h = 600;
                 var margin = { right: 10, left: 10 };
@@ -307,7 +348,7 @@ d3.csv("under-ten.csv", function (error, data) { //method that will pull in the 
                         if (d > 3000) { return 0; }
                         else { return 0.9; }
                     })
-                    .attr("fill", d3.rgb(Math.random() * 255, Math.random() * 255, Math.random() * 255))
+                    .attr("fill", "#ebe83a")
 
                 var circlesDis = circles
                     .transition()
@@ -327,6 +368,7 @@ d3.csv("under-ten.csv", function (error, data) { //method that will pull in the 
                     .attr("font-family", "adobe-garamond-pro")
                     .attr("font-size", "40px")
                     .style("fill", "rgb(47,79,120)")
+                    //.style("text-shadow", "3px 3px 3px")
                     .transition()
                     .delay(6000)
                     .duration(18500)
@@ -335,13 +377,11 @@ d3.csv("under-ten.csv", function (error, data) { //method that will pull in the 
                         return function (t) {
                             this.textContent = Math.round(i(t)) + " adolescent deaths a day.";
                         };
-                    })
-                    .attr("font-size", "40px");
-
+                    });
 
                 }
         
-        function firstVis() {
+function firstVis() {
         var w = getWidth();
         var h = 600;
 
@@ -375,7 +415,7 @@ d3.csv("under-ten.csv", function (error, data) { //method that will pull in the 
 
 };
 
-        function fifthVis() {
+function fifthVis() {
             var ds;
 
 var w = getWidth();
@@ -487,7 +527,7 @@ d3.csv("reg-comp.csv", function(error, data) { //method that will pull in the cs
 });
         };
         
-        function sixthVis() {
+function sixthVis() {
         
         var w = getWidth();
         var h = 400;
@@ -529,7 +569,7 @@ d3.csv("reg-comp.csv", function(error, data) { //method that will pull in the cs
 
 };
 
-        function seventhVis() {
+function seventhVis() {
         
         var w = getWidth();
         var h = 400;
@@ -571,7 +611,7 @@ d3.csv("reg-comp.csv", function(error, data) { //method that will pull in the cs
 
 };
         
-        function eightVis() {
+function eightVis() {
             var w = getWidth();
         var h = 200;
 
@@ -595,14 +635,15 @@ d3.csv("reg-comp.csv", function(error, data) { //method that will pull in the cs
 
 };
 
-        function lastVis() {
+function lastVis() {
+
 var w = getWidth();
 var h = 600;
 var padding = 100;
 var mergedRadius = 15;
 var data = [];
 
-var textArray1 = [{"text": "work", "x": w/5, "y": 2*h/5, "size": 22, "text2": "and address", "x2" : w/3, "y2": h/3, "size2": 33}, 
+var textArray = [{"text": "work", "x": w/5, "y": 2*h/5, "size": 22, "text2": "and address", "x2" : w/3, "y2": h/3, "size2": 33}, 
                     {"text":"across", "x": w/3, "y" : 3*h/5, "size": 88, "text2": "mental", "x2" : w/2, "y2": h/2, "size2": 88},
                     {"text": "sectors", "x" : w/2, "y": 4*h/5, "size": 88, "text2": "health.", "x2" : 2*w/3, "y2": 2*h/3, "size2": 66} ]
 
@@ -642,20 +683,20 @@ var mergeCircles = moveCircle
     .attr("cx", h/2)
     .attr("cy", w/2)
     .attr("r", w/2)
-    .style("opacity", 0.2);
+    .style("opacity", 0.3);
 
 var colorSpace = mergeCircles
     .transition()
     .delay(3500)
-    .duration(4000)    
+    .duration(4000)  
+    .attr("fill", "#00ccff")  
     .ease("linear")
     .attr("r", w*2)
-    .attrTween("fill", function() {return d3.interpolateRgb(this.getAttribute("fill"), d3.rgb(Math.random()*255, Math.random()*255, Math.random()*255));})
     .style("opacity", 0.2);
 
 var text1 = svgContainer
     .selectAll("text")
-    .data(textArray1)
+    .data(textArray)
     .enter()
     .append("text")
     .text(function(d) {return d["text"];})
@@ -682,7 +723,7 @@ var text1 = svgContainer
       
 var brainImage = svgContainer
     .append("svg:image")
-    .attr("xlink:href", "mental-health.png") //"edulastic.com/blog/common-core-knowledge-quiz/.png"
+    .attr("xlink:href", "mental-health.png") //https://pixabay.com/en/mental-health-brain-mind-mental-3332122/
     .attr("x", 0)
     .attr("y", 0)
     .attr("width", w)
@@ -691,11 +732,11 @@ var brainImage = svgContainer
     .transition()
     .delay(5000)
     .duration(1000)
-    .style("opacity", 0.3);
+    .style("opacity", 0.07);
     
 var text2 = svgContainer  
     .selectAll("text")
-    .data(textArray2)
+    .data(textArray)
     .enter()
     .append("text")
     .text(null)
@@ -704,13 +745,12 @@ var text2 = svgContainer
     .attr("font-size", function(d) {return d["size"];})
     .attr("font-family", "adobe-garamond-pro")
     .attr("text-anchor", "middle")
-    .style("opacity", 0)
+    .style("opacity", 1)
     .style("fill", "rgb(47,79,120)")
     .transition()
-    .delay(5000)
+    .delay(function(d,i) {return 5000 + i * 1000;})
     .duration(500)
     .text(function(d) {return this.textContent = d["text"].slice(0, Math.round (d * d["text"].length));})
-    .style("opacity", 1);
 
 
 
@@ -745,41 +785,46 @@ var text = svgContainer
 
         };
         
-        var isThird;    // Boolean signals isThird completion
-        var isSecond;
-        var isFifth;
-        var isSixth;
-        var isSeventh;
-        var isLast;
+var isThird;    // Boolean signals isThird completion
+var isSecond;
+var isFifth;
+var isSixth;
+var isSeventh;
+var isLast;
 
-        window.onload = function(){
-            isThird = false;
-            isSecond = false;
-            isFifth = false;
-            isSixth = false;
-            isSeventh = false;
-            isLast = false;
-        }
+window.onload = function() {
+    isSecond = false;
+    isThird = false;
+    isFourth = false;
+    isFifth = false;
+    isSixth = false;
+    isSeventh = false;
+    isEighth = false;
+    isLast = false;
+}
         
-        firstVis();
-        fourthVis();
-        eightVis();
+firstVis();
 
         function scrollDown() {
             var distance = window.pageYOffset;      // Distance from the page top
             
             // After certain distance
-            if (distance >= 1000 && isThird == false) {
-                // Update isThird
-                isThird = true;
-                
-                thirdVis();
-            }
 
-            else if (distance >= 300 && isSecond == false) {
+            if (distance >= 300 && isSecond == false) {
                 isSecond = true;
                 secondVis();
             }
+
+            else if (distance >= 1000 && isThird == false) {
+                isThird = true;
+                thirdVis();
+            }
+
+            else if (distance >= 1400 && isFourth == false) {
+                isFourth= true;
+                fourthVis();
+            }
+
 
             else if (distance >= 1900 && isFifth == false) {
                 isFifth = true;
@@ -791,12 +836,17 @@ var text = svgContainer
                 sixthVis();
             }
 
-            else if (distance >= 2800 && isSeventh == false) {
+            else if (distance >= 2900 && isSeventh == false) {
                 isSeventh = true;
                 seventhVis();
             }
 
-            else if(distance >= 3700 && isLast == false) {
+            else if (distance >= 3200 && isEighth == false) {
+                isEighth = true;
+                eightVis();
+            }
+
+            else if(distance >= 3600 && isLast == false) {
                 isLast = true;
                 lastVis();
             }

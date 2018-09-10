@@ -51,10 +51,23 @@
 <script src="https://d3js.org/d3.v4.min.js"></script>
 <script>
 
+function getWidth() {
+  if (self.innerWidth) {
+    return self.innerWidth;
+  }
+
+  if (document.documentElement && document.documentElement.clientWidth) {
+    return document.documentElement.clientWidth;
+  }
+
+  if (document.body) {
+    return document.body.clientWidth;
+  }
+}
+
 var rawData;
 var h = 600;
-var w = 900;
-
+var w = getWidth();
 /*d3.csv("bubbledata.csv", function(error, data) { //method that will pull in the csv data and parse it out into a dictionary or an object and callback
     if(error) {
         console.log(error);}
@@ -71,17 +84,25 @@ var svgContainer = d3.select("#chart")
     .append("g")
     .attr("transform", "translate(0,0)");
 
+var div = d3.select("body").append("div")   
+    .style("position", "absolute")
+    .style("text-align", "center")
+    .style("width", "200px")
+    .style("height", "80px")
+    .style("padding", "2px")
+    .style("font", "adobe-garamond-pro")
+    .style("color","black")
+    .style("background", "white")
+    .style("border-radius", "8px")
+    .style("border", "solid 1px grey")
+    .style("opacity", 0);
 
-var radiusScale = d3.scaleSqrt().domain([0, 30]).range([10,50]);
 
-var improvementScaleX = d3.forceX(function(d) {
-    if (3 <= (d.twothousand - d.twothousandsixteen)) {return 150;}
-        else if (2 <= (d.twothousand - d.twothousandsixteen) && (d.twothousand - d.twothousandsixteen) < 3) {return 300;}
-        else if (1 <= (d.twothousand - d.twothousandsixteen) && (d.twothousand - d.twothousandsixteen) < 2) {return 450;}
-        else if (0 <= (d.twothousand - d.twothousandsixteen) < 1) {return 600;}
-        else {return 750;}
-}
-);
+var radiusScale = d3.scaleSqrt().domain([0, 30]).range([10,60]);
+
+var impScaleX = d3.scaleLinear().domain([0.7,-0.8]).range([50, w-50]);
+
+var improvementScaleX = d3.forceX(function(d) {return impScaleX((d.twothousand-d.twothousandsixteen)/d.twothousandsixteen);});
 
 var forceX = d3.forceX(function(d) {
     if (d.age == 10) {return w/4;}
@@ -115,16 +136,17 @@ var circles = svgContainer.selectAll(".cause")
     .attr("class", "cause")
     .attr("r", function(d) {return radiusScale(d.twothousandsixteen);})
     .attr("fill", function(d) {
-        if (3 <= (d.twothousand - d.twothousandsixteen)) {return "#228B22";}
-        else if (2 <= (d.twothousand - d.twothousandsixteen) && (d.twothousand - d.twothousandsixteen) < 3) {return "#98FB98";}
-        else if (1 <= (d.twothousand - d.twothousandsixteen) && (d.twothousand - d.twothousandsixteen) < 2) {return "#C0C0C0";}
-        else if (0 <= (d.twothousand - d.twothousandsixteen) < 1) {return "#A52A2A";}
+        if ((d.twothousand-d.twothousandsixteen)/d.twothousandsixteen >= 0.4) {return "#228B22";}
+        else if ((d.twothousand-d.twothousandsixteen)/d.twothousandsixteen >= 0.3 && (d.twothousand-d.twothousandsixteen)/d.twothousandsixteen < 0.4) {return "#98FB98";}
+        else if ((d.twothousand-d.twothousandsixteen)/d.twothousandsixteen >= 0.2 && (d.twothousand-d.twothousandsixteen)/d.twothousandsixteen < 0.3) {return "#C0C0C0";}
+        else if ((d.twothousand-d.twothousandsixteen)/d.twothousandsixteen >= 0.1 && (d.twothousand-d.twothousandsixteen)/d.twothousandsixteen < 0.2) {return "#A52A2A";}
         else {return "#800000";}
     })
     .attr("stroke", "grey")
     .attr("stroke-width", "2px")
     .on("click", function(d) {console.log(d);})
-
+    .on("mouseover", mouseover)
+    .on("mouseout", mouseout);
 
     d3.select("#bygroup")
         .on("click", function() {
@@ -147,9 +169,9 @@ var circles = svgContainer.selectAll(".cause")
     d3.select("#bychange")
         .on("click", function() {
             simulation
-            .force("x", improvementScaleX.strength(0.2))
+            .force("x", improvementScaleX.strength(0.75))
             .force("y", d3.forceY(h/2).strength(0.2))
-            .alphaTarget(0.5)
+            .alphaTarget(0.4)
             .restart();
         }) 
 
@@ -162,5 +184,39 @@ var circles = svgContainer.selectAll(".cause")
             .attr("cx", function(d) {return d.x;})
             .attr("cy", function(d) {return d.y;})
     }
+}
+
+function ageText(a) {
+    if (a == 10) {
+        return "10 to 14";
+    }
+    else {
+        return "15 to 19";
+    }
+}
+
+function sexText(s) {
+    if (s == 1) {
+        return "male";
+    }
+    else {
+        return "female";
+    }
+}
+
+function mouseover(d) {
+    div.html("Cause: " + d.causename + ", Death rate 2016: " + Math.round( d.twothousandsixteen * 10 ) / 10 + ", Death rate 2000: " + Math.round( d.twothousand * 10 ) / 10 + ", Age:" 
++ ageText(d.age) + ", Sex: " + sexText(d.sex))
+    .style("left", (d3.event.pageX) + "px")
+    .style("top",  (d3.event.pageY) + "px")
+    //.style("left", (d3.event.pageX + 9) + "px")
+    //.style("top",  (d3.event.pageY - 50) + "px")
+    //.style("left", (d3.event.clientX) + "px")
+    //.style("top",  (d3.event.clientY) + "px")
+    .style("opacity", 1);
+}
+
+function mouseout() {
+    div.style("opacity", 1e-6);
 }
 </script>
