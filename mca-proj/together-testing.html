@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="http://d3js.org/d3.v3.js" charset="utf-8"></script>
     <style>
-    div {
+div {
          height: 20px;
         }
     
@@ -66,7 +66,7 @@
     <svg id="graph9" width="100%" height="400"></svg>
     <svg id="graph10" width="100%" height="200"></svg>
     <svg id="graph-last" width="100%" height="600"></svg>
-    <a href="bubbles-testing.html"><button class="button">Find out about the top causes of death in other age and sex groups</button>></a>
+    <a href="bubbles-testing.html"><button class="button" style="font-size:22px ! important;">Find out about the top causes of death in other age and sex groups</button>></a>
 
     <script type="text/javascript">
     
@@ -438,7 +438,7 @@ function fifthVis() {
 var w = getWidth();
 var h = 600;
 
-var regName = {"afr_lmic": "African Region LMICs", "amr_lmic": "Region of the Americas LMICs", "emr_lmic": "Eastern Mediterranean Region LMICs", "eur_lmic": "European Region LMICs", "sear_lmic": "South-East Asian Region LMICs", "wpr_lmic": "Western Pacific Region LMICs", "hi": "High Income Countries"};
+var regName = {"afr_lmic": "African Region LMIC*", "amr_lmic": "Region of the Americas LMIC*", "emr_lmic": "Eastern Mediterranean Region LMIC*", "eur_lmic": "European Region LMIC*", "sear_lmic": "South-East Asian Region LMIC*", "wpr_lmic": "Western Pacific Region LMIC*", "hi": "High Income Countries"};
 
 function tweenText( newValue ) {
     return function() {
@@ -472,7 +472,7 @@ function addComp() {
         .append("text")
         .text(function(d) {return regName[d["region"]] + ", " + Math.round((d["dr_m"]/(1*d["dr_m"]+1*d["dr_f"]))*100) + "%";})
         .attr("x", w/2)
-        .attr("y", function(d,i) {return h/4 + 32*i;})
+        .attr("y", function(d,i) {return 200 + 32*i;})
         .attr("font-size", "20px")
         .attr("font-family", "adobe-garamond-pro")
         .attr("text-anchor", "middle")
@@ -480,9 +480,20 @@ function addComp() {
 
     var text = svgContainer
         .append("text")
-        .text("In")
+        .text("Boys")
         .attr("x", w/2)
-        .attr("y", h/6)
+        .attr("y", h/7)
+        .attr("font-size", "60px")
+        .attr("font-family", "adobe-garamond-pro")
+        .attr("text-anchor", "middle")
+        .style("fill", "rgb(47,79,120)")
+        .attr("background-color", "rgb(0, 0, 255,0.2)");
+    
+    var text1 = svgContainer
+        .append("text")
+        .text("make up")
+        .attr("x", w/2)
+        .attr("y", 150)
         .attr("font-size", "25px")
         .attr("font-family", "adobe-garamond-pro")
         .attr("text-anchor", "middle")
@@ -490,12 +501,21 @@ function addComp() {
 
     var text2 = svgContainer
         .append("text")
-        .text("of deaths in that agegroup were boys.")
+        .text("of deaths in that agegroup.")
         .attr("x", w/2)
-        .attr("y", 2*h/3)
+        .attr("y", 450)
         .attr("font-size", "25px")
         .attr("font-family", "adobe-garamond-pro")
         .attr("text-anchor", "middle")
+        .style("fill", "rgb(47,79,120)");
+
+    var lmicText = svgContainer
+        .append("text")
+        .text("*Lower Middle Income Countries")
+        .attr("x", 3*w/4)
+        .attr("y", h - 70)
+        .attr("font-family", "adobe-garamond-pro")
+        .attr("text-anchor", "left")
         .style("fill", "rgb(47,79,120)");
 
     var boyRectangles = svgContainer
@@ -504,7 +524,7 @@ function addComp() {
         .enter()
         .append("rect")
         .attr("x", 0)
-        .attr("y", function(d,i) {return h/4 + 32*i - 20;})
+        .attr("y", function(d,i) {return 200 + 32*i - 20;})
         .attr("width", 0)
         .attr("height", "27px")
         .attr("fill", "blue")
@@ -515,13 +535,23 @@ function addComp() {
         .ease("bounce")
         .attr("width", function(d) {return w * d["dr_m"]/(1*d["dr_m"]+1*d["dr_f"]);});
 
+var boytextRect = svgContainer
+        .append("rect")
+        .attr("x", 0)
+        .attr("y", h/7 - 55)
+        .attr("width", getWidth())
+        .attr("height", 76)
+        .style("fill", "blue")
+        .style("opacity",0.2);
+        
+
     var girlRectangles = svgContainer
         .selectAll("rect.girls")
         .data(ds)
         .enter()
         .append("rect")
         .attr("x", w)
-        .attr("y", function(d,i) {return h/4 + 32*i - 20;})
+        .attr("y", function(d,i) {return 200 + 32*i - 20;})
         .attr("width", function(d) {return w * d["dr_f"]/(1*d["dr_m"]+1*d["dr_f"]);})
         .attr("height", "27px")
         .attr("fill", "red")
@@ -1118,7 +1148,7 @@ firstVis();
                 secondVis();
             }
 
-            else if (distance >= 900 && isThird == false) {
+            else if (distance >= 800 && isThird == false) {
                 isThird = true;
                 thirdVis();
             }

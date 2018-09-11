@@ -1,0 +1,39 @@
+/*{
+    //deploying to devlin
+    "version": "0.1.0",
+    "tasks": [
+        {
+            "taskName": "deploy to HQSUDEVLIN",
+            "isBuildCommand": true,
+            "type": "shell",
+            "command": "cmd /c \"c:\\Users\\abrahamk\\Documents\\project\\MCA\\live-feed\\deploy.bat\""
+        }
+    ]
+}
+ 
+//What I'm using on my laptop
+{
+    "version": "0.1.0",
+    "command": "Chrome",
+    "osx": {
+        "command": "/Applications/Firefox.app/Contents/MacOS/Firefox"
+    },
+    "args": [
+        "${file}"
+    ]
+}
+
+
+//What I use on the desktop
+
+{
+    "version": "0.1.0",
+    "command": "Firefox",
+    "osx": {
+        "command": "/Applications/Firefox.app/Contents/MacOS/Firefox"
+    },
+    "args": [
+        "${file}"
+    ]
+}
+*/
