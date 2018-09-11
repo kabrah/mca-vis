@@ -61,7 +61,7 @@ div {
     <svg id="graph5" width="100%" height="600"></svg>
     <svg id="graph6" width="100%" height="200"></svg>
     <div id="seventh"></div>
-    <svg id="graph7" width="100%" height="650"></svg>
+    <svg id="graph7" width="100%" height="580"></svg>
     <svg id="graph8" width="100%" height="400"></svg>
     <svg id="graph9" width="100%" height="400"></svg>
     <svg id="graph10" width="100%" height="200"></svg>
@@ -280,7 +280,7 @@ function drawLines() {
         .style("fill", "rgb(47,79,120)")
         .transition()
         .duration(2000)
-        .delay(3000)
+        .delay(3500)
         .attr("x", 0)
         .attr("text-anchor", "end");
         
@@ -511,7 +511,7 @@ function addComp() {
 
     var lmicText = svgContainer
         .append("text")
-        .text("*Lower Middle Income Countries")
+        .text("*Low and Middle Income Countries")
         .attr("x", 3*w/4)
         .attr("y", h - 70)
         .attr("font-family", "adobe-garamond-pro")
@@ -538,12 +538,16 @@ function addComp() {
 var boytextRect = svgContainer
         .append("rect")
         .attr("x", 0)
-        .attr("y", h/7 - 55)
-        .attr("width", getWidth())
+        .attr("y", h/7 - 55) 
+        .attr("width", 0)
         .attr("height", 76)
+        .style("opacity",0.2)
         .style("fill", "blue")
-        .style("opacity",0.2);
-        
+        .transition()
+        .delay(500)
+        .duration(1000)
+        .ease("bounce")
+        .attr("width", getWidth());
 
     var girlRectangles = svgContainer
         .selectAll("rect.girls")
@@ -622,11 +626,11 @@ var margin = {
   top: 60,
   right: 200,
   bottom: 60,
-  left: 60
+  left: 90
 };
 
 var wL = getWidth();
-var hL = 600;
+var hL = 620;
 var w = wL - margin.left - margin.right;
 var h = hL - margin.top - margin.bottom;
 var ds;
@@ -635,7 +639,7 @@ var div = d3.select("body").append("div")
     .style("position", "absolute")
     .style("text-align", "center")
     .style("width", "200px")
-    .style("height", "40px")
+    .style("height", "60px")
     .style("padding", "2px")
     .style("font", "adobe-garamond-pro")
     .style("color","black")
@@ -655,7 +659,7 @@ d3.csv("boyscauses.csv", function (error, data) { //method that will pull in the
  } );
 
 var colorMap = {
-    "Drowning": "darkblue", 
+    "Drowning": "lightblue", 
     "Interpersonal violence": "orange", 
     "Self-harm": "lightgreen", 
     "Road injury": "purple", 
@@ -665,25 +669,26 @@ var colorMap = {
     "Diarrhoeal diseases": "brown",
     "Lower respiratory infections": "darkgreen",
     "Leukaemia": "pink",
-    "Collective violence and legal intervention": "lightblue",
+    "Collective violence and legal intervention": "darkblue",
     "Drug use disorders":"maroon"}; //DarkOliveGreen 
 
 var placeMap = {
-    "Drowning": 175, 
-    "Interpersonal violence": 200, 
-    "Self-harm": 225, 
-    "Road injury": 250, 
+    "Collective violence and legal intervention": 175,
+    "Diarrhoeal diseases": 200,
+    "Drowning": 225,
+    "Drug use disorders": 250,
     "HIV/AIDS": 275, 
-    "Tuberculosis": 300, 
-    "Meningitis": 325, 
-    "Diarrhoeal diseases": 350,
-    "Lower respiratory infections": 375,
-    "Leukaemia": 400,
-    "Collective violence and legal intervention": 425,
-    "Drug use disorders": 450};
+    "Interpersonal violence": 300,
+    "Leukaemia": 325,
+    "Lower respiratory infections": 350,
+    "Meningitis": 375, 
+    "Road injury": 400, 
+    "Self-harm": 425,
+    "Tuberculosis": 450};
 
 var causeList = ["Drowning", "Interpersonal violence", "Self-harm", "Road injury", "HIV/AIDS", "Tuberculosis", "Meningitis", "Diarrhoeal diseases","Lower respiratory infections","Leukaemia", "Collective violence and legal intervention", "Drug use disorders"];
 var yearScale = d3.scale.linear().domain([2000, 2016]).range([margin.left, w - margin.right]);
+var drScale = d3.scale.linear().domain([0,80]).range([h, 60]);
 
 function drawCircles() {
 var svgContainer = d3.select("svg#graph7")
@@ -697,7 +702,8 @@ var circles = svgContainer
     .enter()
     .append("circle")
     .attr("cx", function(d,i) {return yearScale(d.year);})
-    .attr("cy", function(d) {if (d.global == 1) {return h - (20 + d.death_rate * 6);} else {return h;}})
+    //.attr("cy", function(d) {if (d.global == 1) {return h - (20 + d.death_rate * 6);} else {return h;}})
+    .attr("cy", function(d) {if (d.global == 1) {return drScale(d.death_rate);} else {return h;}})
     .attr("r", 6)
     .attr("fill", function(d) {return colorMap[d.cause];})
     .attr("stroke", "black")
@@ -705,6 +711,7 @@ var circles = svgContainer
     .style("opacity", function(d) {if (d.global == 1) {return 0.8;} else {return 0;}})
     .on("mouseover", mouseover)
     .on("mouseout", mouseout);
+
 
 var legend = svgContainer
     .selectAll("text")
@@ -718,32 +725,76 @@ var legend = svgContainer
     .style("opacity", function(d) {if (d.year == 2000) {return 0.8;} else {return 0;}})
     .attr("fill", function(d) {return colorMap[d.cause];});
 
+var regLabel = svgContainer.append("text")
+    .attr("x", margin.left + (w - margin.right - margin.left)/2)
+    .attr("y", 50)
+    .text("Global")
+    .attr("text-anchor", "middle")
+    .attr("font-family", "adobe-garamond-pro")
+    .attr("font-size", "25px")
+    .style("fill", "rgb(47,79,120)");
+
 var x_axis = d3.svg.axis()
     .scale(yearScale)
     .ticks(17)
     .orient("top")
     .tickFormat(d3.format("d"));
 
-var axis = svgContainer.append("g")
-    .attr("class", "axis")
-    .attr("transform", "translate(0, 550)")
+var xaxis = svgContainer.append("g")
+    .attr("class", "xaxis")
+    .attr("transform", "translate(0, 525)")
     .call(x_axis);
 
-var axisText = axis
+var xaxisText = xaxis
     .selectAll("text")	
     .attr("transform", "translate(0, 25)")
     .attr("font-family", "adobe-garamond-pro")
     .attr("font-size", "15px")
     .style("fill", "rgb(47,79,120)");
     
-var axisLine = axis
+var xaxisLine = xaxis
     //.selectAll("line")
     .attr("fill", "none")
     .attr("stroke", "rgb(47,79,120)")
     .attr("shape-rendering", "crispEdges");
 
+var y_axis = d3.svg.axis()
+    .scale(drScale)
+    .ticks(20)
+    .orient("left")
+    .tickFormat(d3.format("d"));
+
+var yaxis = svgContainer.append("g")
+    .attr("class", "yaxis")
+    .attr("transform", "translate(60,0)")
+    .call(y_axis);
+
+var yaxisText = yaxis
+    .selectAll("text")	
+    //.attr("transform", "translate(0, 0)")
+    .attr("font-family", "adobe-garamond-pro")
+    .attr("font-size", "15px")
+    .style("fill", "rgb(47,79,120)");
+    
+var yaxisLine = yaxis
+    //.selectAll("line")
+    .attr("fill", "none")
+    .attr("stroke", "rgb(47,79,120)")
+    .attr("shape-rendering", "crispEdges");
+
+var yAxisLabel = svgContainer.append("text")
+    .attr("transform", "rotate(-90)")
+    .attr("y", 5)
+    .attr("x",0 - (h / 2))
+    .attr("dy", "1em")
+    .style("text-anchor", "middle")
+    .text("Death rate (per 100'000)")
+    .attr("font-family", "adobe-garamond-pro")
+    .attr("font-size", "15px")
+    .style("fill", "rgb(47,79,120)");
+
 function mouseover(d) {
-    div.html("Cause: " + d.cause + ", Death rate ("+ d.year + "): " + Math.round( d.death_rate * 10 ) / 10)
+    div.html("Cause: " + d.cause + ", Death rate ("+ d.year + "): " + Math.round( d.death_rate * 10 ) / 10 + ", Boys aged 15-19")
     .style("left", (d3.event.pageX) + "px")
     .style("top",  (d3.event.pageY) + "px")
     .style("opacity", 1);
@@ -763,10 +814,13 @@ d3.select("div#seventh").append("button")
     .transition()
     .delay(100)
     .duration(1000)
-    .attr("cy", function(d) {if (d.global == "1") {return h - (20 + d.death_rate * 6);} else {return h;}})
+    //.attr("cy", function(d) {if (d.global == "1") {return h - (20 + d.death_rate * 6);} else {return h;}})
+    .attr("cy", function(d) {if (d.global == 1) {return drScale(d.death_rate);} else {return h;}})    
     .style("opacity", function(d) 
     {if (d.global == "1") {return 0.8;} 
     else {return 0;}})
+    regLabel
+    .text("Global");
 ;});
 
 d3.select("div#seventh").append("button")
@@ -777,10 +831,13 @@ d3.select("div#seventh").append("button")
     .transition()
     .delay(100)
     .duration(1000)
-    .attr("cy", function(d) {if (d.mod_reg == "AFR LMIC") {return h - (20 + d.death_rate * 6);} else {return h;}})
+    //.attr("cy", function(d) {if (d.mod_reg == "AFR LMIC") {return h - (20 + d.death_rate * 6);} else {return h;}})
+    .attr("cy", function(d) {if (d.mod_reg == "AFR LMIC") {return drScale(d.death_rate);} else {return h;}})
     .style("opacity", function(d) 
     {if (d.mod_reg == "AFR LMIC") {return 0.8;} 
     else {return 0;}})
+    regLabel
+    .text("African Region, Low and Middle Income Countries");
 ;});
 
 d3.select("div#seventh").append("button")
@@ -791,10 +848,13 @@ d3.select("div#seventh").append("button")
     .transition()
     .delay(100)
     .duration(1000)
-    .attr("cy", function(d) {if (d.mod_reg == "AMR LMIC") {return h - (20 + d.death_rate * 6);} else {return h;}})
+    //.attr("cy", function(d) {if (d.mod_reg == "AMR LMIC") {return h - (20 + d.death_rate * 6);} else {return h;}})
+    .attr("cy", function(d) {if (d.mod_reg == "AMR LMIC") {return drScale(d.death_rate);} else {return h;}})
     .style("opacity", function(d) 
     {if (d.mod_reg == "AMR LMIC") {return 0.8;} 
     else {return 0;}})
+    regLabel
+    .text("Region of the Americas, Low and Middle Income Countries");
 ;});
 
 d3.select("div#seventh").append("button")
@@ -805,10 +865,13 @@ d3.select("div#seventh").append("button")
     .transition()
     .delay(100)
     .duration(1000)
-    .attr("cy", function(d) {if (d.mod_reg == "EMR LMIC") {return h - (20 + d.death_rate * 6);} else {return h;}})
+    //.attr("cy", function(d) {if (d.mod_reg == "EMR LMIC") {return h - (20 + d.death_rate * 6);} else {return h;}})
+    .attr("cy", function(d) {if (d.mod_reg == "EMR LMIC") {return drScale(d.death_rate);} else {return h;}})
     .style("opacity", function(d) 
     {if (d.mod_reg == "EMR LMIC") {return 0.8;} 
     else {return 0;}})
+    regLabel
+    .text("Eastern Mediterranean Region, Low and Middle Income Countries");
 ;});
 
 d3.select("div#seventh").append("button")
@@ -819,24 +882,13 @@ d3.select("div#seventh").append("button")
     .transition()
     .delay(100)
     .duration(1000)
-    .attr("cy", function(d) {if (d.mod_reg == "EUR LMIC") {return h - (20 + d.death_rate * 6);} else {return h;}})
+    //.attr("cy", function(d) {if (d.mod_reg == "EUR LMIC") {return h - (20 + d.death_rate * 6);} else {return h;}})
+    .attr("cy", function(d) {if (d.mod_reg == "EUR LMIC") {return drScale(d.death_rate);} else {return h;}})
     .style("opacity", function(d) 
     {if (d.mod_reg == "EUR LMIC") {return 0.8;} 
     else {return 0;}})
-;});
-
-d3.select("div#seventh").append("button")
-    .attr("class", "button")
-    .text("HI")
-    .on("click", function(d) {
-    circles
-    .transition()
-    .delay(100)
-    .duration(1000)
-    .attr("cy", function(d) {if (d.mod_reg == "High Income") {return h - (20 + d.death_rate * 6);} else {return h;}})
-    .style("opacity", function(d) 
-    {if (d.mod_reg == "High Income") {return 0.8;} 
-    else {return 0;}})
+    regLabel
+    .text("European Region, Low and Middle Income Countries");
 ;});
 
 d3.select("div#seventh").append("button")
@@ -847,10 +899,13 @@ d3.select("div#seventh").append("button")
     .transition()
     .delay(100)
     .duration(1000)
-    .attr("cy", function(d) {if (d.mod_reg == "SEAR LMIC") {return h - (20 + d.death_rate * 6);} else {return h;}})
+    //.attr("cy", function(d) {if (d.mod_reg == "SEAR LMIC") {return h - (20 + d.death_rate * 6);} else {return h;}})
+    .attr("cy", function(d) {if (d.mod_reg == "SEAR LMIC") {return drScale(d.death_rate);} else {return h;}})    
     .style("opacity", function(d) 
     {if (d.mod_reg == "SEAR LMIC") {return 0.8;} 
     else {return 0;}})
+    regLabel
+    .text("South-East Asian Region, Low and Middle Income Countries");
 ;});
 
 d3.select("div#seventh").append("button")
@@ -861,10 +916,30 @@ d3.select("div#seventh").append("button")
     .transition()
     .delay(100)
     .duration(1000)
-    .attr("cy", function(d) {if (d.mod_reg == "WPR LMIC") {return h - (20 + d.death_rate * 6);} else {return h;}})
+    //.attr("cy", function(d) {if (d.mod_reg == "WPR LMIC") {return h - (20 + d.death_rate * 6);} else {return h;}})
+    .attr("cy", function(d) {if (d.mod_reg == "WPR LMIC") {return drScale(d.death_rate);} else {return h;}})
     .style("opacity", function(d) 
     {if (d.mod_reg == "WPR LMIC") {return 0.8;} 
     else {return 0;}})
+    regLabel
+    .text("Western Pacific Region, Low and Middle Income Countries");
+;});
+
+d3.select("div#seventh").append("button")
+    .attr("class", "button")
+    .text("HI")
+    .on("click", function(d) {
+    circles
+    .transition()
+    .delay(100)
+    .duration(1000)
+    //.attr("cy", function(d) {if (d.mod_reg == "High Income") {return h - (20 + d.death_rate * 6);} else {return h;}})
+    .attr("cy", function(d) {if (d.mod_reg == "High Income") {return drScale(d.death_rate);} else {return h;}})
+    .style("opacity", function(d) 
+    {if (d.mod_reg == "High Income") {return 0.8;} 
+    else {return 0;}})
+    regLabel
+    .text("High Income Countries");
 ;});
 
 };
@@ -1148,7 +1223,7 @@ firstVis();
                 secondVis();
             }
 
-            else if (distance >= 800 && isThird == false) {
+            else if (distance >= 750 && isThird == false) {
                 isThird = true;
                 thirdVis();
             }
