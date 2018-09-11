@@ -101,106 +101,292 @@ year,global,mod_reg,cause,death_rate
 2014,1,,Tuberculosis,4.709909
 2015,1,,Tuberculosis,4.553625
 2016,1,,Tuberculosis,4.407242
-
-2000,,fake,Road injury,20.81491
-2001,,fake,Road injury,20.60715
-2002,,fake,Road injury,20.57009
-2003,,fake,Road injury,20.36426
-2004,,fake,Road injury,21.3332
-2005,,fake,Road injury,21.49329
-2006,,fake,Road injury,22.81148
-2007,,fake,Road injury,23.03485
-2008,,fake,Road injury,24.03248
-2009,,fake,Road injury,26.89419
-2010,,fake,Road injury,10.02619
-2011,,fake,Road injury,12.28791
-2012,,fake,Road injury,12.1755
-2013,,fake,Road injury,21.0866
-2014,,fake,Road injury,22.36673
-2015,,fake,Road injury,22.20026
-2016,,fake,Road injury,22.34118
-2000,,fake,Interpersonal violence,10.40465
-2001,,fake,Interpersonal violence,10.36295
-2002,,fake,Interpersonal violence,10.12762
-2003,,fake,Interpersonal violence,10.30942
-2004,,fake,Interpersonal violence,11.59446
-2005,,fake,Interpersonal violence,11.4734
-2006,,fake,Interpersonal violence,11.50908
-2007,,fake,Interpersonal violence,11.27326
-2008,,fake,Interpersonal violence,11.64429
-2009,,fake,Interpersonal violence,11.95361
-2010,,fake,Interpersonal violence,11.00872
-2011,,fake,Interpersonal violence,12.13594
-2012,,fake,Interpersonal violence,12.45846
-2013,,fake,Interpersonal violence,12.10699
-2014,,fake,Interpersonal violence,12.1943
-2015,,fake,Interpersonal violence,12.29031
-2016,,fake,Interpersonal violence,12.29266
-2000,,fake,Self-harm,9.32654
-2001,,fake,Self-harm,9.94388
-2002,,fake,Self-harm,9.50885
-2003,,fake,Self-harm,6.17333
-2004,,fake,Self-harm,6.967706
-2005,,fake,Self-harm,6.655033
-2006,,fake,Self-harm,6.462996
-2007,,fake,Self-harm,6.315815
-2008,,fake,Self-harm,6.251637
-2009,,fake,Self-harm,6.082187
-2010,,fake,Self-harm,5.844912
-2011,,fake,Self-harm,5.801079
-2012,,fake,Self-harm,5.786357
-2013,,fake,Self-harm,5.59198
-2014,,fake,Self-harm,5.564882
-2015,,fake,Self-harm,5.577831
-2016,,fake,Self-harm,5.372128
-2000,,fake,Fakecause,11.3071383
-2001,,fake,Fakecause,11.692232
-2002,,fake,Fakecause,11.422422
-2003,,fake,Fakecause,21.12977
-2004,,fake,Fakecause,11.966559
-2005,,fake,Fakecause,12.808494
-2006,,fake,Fakecause,12.652787
-2007,,fake,Fakecause,21.580279
-2008,,fake,Fakecause,21.526474
-2009,,fake,Fakecause,41.364213
-2010,,fake,Fakecause,31.190629
-2011,,fake,Fakecause,27.042299
-2012,,fake,Fakecause,22.078373
-2013,,fake,Fakecause,23.012463
-2014,,fake,Fakecause,21.961607
-2015,,fake,Fakecause,21.882197
-2016,,fake,Fakecause,21.799833
-2000,,fake,Drowning,3.3071383
-2001,,fake,Drowning,3.692232
-2002,,fake,Drowning,2.422422
-2003,,fake,Drowning,2.12977
-2004,,fake,Drowning,1.966559
-2005,,fake,Drowning,1.808494
-2006,,fake,Drowning,1.652787
-2007,,fake,Drowning,1.580279
-2008,,fake,Drowning,1.526474
-2009,,fake,Drowning,1.364213
-2010,,fake,Drowning,1.190629
-2011,,fake,Drowning,7.042299
-2012,,fake,Drowning,2.078373
-2013,,fake,Drowning,3.012463
-2014,,fake,Drowning,1.961607
-2015,,fake,Drowning,1.882197
-2016,,fake,Drowning,1.799833
-2000,,fake,HIV/AIDS,1.776352
-2001,,fake,HIV/AIDS,1.972733
-2002,,fake,HIV/AIDS,2.176021
-2003,,fake,HIV/AIDS,2.411804
-2004,,fake,HIV/AIDS,10.679116
-2005,,fake,HIV/AIDS,10.896323
-2006,,fake,HIV/AIDS,9.123968
-2007,,fake,HIV/AIDS,8.376208
-2008,,fake,HIV/AIDS,7.571751
-2009,,fake,HIV/AIDS,6.752154
-2010,,fake,HIV/AIDS,6.923697
-2011,,fake,HIV/AIDS,6.225986
-2012,,fake,HIV/AIDS,6.606813
-2013,,fake,HIV/AIDS,6.848764
-2014,,fake,HIV/AIDS,4.964231
-2015,,fake,HIV/AIDS,4.958679
-2016,,fake,HIV/AIDS,4.909272
+2000,,AFR LMIC,Road injury,40.06924
+2001,,AFR LMIC,Road injury,40.11729
+2002,,AFR LMIC,Road injury,40.76492
+2003,,AFR LMIC,Road injury,41.35236
+2004,,AFR LMIC,Road injury,41.6091
+2005,,AFR LMIC,Road injury,41.71674
+2006,,AFR LMIC,Road injury,41.59117
+2007,,AFR LMIC,Road injury,41.19826
+2008,,AFR LMIC,Road injury,41.46549
+2009,,AFR LMIC,Road injury,41.81248
+2010,,AFR LMIC,Road injury,42.00492
+2011,,AFR LMIC,Road injury,41.61034
+2012,,AFR LMIC,Road injury,41.49451
+2013,,AFR LMIC,Road injury,41.51037
+2014,,AFR LMIC,Road injury,41.64729
+2015,,AFR LMIC,Road injury,41.41641
+2016,,AFR LMIC,Road injury,41.75399
+2000,,AFR LMIC,HIV/AIDS,10.64807
+2001,,AFR LMIC,HIV/AIDS,12.32199
+2002,,AFR LMIC,HIV/AIDS,14.13222
+2003,,AFR LMIC,HIV/AIDS,16.12353
+2004,,AFR LMIC,HIV/AIDS,18.19861
+2005,,AFR LMIC,HIV/AIDS,19.70633
+2006,,AFR LMIC,HIV/AIDS,21.08639
+2007,,AFR LMIC,HIV/AIDS,22.39338
+2008,,AFR LMIC,HIV/AIDS,23.13937
+2009,,AFR LMIC,HIV/AIDS,23.58944
+2010,,AFR LMIC,HIV/AIDS,23.95797
+2011,,AFR LMIC,HIV/AIDS,25.10104
+2012,,AFR LMIC,HIV/AIDS,26.5942
+2013,,AFR LMIC,HIV/AIDS,27.18185
+2014,,AFR LMIC,HIV/AIDS,27.04471
+2015,,AFR LMIC,HIV/AIDS,26.22209
+2016,,AFR LMIC,HIV/AIDS,25.28661
+2000,,AFR LMIC,Interpersonal violence,29.79338
+2001,,AFR LMIC,Interpersonal violence,29.60863
+2002,,AFR LMIC,Interpersonal violence,28.94834
+2003,,AFR LMIC,Interpersonal violence,28.12186
+2004,,AFR LMIC,Interpersonal violence,27.47081
+2005,,AFR LMIC,Interpersonal violence,27.05986
+2006,,AFR LMIC,Interpersonal violence,26.72826
+2007,,AFR LMIC,Interpersonal violence,26.20748
+2008,,AFR LMIC,Interpersonal violence,25.86633
+2009,,AFR LMIC,Interpersonal violence,25.32228
+2010,,AFR LMIC,Interpersonal violence,24.69579
+2011,,AFR LMIC,Interpersonal violence,24.35357
+2012,,AFR LMIC,Interpersonal violence,24.0315
+2013,,AFR LMIC,Interpersonal violence,23.64362
+2014,,AFR LMIC,Interpersonal violence,23.32696
+2015,,AFR LMIC,Interpersonal violence,23.05373
+2016,,AFR LMIC,Interpersonal violence,22.79819
+2000,,AFR LMIC,Diarrhoeal diseases,33.0436
+2001,,AFR LMIC,Diarrhoeal diseases,32.49869
+2002,,AFR LMIC,Diarrhoeal diseases,31.51457
+2003,,AFR LMIC,Diarrhoeal diseases,30.95322
+2004,,AFR LMIC,Diarrhoeal diseases,29.83689
+2005,,AFR LMIC,Diarrhoeal diseases,28.3323
+2006,,AFR LMIC,Diarrhoeal diseases,27.11847
+2007,,AFR LMIC,Diarrhoeal diseases,26.05334
+2008,,AFR LMIC,Diarrhoeal diseases,25.29917
+2009,,AFR LMIC,Diarrhoeal diseases,24.41468
+2010,,AFR LMIC,Diarrhoeal diseases,23.6274
+2011,,AFR LMIC,Diarrhoeal diseases,22.75329
+2012,,AFR LMIC,Diarrhoeal diseases,22.05856
+2013,,AFR LMIC,Diarrhoeal diseases,21.43729
+2014,,AFR LMIC,Diarrhoeal diseases,20.72267
+2015,,AFR LMIC,Diarrhoeal diseases,20.04555
+2016,,AFR LMIC,Diarrhoeal diseases,19.33981
+2000,,AFR LMIC,Meningitis,18.40427
+2001,,AFR LMIC,Meningitis,18.41437
+2002,,AFR LMIC,Meningitis,17.95378
+2003,,AFR LMIC,Meningitis,18.0038
+2004,,AFR LMIC,Meningitis,17.49934
+2005,,AFR LMIC,Meningitis,16.85993
+2006,,AFR LMIC,Meningitis,16.61133
+2007,,AFR LMIC,Meningitis,16.44817
+2008,,AFR LMIC,Meningitis,16.3265
+2009,,AFR LMIC,Meningitis,16.3964
+2010,,AFR LMIC,Meningitis,16.1123
+2011,,AFR LMIC,Meningitis,15.91773
+2012,,AFR LMIC,Meningitis,15.97355
+2013,,AFR LMIC,Meningitis,15.89791
+2014,,AFR LMIC,Meningitis,15.81204
+2015,,AFR LMIC,Meningitis,15.67327
+2016,,AFR LMIC,Meningitis,15.58608
+2000,,AFR LMIC,Tuberculosis,24.9168
+2001,,AFR LMIC,Tuberculosis,24.11992
+2002,,AFR LMIC,Tuberculosis,23.27323
+2003,,AFR LMIC,Tuberculosis,22.53511
+2004,,AFR LMIC,Tuberculosis,21.7996
+2005,,AFR LMIC,Tuberculosis,21.47161
+2006,,AFR LMIC,Tuberculosis,20.64951
+2007,,AFR LMIC,Tuberculosis,20.12484
+2008,,AFR LMIC,Tuberculosis,18.94756
+2009,,AFR LMIC,Tuberculosis,18.14954
+2010,,AFR LMIC,Tuberculosis,17.55371
+2011,,AFR LMIC,Tuberculosis,17.16572
+2012,,AFR LMIC,Tuberculosis,16.87202
+2013,,AFR LMIC,Tuberculosis,16.49952
+2014,,AFR LMIC,Tuberculosis,16.69473
+2015,,AFR LMIC,Tuberculosis,15.92104
+2016,,AFR LMIC,Tuberculosis,15.28521
+2000,,AMR LMIC,Interpersonal violence,63.45704
+2001,,AMR LMIC,Interpersonal violence,65.65176
+2002,,AMR LMIC,Interpersonal violence,68.19567
+2003,,AMR LMIC,Interpersonal violence,63.83841
+2004,,AMR LMIC,Interpersonal violence,58.84401
+2005,,AMR LMIC,Interpersonal violence,58.52393
+2006,,AMR LMIC,Interpersonal violence,59.34988
+2007,,AMR LMIC,Interpersonal violence,57.24117
+2008,,AMR LMIC,Interpersonal violence,61.55005
+2009,,AMR LMIC,Interpersonal violence,66.01384
+2010,,AMR LMIC,Interpersonal violence,66.99965
+2011,,AMR LMIC,Interpersonal violence,68.11409
+2012,,AMR LMIC,Interpersonal violence,71.13742
+2013,,AMR LMIC,Interpersonal violence,67.86658
+2014,,AMR LMIC,Interpersonal violence,68.68168
+2015,,AMR LMIC,Interpersonal violence,68.41246
+2016,,AMR LMIC,Interpersonal violence,68.46033
+2000,,AMR LMIC,Road injury,22.07472
+2001,,AMR LMIC,Road injury,22.52193
+2002,,AMR LMIC,Road injury,23.30043
+2003,,AMR LMIC,Road injury,22.24132
+2004,,AMR LMIC,Road injury,22.64926
+2005,,AMR LMIC,Road injury,22.85372
+2006,,AMR LMIC,Road injury,24.30547
+2007,,AMR LMIC,Road injury,25.22567
+2008,,AMR LMIC,Road injury,27.10918
+2009,,AMR LMIC,Road injury,26.33625
+2010,,AMR LMIC,Road injury,26.78852
+2011,,AMR LMIC,Road injury,27.8891
+2012,,AMR LMIC,Road injury,29.84527
+2013,,AMR LMIC,Road injury,29.44655
+2014,,AMR LMIC,Road injury,30.96422
+2015,,AMR LMIC,Road injury,29.81372
+2016,,AMR LMIC,Road injury,30.4948
+2000,,AMR LMIC,Self-harm,8.930215
+2001,,AMR LMIC,Self-harm,9.562965
+2002,,AMR LMIC,Self-harm,9.340518
+2003,,AMR LMIC,Self-harm,9.226438
+2004,,AMR LMIC,Self-harm,9.323549
+2005,,AMR LMIC,Self-harm,8.965656
+2006,,AMR LMIC,Self-harm,8.955816
+2007,,AMR LMIC,Self-harm,8.995735
+2008,,AMR LMIC,Self-harm,9.256552
+2009,,AMR LMIC,Self-harm,9.285536
+2010,,AMR LMIC,Self-harm,9.306722
+2011,,AMR LMIC,Self-harm,9.760549
+2012,,AMR LMIC,Self-harm,10.44447
+2013,,AMR LMIC,Self-harm,9.691332
+2014,,AMR LMIC,Self-harm,9.887632
+2015,,AMR LMIC,Self-harm,10.64945
+2016,,AMR LMIC,Self-harm,9.929297
+2000,,AMR LMIC,Drowning,10.75519
+2001,,AMR LMIC,Drowning,10.43636
+2002,,AMR LMIC,Drowning,11.10533
+2003,,AMR LMIC,Drowning,9.817433
+2004,,AMR LMIC,Drowning,9.598762
+2005,,AMR LMIC,Drowning,9.509683
+2006,,AMR LMIC,Drowning,9.178452
+2007,,AMR LMIC,Drowning,8.943809
+2008,,AMR LMIC,Drowning,9.055917
+2009,,AMR LMIC,Drowning,8.853457
+2010,,AMR LMIC,Drowning,8.021803
+2011,,AMR LMIC,Drowning,7.948408
+2012,,AMR LMIC,Drowning,8.247938
+2013,,AMR LMIC,Drowning,7.695262
+2014,,AMR LMIC,Drowning,7.997265
+2015,,AMR LMIC,Drowning,8.020808
+2016,,AMR LMIC,Drowning,8.079762
+2000,,AMR LMIC,Leukaemia,3.223026
+2001,,AMR LMIC,Leukaemia,3.442821
+2002,,AMR LMIC,Leukaemia,3.319957
+2003,,AMR LMIC,Leukaemia,3.598379
+2004,,AMR LMIC,Leukaemia,3.234462
+2005,,AMR LMIC,Leukaemia,3.52133
+2006,,AMR LMIC,Leukaemia,3.118903
+2007,,AMR LMIC,Leukaemia,3.503145
+2008,,AMR LMIC,Leukaemia,3.317909
+2009,,AMR LMIC,Leukaemia,3.459353
+2010,,AMR LMIC,Leukaemia,3.357247
+2011,,AMR LMIC,Leukaemia,3.493407
+2012,,AMR LMIC,Leukaemia,3.390845
+2013,,AMR LMIC,Leukaemia,3.390393
+2014,,AMR LMIC,Leukaemia,3.429105
+2015,,AMR LMIC,Leukaemia,3.677255
+2016,,AMR LMIC,Leukaemia,3.63705
+2000,,AMR LMIC,Lower respiratory infections,3.907413
+2001,,AMR LMIC,Lower respiratory infections,3.850124
+2002,,AMR LMIC,Lower respiratory infections,3.668588
+2003,,AMR LMIC,Lower respiratory infections,3.735082
+2004,,AMR LMIC,Lower respiratory infections,3.706875
+2005,,AMR LMIC,Lower respiratory infections,3.382274
+2006,,AMR LMIC,Lower respiratory infections,3.563879
+2007,,AMR LMIC,Lower respiratory infections,3.337225
+2008,,AMR LMIC,Lower respiratory infections,3.17541
+2009,,AMR LMIC,Lower respiratory infections,3.625856
+2010,,AMR LMIC,Lower respiratory infections,3.447287
+2011,,AMR LMIC,Lower respiratory infections,3.206707
+2012,,AMR LMIC,Lower respiratory infections,3.198832
+2013,,AMR LMIC,Lower respiratory infections,3.456159
+2014,,AMR LMIC,Lower respiratory infections,3.451249
+2015,,AMR LMIC,Lower respiratory infections,3.385577
+2016,,AMR LMIC,Lower respiratory infections,3.428965
+2000,,EMR LMIC,Collective violence and legal intervention,10.25217
+2001,,EMR LMIC,Collective violence and legal intervention,5.187522
+2002,,EMR LMIC,Collective violence and legal intervention,2.517451
+2003,,EMR LMIC,Collective violence and legal intervention,14.49914
+2004,,EMR LMIC,Collective violence and legal intervention,14.00056
+2005,,EMR LMIC,Collective violence and legal intervention,13.02329
+2006,,EMR LMIC,Collective violence and legal intervention,22.20646
+2007,,EMR LMIC,Collective violence and legal intervention,20.29485
+2008,,EMR LMIC,Collective violence and legal intervention,12.36618
+2009,,EMR LMIC,Collective violence and legal intervention,11.92114
+2010,,EMR LMIC,Collective violence and legal intervention,11.50159
+2011,,EMR LMIC,Collective violence and legal intervention,13.82668
+2012,,EMR LMIC,Collective violence and legal intervention,28.14464
+2013,,EMR LMIC,Collective violence and legal intervention,35.31516
+2014,,EMR LMIC,Collective violence and legal intervention,47.23603
+2015,,EMR LMIC,Collective violence and legal intervention,43.91822
+2016,,EMR LMIC,Collective violence and legal intervention,38.88689
+2000,,EMR LMIC,Road injury,28.98141
+2001,,EMR LMIC,Road injury,28.5868
+2002,,EMR LMIC,Road injury,28.51516
+2003,,EMR LMIC,Road injury,29.53181
+2004,,EMR LMIC,Road injury,29.30514
+2005,,EMR LMIC,Road injury,29.09162
+2006,,EMR LMIC,Road injury,29.35147
+2007,,EMR LMIC,Road injury,28.46396
+2008,,EMR LMIC,Road injury,28.56358
+2009,,EMR LMIC,Road injury,28.38751
+2010,,EMR LMIC,Road injury,28.33689
+2011,,EMR LMIC,Road injury,27.4486
+2012,,EMR LMIC,Road injury,25.74525
+2013,,EMR LMIC,Road injury,25.78312
+2014,,EMR LMIC,Road injury,25.43023
+2015,,EMR LMIC,Road injury,25.16424
+2016,,EMR LMIC,Road injury,25.56742
+2000,,EMR LMIC,Interpersonal violence,13.11611
+2001,,EMR LMIC,Interpersonal violence,13.14713
+2002,,EMR LMIC,Interpersonal violence,12.75574
+2003,,EMR LMIC,Interpersonal violence,12.46436
+2004,,EMR LMIC,Interpersonal violence,12.41074
+2005,,EMR LMIC,Interpersonal violence,12.34198
+2006,,EMR LMIC,Interpersonal violence,12.40744
+2007,,EMR LMIC,Interpersonal violence,12.40591
+2008,,EMR LMIC,Interpersonal violence,12.78524
+2009,,EMR LMIC,Interpersonal violence,12.75114
+2010,,EMR LMIC,Interpersonal violence,12.81579
+2011,,EMR LMIC,Interpersonal violence,12.88943
+2012,,EMR LMIC,Interpersonal violence,12.80657
+2013,,EMR LMIC,Interpersonal violence,12.84542
+2014,,EMR LMIC,Interpersonal violence,12.71388
+2015,,EMR LMIC,Interpersonal violence,12.5791
+2016,,EMR LMIC,Interpersonal violence,12.58389
+2000,,EMR LMIC,Drowning,7.874532
+2001,,EMR LMIC,Drowning,7.702437
+2002,,EMR LMIC,Drowning,7.507905
+2003,,EMR LMIC,Drowning,7.33633
+2004,,EMR LMIC,Drowning,7.348298
+2005,,EMR LMIC,Drowning,7.175311
+2006,,EMR LMIC,Drowning,7.049258
+2007,,EMR LMIC,Drowning,6.979418
+2008,,EMR LMIC,Drowning,6.772967
+2009,,EMR LMIC,Drowning,6.295297
+2010,,EMR LMIC,Drowning,5.733142
+2011,,EMR LMIC,Drowning,5.42654
+2012,,EMR LMIC,Drowning,5.451253
+2013,,EMR LMIC,Drowning,5.561496
+2014,,EMR LMIC,Drowning,5.380958
+2015,,EMR LMIC,Drowning,5.183791
+2016,,EMR LMIC,Drowning,5.245664
+2000,,EMR LMIC,Self-harm,7.100853
+2001,,EMR LMIC,Self-harm,7.030097
+2002,,EMR LMIC,Self-harm,6.95373
+2003,,EMR LMIC,Self-harm,6.704475
+2004,,EMR LMIC,Self-harm,6.769289
+2005,,EMR LMIC,Self-harm,6.711283
+2006,,EMR LMIC,Self-harm,6.66693
+2007,,EMR LMIC,Self-harm,6.817453
+2008,,EMR LMIC,Self-harm,6.61153
+2009,,EMR LMIC,Self-harm,6.061001
+2010,,EMR LMIC,Self-harm,5.424564
+2011,,EMR LMIC,Self-harm,5.037563
+2012,,EMR LMIC,Self-harm,5.07385
+2013,,EMR LMIC,Self-harm,5.152935
+2014,,EMR LMIC,Self-harm,5.063525
+2015,,EMR LMIC,Self-harm,4.958512
+2016,,EMR LMIC,Self-harm,5.062125

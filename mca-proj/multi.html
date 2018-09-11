@@ -5,8 +5,11 @@
 <meta charset="utf-8"/>
 </head>
 <body>
+<div id="seventh">
+<svg id="graph7" width="100%" height="650"></svg>
+</div>
 <script type="text/javascript">
-
+function seventhVis() {
 var margin = {
   top: 60,
   right: 200,
@@ -34,7 +37,7 @@ var w = wL - margin.left - margin.right;
 var h = hL - margin.top - margin.bottom;
 var ds;
 
-var div = d3.select("body").append("div")   
+var div = d3.select("div#seventh").append("div")   
     .style("position", "absolute")
     .style("text-align", "center")
     .style("width", "200px")
@@ -58,13 +61,17 @@ d3.csv("boyscauses.csv", function (error, data) { //method that will pull in the
  } );
 
 var colorMap = {
-    "Drowning": "blue", 
+    "Drowning": "darkblue", 
     "Interpersonal violence": "orange", 
-    "Self-harm": "green", 
+    "Self-harm": "lightgreen", 
     "Road injury": "purple", 
     "HIV/AIDS": "yellow", 
     "Tuberculosis": "grey", 
-    "Fakecause": "red"};
+    "Meningitis": "red", 
+    "Diarrhoeal diseases": "brown",
+    "Lower respiratory infections": "darkgreen",
+    "Leukaemia": "pink",
+    "Collective violence and legal intervention": "lightblue"};
 
 var placeMap = {
     "Drowning": 175, 
@@ -73,13 +80,17 @@ var placeMap = {
     "Road injury": 250, 
     "HIV/AIDS": 275, 
     "Tuberculosis": 300, 
-    "Fakecause": 325};
+    "Meningitis": 325, 
+    "Diarrhoeal diseases": 350,
+    "Lower respiratory infections": 375,
+    "Leukaemia": 400,
+    "Collective violence and legal intervention": 425};
 
-var causeList = ["Drowning", "Interpersonal violence", "Self-harm", "Road injury", "HIV/AIDS", "Tuberculosis", "Fakecause"];
+var causeList = ["Drowning", "Interpersonal violence", "Self-harm", "Road injury", "HIV/AIDS", "Tuberculosis", "Meningitis", "Diarrhoeal diseases","Lower respiratory infections","Leukaemia", "Collective violence and legal intervention"];
 var yearScale = d3.scale.linear().domain([2000, 2016]).range([margin.left, w - margin.right]);
 
 function drawCircles() {
-var svgContainer = d3.select("body")
+var svgContainer = d3.select("svg#graph7")
     .append("svg")
     .attr("width", wL)
     .attr("height", hL);
@@ -90,22 +101,14 @@ var circles = svgContainer
     .enter()
     .append("circle")
     .attr("cx", function(d,i) {return yearScale(d.year);})
-    .attr("cy", function(d) {if (d.global == 1) {return h - (20 + d.death_rate * 10);} else {return h;}})
-    .attr("r", 8)
+    .attr("cy", function(d) {if (d.global == 1) {return h - (20 + d.death_rate * 6);} else {return h;}})
+    .attr("r", 6)
     .attr("fill", function(d) {return colorMap[d.cause];})
     .attr("stroke", "black")
     .attr("stroke-width", "1px")
     .style("opacity", function(d) {if (d.global == 1) {return 0.8;} else {return 0;}})
     .on("mouseover", mouseover)
     .on("mouseout", mouseout);
-
-/*var circleTrans = circles
-    .transition()
-    .delay(1500)
-    .duration(1000)
-    .attr("cy", function(d) {if (d.mod_reg == "fake") {return h - (20 + d.death_rate * 10);} else {return h;}})
-    .style("opacity", function(d) {if (d.mod_reg == "fake") {return 0.8;} else {return 0;}});
-*/
 
 var legend = svgContainer
     .selectAll("text")
@@ -153,24 +156,69 @@ function mouseover(d) {
 
 function mouseout() {
     div.style("opacity", 1e-6);
-    d3.select(this).attr("r", 8).style("opacity", 0.8);
+    d3.select(this).attr("r", 6).style("opacity", 0.8);
 }
 
-
-d3.select("body").append("button")
-    .text("Fake data button text")
+d3.select("div#seventh").append("button")
+    .attr("class", "button")
+    .text("GLOBAL")
     .on("click", function(d) {
     circles
     .transition()
     .delay(100)
     .duration(1000)
-    .attr("cy", function(d) {if (d.mod_reg == "fake") {return h - (20 + d.death_rate * 10);} else {return h;}})
+    .attr("cy", function(d) {if (d.global == "1") {return h - (20 + d.death_rate * 6);} else {return h;}})
     .style("opacity", function(d) 
-    {if (d.mod_reg == "fake") {return 0.8;} 
+    {if (d.global == "1") {return 0.8;} 
+    else {return 0;}})
+;});
+
+d3.select("div#seventh").append("button")
+    .attr("class", "button")
+    .text("AFR, LMICs")
+    .on("click", function(d) {
+    circles
+    .transition()
+    .delay(100)
+    .duration(1000)
+    .attr("cy", function(d) {if (d.mod_reg == "AFR LMIC") {return h - (20 + d.death_rate * 6);} else {return h;}})
+    .style("opacity", function(d) 
+    {if (d.mod_reg == "AFR LMIC") {return 0.8;} 
+    else {return 0;}})
+;});
+
+d3.select("div#seventh").append("button")
+    .attr("class", "button")
+    .text("AMR, LMICs")
+    .on("click", function(d) {
+    circles
+    .transition()
+    .delay(100)
+    .duration(1000)
+    .attr("cy", function(d) {if (d.mod_reg == "AMR LMIC") {return h - (20 + d.death_rate * 6);} else {return h;}})
+    .style("opacity", function(d) 
+    {if (d.mod_reg == "AMR LMIC") {return 0.8;} 
+    else {return 0;}})
+;});
+
+d3.select("div#seventh").append("button")
+    .attr("class", "button")
+    .text("EMR, LMICs")
+    .on("click", function(d) {
+    circles
+    .transition()
+    .delay(100)
+    .duration(1000)
+    .attr("cy", function(d) {if (d.mod_reg == "EMR LMIC") {return h - (20 + d.death_rate * 6);} else {return h;}})
+    .style("opacity", function(d) 
+    {if (d.mod_reg == "EMR LMIC") {return 0.8;} 
     else {return 0;}})
 ;});
 
 };
+};
+
+seventhVis();
 </script>
 </body>
 </html>

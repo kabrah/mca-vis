@@ -59,9 +59,12 @@
     <svg id="graph3" width="100%" height="600"></svg>
     <svg id="graph4" width="100%" height="600"></svg>
     <svg id="graph5" width="100%" height="600"></svg>
-    <svg id="graph6" width="100%" height="400"></svg>
-    <svg id="graph7" width="100%" height="400"></svg>
-    <svg id="graph8" width="100%" height="200"></svg>
+    <svg id="graph6" width="100%" height="200"></svg>
+    <div id="seventh"></div>
+    <svg id="graph7" width="100%" height="650"></svg>
+    <svg id="graph8" width="100%" height="400"></svg>
+    <svg id="graph9" width="100%" height="400"></svg>
+    <svg id="graph10" width="100%" height="200"></svg>
     <svg id="graph-last" width="100%" height="600"></svg>
     <a href="bubbles-testing.html"><button class="button">Find out about the top causes of death in other age and sex groups</button>></a>
 
@@ -128,6 +131,20 @@
             .style("opacity", 0.05);
         
         d3.select("svg#graph8")
+            .append("rect")
+            .attr("width", "100%")
+            .attr("height", "100%")
+            .attr("fill", function() {return d3.rgb(Math.random()*255, Math.random()*255, Math.random()*255);})
+            .style("opacity", 0.05);
+
+        d3.select("svg#graph9")
+            .append("rect")
+            .attr("width", "100%")
+            .attr("height", "100%")
+            .attr("fill", function() {return d3.rgb(Math.random()*255, Math.random()*255, Math.random()*255);})
+            .style("opacity", 0.05);
+
+        d3.select("svg#graph10")
             .append("rect")
             .attr("width", "100%")
             .attr("height", "100%")
@@ -527,14 +544,14 @@ d3.csv("reg-comp.csv", function(error, data) { //method that will pull in the cs
 });
         };
         
-function sixthVis() {
+function eighthVis() {
         
         var w = getWidth();
         var h = 400;
 
         var causes = ["Road Injuries", "Interpersonal Violence", "Self-harm"]
 
-        var svgContainer = d3.select("svg#graph6")
+        var svgContainer = d3.select("svg#graph8")
             .append("svg")
             .attr("width", w)
             .attr("height", h);
@@ -552,7 +569,7 @@ function sixthVis() {
             .attr("text-anchor", "middle")
             .style("fill", "rgb(47,79,120)")
             .transition()
-            .delay(function(d,i) {return 1300 + i*500;})
+            .delay(function(d,i) {return 200 + i*500;})
             .duration(2000)
             .attr("y", function(d,i) {return h/3 + 30 + i * 100;});
 
@@ -570,13 +587,209 @@ function sixthVis() {
 };
 
 function seventhVis() {
+
+var margin = {
+  top: 60,
+  right: 200,
+  bottom: 60,
+  left: 60
+};
+
+var wL = getWidth();
+var hL = 600;
+var w = wL - margin.left - margin.right;
+var h = hL - margin.top - margin.bottom;
+var ds;
+
+var div = d3.select("body").append("div")   
+    .style("position", "absolute")
+    .style("text-align", "center")
+    .style("width", "200px")
+    .style("height", "40px")
+    .style("padding", "2px")
+    .style("font", "adobe-garamond-pro")
+    .style("color","black")
+    .style("background", "white")
+    .style("border-radius", "8px")
+    .style("border", "solid 1px grey")
+    .style("opacity", 0);
+
+d3.csv("boyscauses.csv", function (error, data) { //method that will pull in the csv data and parse it out into a dictionary or an object and callback
+    if (error) {
+        console.log(error);
+    }
+    else {
+        console.log("yay! (pivot)");
+        ds = data;
+        drawCircles();}
+ } );
+
+var colorMap = {
+    "Drowning": "darkblue", 
+    "Interpersonal violence": "orange", 
+    "Self-harm": "lightgreen", 
+    "Road injury": "purple", 
+    "HIV/AIDS": "yellow", 
+    "Tuberculosis": "grey", 
+    "Meningitis": "red", 
+    "Diarrhoeal diseases": "brown",
+    "Lower respiratory infections": "darkgreen",
+    "Leukaemia": "pink",
+    "Collective violence and legal intervention": "lightblue"};
+
+var placeMap = {
+    "Drowning": 175, 
+    "Interpersonal violence": 200, 
+    "Self-harm": 225, 
+    "Road injury": 250, 
+    "HIV/AIDS": 275, 
+    "Tuberculosis": 300, 
+    "Meningitis": 325, 
+    "Diarrhoeal diseases": 350,
+    "Lower respiratory infections": 375,
+    "Leukaemia": 400,
+    "Collective violence and legal intervention": 425};
+
+var causeList = ["Drowning", "Interpersonal violence", "Self-harm", "Road injury", "HIV/AIDS", "Tuberculosis", "Meningitis", "Diarrhoeal diseases","Lower respiratory infections","Leukaemia", "Collective violence and legal intervention"];
+var yearScale = d3.scale.linear().domain([2000, 2016]).range([margin.left, w - margin.right]);
+
+function drawCircles() {
+var svgContainer = d3.select("svg#graph7")
+    .append("svg")
+    .attr("width", wL)
+    .attr("height", hL);
+
+var circles = svgContainer
+    .selectAll("circle")
+    .data(ds)
+    .enter()
+    .append("circle")
+    .attr("cx", function(d,i) {return yearScale(d.year);})
+    .attr("cy", function(d) {if (d.global == 1) {return h - (20 + d.death_rate * 6);} else {return h;}})
+    .attr("r", 6)
+    .attr("fill", function(d) {return colorMap[d.cause];})
+    .attr("stroke", "black")
+    .attr("stroke-width", "1px")
+    .style("opacity", function(d) {if (d.global == 1) {return 0.8;} else {return 0;}})
+    .on("mouseover", mouseover)
+    .on("mouseout", mouseout);
+
+var legend = svgContainer
+    .selectAll("text")
+    .data(ds)
+    .enter()
+    .append("text")
+    .attr("x", w - 130)
+    .attr("y", function(d) {return placeMap[d.cause];})
+    .text(function(d) {return d.cause})
+    .style("font-weight", "bold")
+    .style("opacity", function(d) {if (d.year == 2000) {return 0.8;} else {return 0;}})
+    .attr("fill", function(d) {return colorMap[d.cause];});
+
+var x_axis = d3.svg.axis()
+    .scale(yearScale)
+    .ticks(17)
+    .orient("top")
+    .tickFormat(d3.format("d"));
+
+var axis = svgContainer.append("g")
+    .attr("class", "axis")
+    .attr("transform", "translate(0, 550)")
+    .call(x_axis);
+
+var axisText = axis
+    .selectAll("text")	
+    .attr("transform", "translate(0, 25)")
+    .attr("font-family", "adobe-garamond-pro")
+    .attr("font-size", "15px")
+    .style("fill", "rgb(47,79,120)");
+    
+var axisLine = axis
+    //.selectAll("line")
+    .attr("fill", "none")
+    .attr("stroke", "rgb(47,79,120)")
+    .attr("shape-rendering", "crispEdges");
+
+function mouseover(d) {
+    div.html("Cause: " + d.cause + ", Death rate ("+ d.year + "): " + Math.round( d.death_rate * 10 ) / 10)
+    .style("left", (d3.event.pageX) + "px")
+    .style("top",  (d3.event.pageY) + "px")
+    .style("opacity", 1);
+    d3.select(this).attr("r", 14).style("opacity", 1);
+}
+
+function mouseout() {
+    div.style("opacity", 1e-6);
+    d3.select(this).attr("r", 6).style("opacity", 0.8);
+}
+
+d3.select("div#seventh").append("button")
+    .attr("class", "button")
+    .text("GLOBAL")
+    .on("click", function(d) {
+    circles
+    .transition()
+    .delay(100)
+    .duration(1000)
+    .attr("cy", function(d) {if (d.global == "1") {return h - (20 + d.death_rate * 6);} else {return h;}})
+    .style("opacity", function(d) 
+    {if (d.global == "1") {return 0.8;} 
+    else {return 0;}})
+;});
+
+d3.select("div#seventh").append("button")
+    .attr("class", "button")
+    .text("AFR, LMICs")
+    .on("click", function(d) {
+    circles
+    .transition()
+    .delay(100)
+    .duration(1000)
+    .attr("cy", function(d) {if (d.mod_reg == "AFR LMIC") {return h - (20 + d.death_rate * 6);} else {return h;}})
+    .style("opacity", function(d) 
+    {if (d.mod_reg == "AFR LMIC") {return 0.8;} 
+    else {return 0;}})
+;});
+
+d3.select("div#seventh").append("button")
+    .attr("class", "button")
+    .text("AMR, LMICs")
+    .on("click", function(d) {
+    circles
+    .transition()
+    .delay(100)
+    .duration(1000)
+    .attr("cy", function(d) {if (d.mod_reg == "AMR LMIC") {return h - (20 + d.death_rate * 6);} else {return h;}})
+    .style("opacity", function(d) 
+    {if (d.mod_reg == "AMR LMIC") {return 0.8;} 
+    else {return 0;}})
+;});
+
+d3.select("div#seventh").append("button")
+    .attr("class", "button")
+    .text("EMR, LMICs")
+    .on("click", function(d) {
+    circles
+    .transition()
+    .delay(100)
+    .duration(1000)
+    .attr("cy", function(d) {if (d.mod_reg == "EMR LMIC") {return h - (20 + d.death_rate * 6);} else {return h;}})
+    .style("opacity", function(d) 
+    {if (d.mod_reg == "EMR LMIC") {return 0.8;} 
+    else {return 0;}})
+;});
+
+};
+};
+
+function ninthVis() {
         
         var w = getWidth();
         var h = 400;
 
         var causes = ["Road Injuries", "Interpersonal Violence", "Self-harm"]
 
-        var svgContainer = d3.select("svg#graph7")
+        var svgContainer = d3.select("svg#graph9")
             .append("svg")
             .attr("width", w)
             .attr("height", h);
@@ -594,7 +807,7 @@ function seventhVis() {
             .attr("text-anchor", "middle")
             .style("fill", "rgb(47,79,120)")
             .transition()
-            .delay(function(d,i) {return 1300 + i*500;})
+            .delay(function(d,i) {return 800 + i*500;})
             .duration(2000)
             .attr("y", function(d,i) {return h/3 + 30 + i * 100;});
 
@@ -611,13 +824,13 @@ function seventhVis() {
 
 };
         
-function eightVis() {
+function tenthVis() {
             var w = getWidth();
         var h = 200;
 
         var causes = ["Road Injuries", "Interpersonal Violence", "Self-harm"]
 
-        var svgContainer = d3.select("svg#graph8")
+        var svgContainer = d3.select("svg#graph10")
             .append("svg")
             .attr("width", w)
             .attr("height", h);
@@ -784,12 +997,42 @@ var text = svgContainer
 
 
         };
-        
+ 
+function sixthVis() {
+
+var w = getWidth();
+var h = 200;
+
+var words = [
+{"word": "How are these boys dying?", "x": w/2, "y": h/2, "size": "60px"}]
+
+var svgContainer = d3.select("svg#graph6")
+    .append("svg")
+    .attr("width", w)
+    .attr("height", h);
+
+var text = svgContainer
+    .selectAll("text")
+    .data(words)
+    .enter()
+    .append("text")
+    .text(function(d) {return d["word"];})
+    .attr("x", function(d) {return d["x"];})
+    .attr("y", function(d) {return d["y"];})
+    .attr("font-size", function(d) {return d["size"];})
+    .attr("font-family", "adobe-garamond-pro")
+    .attr("text-anchor", "middle")
+    .style("fill", "rgb(47,79,120)");
+};
+
 var isThird;    // Boolean signals isThird completion
 var isSecond;
 var isFifth;
-var isSixth;
-var isSeventh;
+var isSixth; // how are boys dying? 
+var isSeventh; // scatter
+var isEighth;
+var isNinth;
+var isTenth;
 var isLast;
 
 window.onload = function() {
@@ -800,6 +1043,8 @@ window.onload = function() {
     isSixth = false;
     isSeventh = false;
     isEighth = false;
+    isNinth = false;
+    isTenth = false;
     isLast = false;
 }
         
@@ -815,7 +1060,7 @@ firstVis();
                 secondVis();
             }
 
-            else if (distance >= 1000 && isThird == false) {
+            else if (distance >= 900 && isThird == false) {
                 isThird = true;
                 thirdVis();
             }
@@ -841,12 +1086,22 @@ firstVis();
                 seventhVis();
             }
 
-            else if (distance >= 3200 && isEighth == false) {
+            else if (distance >= 3500 && isEighth == false) {
                 isEighth = true;
-                eightVis();
+                eighthVis();
             }
 
-            else if(distance >= 3600 && isLast == false) {
+            else if(distance >= 3800 && isNinth== false) {
+                isNinth = true;
+                ninthVis();
+            }
+
+            else if(distance >= 4300 && isTenth == false) {
+                isTenth = true;
+                tenthVis();
+            }
+
+            else if(distance >= 4700 && isLast == false) {
                 isLast = true;
                 lastVis();
             }
