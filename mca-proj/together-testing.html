@@ -635,7 +635,8 @@ var colorMap = {
     "Diarrhoeal diseases": "brown",
     "Lower respiratory infections": "darkgreen",
     "Leukaemia": "pink",
-    "Collective violence and legal intervention": "lightblue"};
+    "Collective violence and legal intervention": "lightblue",
+    "Drug use disorders":"maroon"}; //DarkOliveGreen 
 
 var placeMap = {
     "Drowning": 175, 
@@ -648,9 +649,10 @@ var placeMap = {
     "Diarrhoeal diseases": 350,
     "Lower respiratory infections": 375,
     "Leukaemia": 400,
-    "Collective violence and legal intervention": 425};
+    "Collective violence and legal intervention": 425,
+    "Drug use disorders": 450};
 
-var causeList = ["Drowning", "Interpersonal violence", "Self-harm", "Road injury", "HIV/AIDS", "Tuberculosis", "Meningitis", "Diarrhoeal diseases","Lower respiratory infections","Leukaemia", "Collective violence and legal intervention"];
+var causeList = ["Drowning", "Interpersonal violence", "Self-harm", "Road injury", "HIV/AIDS", "Tuberculosis", "Meningitis", "Diarrhoeal diseases","Lower respiratory infections","Leukaemia", "Collective violence and legal intervention", "Drug use disorders"];
 var yearScale = d3.scale.linear().domain([2000, 2016]).range([margin.left, w - margin.right]);
 
 function drawCircles() {
@@ -776,6 +778,62 @@ d3.select("div#seventh").append("button")
     .attr("cy", function(d) {if (d.mod_reg == "EMR LMIC") {return h - (20 + d.death_rate * 6);} else {return h;}})
     .style("opacity", function(d) 
     {if (d.mod_reg == "EMR LMIC") {return 0.8;} 
+    else {return 0;}})
+;});
+
+d3.select("div#seventh").append("button")
+    .attr("class", "button")
+    .text("EUR, LMICs")
+    .on("click", function(d) {
+    circles
+    .transition()
+    .delay(100)
+    .duration(1000)
+    .attr("cy", function(d) {if (d.mod_reg == "EUR LMIC") {return h - (20 + d.death_rate * 6);} else {return h;}})
+    .style("opacity", function(d) 
+    {if (d.mod_reg == "EUR LMIC") {return 0.8;} 
+    else {return 0;}})
+;});
+
+d3.select("div#seventh").append("button")
+    .attr("class", "button")
+    .text("HI")
+    .on("click", function(d) {
+    circles
+    .transition()
+    .delay(100)
+    .duration(1000)
+    .attr("cy", function(d) {if (d.mod_reg == "High Income") {return h - (20 + d.death_rate * 6);} else {return h;}})
+    .style("opacity", function(d) 
+    {if (d.mod_reg == "High Income") {return 0.8;} 
+    else {return 0;}})
+;});
+
+d3.select("div#seventh").append("button")
+    .attr("class", "button")
+    .text("SEAR, LMICs")
+    .on("click", function(d) {
+    circles
+    .transition()
+    .delay(100)
+    .duration(1000)
+    .attr("cy", function(d) {if (d.mod_reg == "SEAR LMIC") {return h - (20 + d.death_rate * 6);} else {return h;}})
+    .style("opacity", function(d) 
+    {if (d.mod_reg == "SEAR LMIC") {return 0.8;} 
+    else {return 0;}})
+;});
+
+d3.select("div#seventh").append("button")
+    .attr("class", "button")
+    .text("WPR, LMICs")
+    .on("click", function(d) {
+    circles
+    .transition()
+    .delay(100)
+    .duration(1000)
+    .attr("cy", function(d) {if (d.mod_reg == "WPR LMIC") {return h - (20 + d.death_rate * 6);} else {return h;}})
+    .style("opacity", function(d) 
+    {if (d.mod_reg == "WPR LMIC") {return 0.8;} 
     else {return 0;}})
 ;});
 
@@ -1091,7 +1149,7 @@ firstVis();
                 eighthVis();
             }
 
-            else if(distance >= 3800 && isNinth== false) {
+            else if(distance >= 3700 && isNinth== false) {
                 isNinth = true;
                 ninthVis();
             }

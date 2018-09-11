@@ -390,3 +390,377 @@ year,global,mod_reg,cause,death_rate
 2014,,EMR LMIC,Self-harm,5.063525
 2015,,EMR LMIC,Self-harm,4.958512
 2016,,EMR LMIC,Self-harm,5.062125
+2000,,EUR LMIC,Road injury,19.86224
+2001,,EUR LMIC,Road injury,19.42473
+2002,,EUR LMIC,Road injury,19.18379
+2003,,EUR LMIC,Road injury,19.58362
+2004,,EUR LMIC,Road injury,19.16229
+2005,,EUR LMIC,Road injury,19.80378
+2006,,EUR LMIC,Road injury,20.40231
+2007,,EUR LMIC,Road injury,21.84721
+2008,,EUR LMIC,Road injury,19.31978
+2009,,EUR LMIC,Road injury,16.82315
+2010,,EUR LMIC,Road injury,15.34603
+2011,,EUR LMIC,Road injury,15.6639
+2012,,EUR LMIC,Road injury,15.24472
+2013,,EUR LMIC,Road injury,15.38514
+2014,,EUR LMIC,Road injury,15.55374
+2015,,EUR LMIC,Road injury,14.58622
+2016,,EUR LMIC,Road injury,14.41026
+2000,,EUR LMIC,Self-harm,28.56883
+2001,,EUR LMIC,Self-harm,27.17053
+2002,,EUR LMIC,Self-harm,25.98993
+2003,,EUR LMIC,Self-harm,24.82591
+2004,,EUR LMIC,Self-harm,23.74669
+2005,,EUR LMIC,Self-harm,23.35967
+2006,,EUR LMIC,Self-harm,22.86925
+2007,,EUR LMIC,Self-harm,22.07009
+2008,,EUR LMIC,Self-harm,21.52573
+2009,,EUR LMIC,Self-harm,19.45688
+2010,,EUR LMIC,Self-harm,18.41557
+2011,,EUR LMIC,Self-harm,17.5941
+2012,,EUR LMIC,Self-harm,17.17606
+2013,,EUR LMIC,Self-harm,16.15789
+2014,,EUR LMIC,Self-harm,15.73678
+2015,,EUR LMIC,Self-harm,14.64128
+2016,,EUR LMIC,Self-harm,14.125
+2000,,EUR LMIC,Drowning,13.94909
+2001,,EUR LMIC,Drowning,12.53047
+2002,,EUR LMIC,Drowning,11.41351
+2003,,EUR LMIC,Drowning,10.56543
+2004,,EUR LMIC,Drowning,9.623837
+2005,,EUR LMIC,Drowning,9.467463
+2006,,EUR LMIC,Drowning,8.871929
+2007,,EUR LMIC,Drowning,8.401597
+2008,,EUR LMIC,Drowning,8.011875
+2009,,EUR LMIC,Drowning,7.02698
+2010,,EUR LMIC,Drowning,6.787256
+2011,,EUR LMIC,Drowning,6.145048
+2012,,EUR LMIC,Drowning,6.011078
+2013,,EUR LMIC,Drowning,5.584331
+2014,,EUR LMIC,Drowning,5.635647
+2015,,EUR LMIC,Drowning,5.268982
+2016,,EUR LMIC,Drowning,5.026404
+2000,,EUR LMIC,Interpersonal violence,12.6455
+2001,,EUR LMIC,Interpersonal violence,12.07021
+2002,,EUR LMIC,Interpersonal violence,11.57734
+2003,,EUR LMIC,Interpersonal violence,10.63624
+2004,,EUR LMIC,Interpersonal violence,9.691706
+2005,,EUR LMIC,Interpersonal violence,8.932351
+2006,,EUR LMIC,Interpersonal violence,7.961914
+2007,,EUR LMIC,Interpersonal violence,7.047944
+2008,,EUR LMIC,Interpersonal violence,6.365254
+2009,,EUR LMIC,Interpersonal violence,5.593359
+2010,,EUR LMIC,Interpersonal violence,5.004148
+2011,,EUR LMIC,Interpersonal violence,4.827275
+2012,,EUR LMIC,Interpersonal violence,4.484223
+2013,,EUR LMIC,Interpersonal violence,4.129712
+2014,,EUR LMIC,Interpersonal violence,3.996531
+2015,,EUR LMIC,Interpersonal violence,3.880735
+2016,,EUR LMIC,Interpersonal violence,3.843072
+2000,,EUR LMIC,Lower respiratory infections,3.980892
+2001,,EUR LMIC,Lower respiratory infections,3.533388
+2002,,EUR LMIC,Lower respiratory infections,3.529124
+2003,,EUR LMIC,Lower respiratory infections,3.323364
+2004,,EUR LMIC,Lower respiratory infections,3.00652
+2005,,EUR LMIC,Lower respiratory infections,3.101297
+2006,,EUR LMIC,Lower respiratory infections,3.132834
+2007,,EUR LMIC,Lower respiratory infections,3.011909
+2008,,EUR LMIC,Lower respiratory infections,3.000081
+2009,,EUR LMIC,Lower respiratory infections,3.036891
+2010,,EUR LMIC,Lower respiratory infections,2.972198
+2011,,EUR LMIC,Lower respiratory infections,2.766251
+2012,,EUR LMIC,Lower respiratory infections,2.650925
+2013,,EUR LMIC,Lower respiratory infections,2.820021
+2014,,EUR LMIC,Lower respiratory infections,2.418263
+2015,,EUR LMIC,Lower respiratory infections,2.485641
+2016,,EUR LMIC,Lower respiratory infections,2.426612
+2000,,EUR LMIC,Drug use disorders,5.85316
+2001,,EUR LMIC,Drug use disorders,5.039163
+2002,,EUR LMIC,Drug use disorders,4.287576
+2003,,EUR LMIC,Drug use disorders,3.863061
+2004,,EUR LMIC,Drug use disorders,3.464862
+2005,,EUR LMIC,Drug use disorders,3.324896
+2006,,EUR LMIC,Drug use disorders,3.272524
+2007,,EUR LMIC,Drug use disorders,3.028108
+2008,,EUR LMIC,Drug use disorders,2.878372
+2009,,EUR LMIC,Drug use disorders,2.62461
+2010,,EUR LMIC,Drug use disorders,2.438524
+2011,,EUR LMIC,Drug use disorders,2.290872
+2012,,EUR LMIC,Drug use disorders,2.22711
+2013,,EUR LMIC,Drug use disorders,2.204234
+2014,,EUR LMIC,Drug use disorders,2.182908
+2015,,EUR LMIC,Drug use disorders,2.13501
+2016,,EUR LMIC,Drug use disorders,2.083599
+2000,,High Income,Road injury,27.41715
+2001,,High Income,Road injury,26.52682
+2002,,High Income,Road injury,25.92027
+2003,,High Income,Road injury,24.42954
+2004,,High Income,Road injury,23.27407
+2005,,High Income,Road injury,22.43507
+2006,,High Income,Road injury,22.03402
+2007,,High Income,Road injury,21.45454
+2008,,High Income,Road injury,18.99996
+2009,,High Income,Road injury,16.65604
+2010,,High Income,Road injury,15.08894
+2011,,High Income,Road injury,14.58626
+2012,,High Income,Road injury,13.67176
+2013,,High Income,Road injury,12.28149
+2014,,High Income,Road injury,12.33546
+2015,,High Income,Road injury,12.44489
+2016,,High Income,Road injury,11.54805
+2000,,High Income,Self-harm,10.5379
+2001,,High Income,Self-harm,10.21996
+2002,,High Income,Self-harm,9.760124
+2003,,High Income,Self-harm,9.542617
+2004,,High Income,Self-harm,9.89497
+2005,,High Income,Self-harm,9.55264
+2006,,High Income,Self-harm,9.38771
+2007,,High Income,Self-harm,9.069899
+2008,,High Income,Self-harm,9.574172
+2009,,High Income,Self-harm,9.884312
+2010,,High Income,Self-harm,9.534279
+2011,,High Income,Self-harm,9.935187
+2012,,High Income,Self-harm,9.77049
+2013,,High Income,Self-harm,9.465579
+2014,,High Income,Self-harm,9.75373
+2015,,High Income,Self-harm,10.4482
+2016,,High Income,Self-harm,10.16047
+2000,,High Income,Drowning,2.902655
+2001,,High Income,Drowning,3.061745
+2002,,High Income,Drowning,2.680381
+2003,,High Income,Drowning,2.510936
+2004,,High Income,Drowning,2.483719
+2005,,High Income,Drowning,2.427712
+2006,,High Income,Drowning,2.411987
+2007,,High Income,Drowning,2.514984
+2008,,High Income,Drowning,2.368846
+2009,,High Income,Drowning,2.347985
+2010,,High Income,Drowning,2.327379
+2011,,High Income,Drowning,1.923812
+2012,,High Income,Drowning,1.930097
+2013,,High Income,Drowning,2.08007
+2014,,High Income,Drowning,1.869182
+2015,,High Income,Drowning,1.848684
+2016,,High Income,Drowning,1.989962
+2000,,High Income,Interpersonal violence,6.329736
+2001,,High Income,Interpersonal violence,6.358824
+2002,,High Income,Interpersonal violence,6.279719
+2003,,High Income,Interpersonal violence,6.357332
+2004,,High Income,Interpersonal violence,6.215107
+2005,,High Income,Interpersonal violence,6.818964
+2006,,High Income,Interpersonal violence,7.257871
+2007,,High Income,Interpersonal violence,7.045955
+2008,,High Income,Interpersonal violence,6.759375
+2009,,High Income,Interpersonal violence,6.307038
+2010,,High Income,Interpersonal violence,6.029232
+2011,,High Income,Interpersonal violence,5.63995
+2012,,High Income,Interpersonal violence,5.542796
+2013,,High Income,Interpersonal violence,5.008843
+2014,,High Income,Interpersonal violence,4.954214
+2015,,High Income,Interpersonal violence,5.917871
+2016,,High Income,Interpersonal violence,6.097344
+2000,,High Income,Leukaemia,1.898609
+2001,,High Income,Leukaemia,1.731824
+2002,,High Income,Leukaemia,1.613266
+2003,,High Income,Leukaemia,1.475975
+2004,,High Income,Leukaemia,1.506296
+2005,,High Income,Leukaemia,1.475129
+2006,,High Income,Leukaemia,1.463451
+2007,,High Income,Leukaemia,1.447347
+2008,,High Income,Leukaemia,1.343181
+2009,,High Income,Leukaemia,1.27863
+2010,,High Income,Leukaemia,1.309488
+2011,,High Income,Leukaemia,1.242108
+2012,,High Income,Leukaemia,1.22997
+2013,,High Income,Leukaemia,1.080533
+2014,,High Income,Leukaemia,1.070793
+2015,,High Income,Leukaemia,1.139122
+2016,,High Income,Leukaemia,1.133363
+2000,,High Income,Drug use disorders,1.772544
+2001,,High Income,Drug use disorders,1.796721
+2002,,High Income,Drug use disorders,1.8995
+2003,,High Income,Drug use disorders,1.997386
+2004,,High Income,Drug use disorders,2.080633
+2005,,High Income,Drug use disorders,2.221027
+2006,,High Income,Drug use disorders,2.322609
+2007,,High Income,Drug use disorders,2.354744
+2008,,High Income,Drug use disorders,2.338566
+2009,,High Income,Drug use disorders,2.287363
+2010,,High Income,Drug use disorders,2.234082
+2011,,High Income,Drug use disorders,2.193248
+2012,,High Income,Drug use disorders,2.05359
+2013,,High Income,Drug use disorders,2.019966
+2014,,High Income,Drug use disorders,2.0136
+2015,,High Income,Drug use disorders,2.018282
+2016,,High Income,Drug use disorders,1.873986
+2000,,SEAR LMIC,Road injury,19.56844
+2001,,SEAR LMIC,Road injury,19.71679
+2002,,SEAR LMIC,Road injury,20.10692
+2003,,SEAR LMIC,Road injury,20.55969
+2004,,SEAR LMIC,Road injury,21.64692
+2005,,SEAR LMIC,Road injury,22.38055
+2006,,SEAR LMIC,Road injury,23.08938
+2007,,SEAR LMIC,Road injury,23.8352
+2008,,SEAR LMIC,Road injury,24.68249
+2009,,SEAR LMIC,Road injury,25.5392
+2010,,SEAR LMIC,Road injury,26.45656
+2011,,SEAR LMIC,Road injury,26.97756
+2012,,SEAR LMIC,Road injury,26.95549
+2013,,SEAR LMIC,Road injury,26.96396
+2014,,SEAR LMIC,Road injury,27.15242
+2015,,SEAR LMIC,Road injury,26.89769
+2016,,SEAR LMIC,Road injury,26.86933
+2000,,SEAR LMIC,Self-harm,16.33933
+2001,,SEAR LMIC,Self-harm,16.10553
+2002,,SEAR LMIC,Self-harm,15.8592
+2003,,SEAR LMIC,Self-harm,15.58927
+2004,,SEAR LMIC,Self-harm,15.23469
+2005,,SEAR LMIC,Self-harm,14.81379
+2006,,SEAR LMIC,Self-harm,14.48791
+2007,,SEAR LMIC,Self-harm,14.14682
+2008,,SEAR LMIC,Self-harm,13.75155
+2009,,SEAR LMIC,Self-harm,13.42257
+2010,,SEAR LMIC,Self-harm,13.03557
+2011,,SEAR LMIC,Self-harm,12.79009
+2012,,SEAR LMIC,Self-harm,12.56566
+2013,,SEAR LMIC,Self-harm,12.27669
+2014,,SEAR LMIC,Self-harm,12.04404
+2015,,SEAR LMIC,Self-harm,11.81203
+2016,,SEAR LMIC,Self-harm,11.5405
+2000,,SEAR LMIC,Drowning,7.48146
+2001,,SEAR LMIC,Drowning,7.304423
+2002,,SEAR LMIC,Drowning,7.228916
+2003,,SEAR LMIC,Drowning,7.285854
+2004,,SEAR LMIC,Drowning,7.264579
+2005,,SEAR LMIC,Drowning,7.223013
+2006,,SEAR LMIC,Drowning,7.248535
+2007,,SEAR LMIC,Drowning,7.26275
+2008,,SEAR LMIC,Drowning,7.245417
+2009,,SEAR LMIC,Drowning,7.192869
+2010,,SEAR LMIC,Drowning,7.140742
+2011,,SEAR LMIC,Drowning,7.1338
+2012,,SEAR LMIC,Drowning,7.143033
+2013,,SEAR LMIC,Drowning,7.035316
+2014,,SEAR LMIC,Drowning,6.885389
+2015,,SEAR LMIC,Drowning,6.783806
+2016,,SEAR LMIC,Drowning,6.594646
+2000,,SEAR LMIC,Interpersonal violence,7.792864
+2001,,SEAR LMIC,Interpersonal violence,7.55112
+2002,,SEAR LMIC,Interpersonal violence,7.30437
+2003,,SEAR LMIC,Interpersonal violence,6.935777
+2004,,SEAR LMIC,Interpersonal violence,6.836633
+2005,,SEAR LMIC,Interpersonal violence,6.684567
+2006,,SEAR LMIC,Interpersonal violence,6.594213
+2007,,SEAR LMIC,Interpersonal violence,6.375839
+2008,,SEAR LMIC,Interpersonal violence,6.176485
+2009,,SEAR LMIC,Interpersonal violence,5.929561
+2010,,SEAR LMIC,Interpersonal violence,5.790108
+2011,,SEAR LMIC,Interpersonal violence,5.731369
+2012,,SEAR LMIC,Interpersonal violence,5.574811
+2013,,SEAR LMIC,Interpersonal violence,5.413779
+2014,,SEAR LMIC,Interpersonal violence,5.298909
+2015,,SEAR LMIC,Interpersonal violence,5.220727
+2016,,SEAR LMIC,Interpersonal violence,5.120996
+2000,,SEAR LMIC,Tuberculosis,10.71356
+2001,,SEAR LMIC,Tuberculosis,10.325
+2002,,SEAR LMIC,Tuberculosis,9.831678
+2003,,SEAR LMIC,Tuberculosis,9.297978
+2004,,SEAR LMIC,Tuberculosis,8.792195
+2005,,SEAR LMIC,Tuberculosis,8.269011
+2006,,SEAR LMIC,Tuberculosis,7.765925
+2007,,SEAR LMIC,Tuberculosis,7.2229
+2008,,SEAR LMIC,Tuberculosis,6.813845
+2009,,SEAR LMIC,Tuberculosis,6.338117
+2010,,SEAR LMIC,Tuberculosis,5.885126
+2011,,SEAR LMIC,Tuberculosis,5.478899
+2012,,SEAR LMIC,Tuberculosis,5.07955
+2013,,SEAR LMIC,Tuberculosis,4.736006
+2014,,SEAR LMIC,Tuberculosis,4.399529
+2015,,SEAR LMIC,Tuberculosis,4.104594
+2016,,SEAR LMIC,Tuberculosis,3.849423
+2000,,WPR LMIC,Road injury,22.37762
+2001,,WPR LMIC,Road injury,21.76389
+2002,,WPR LMIC,Road injury,20.9146
+2003,,WPR LMIC,Road injury,19.92415
+2004,,WPR LMIC,Road injury,19.01441
+2005,,WPR LMIC,Road injury,18.90989
+2006,,WPR LMIC,Road injury,18.70472
+2007,,WPR LMIC,Road injury,18.57026
+2008,,WPR LMIC,Road injury,17.88935
+2009,,WPR LMIC,Road injury,17.42622
+2010,,WPR LMIC,Road injury,17.01141
+2011,,WPR LMIC,Road injury,17.17206
+2012,,WPR LMIC,Road injury,16.43756
+2013,,WPR LMIC,Road injury,16.02078
+2014,,WPR LMIC,Road injury,15.57552
+2015,,WPR LMIC,Road injury,15.3039
+2016,,WPR LMIC,Road injury,15.16097
+2000,,WPR LMIC,Self-harm,5.22051
+2001,,WPR LMIC,Self-harm,4.417874
+2002,,WPR LMIC,Self-harm,3.898869
+2003,,WPR LMIC,Self-harm,3.683419
+2004,,WPR LMIC,Self-harm,3.614974
+2005,,WPR LMIC,Self-harm,3.456311
+2006,,WPR LMIC,Self-harm,3.337564
+2007,,WPR LMIC,Self-harm,3.31331
+2008,,WPR LMIC,Self-harm,3.210496
+2009,,WPR LMIC,Self-harm,3.20177
+2010,,WPR LMIC,Self-harm,3.095858
+2011,,WPR LMIC,Self-harm,3.03617
+2012,,WPR LMIC,Self-harm,3.013163
+2013,,WPR LMIC,Self-harm,3.029797
+2014,,WPR LMIC,Self-harm,3.064408
+2015,,WPR LMIC,Self-harm,3.019203
+2016,,WPR LMIC,Self-harm,2.951694
+2000,,WPR LMIC,Drowning,8.128336
+2001,,WPR LMIC,Drowning,7.247486
+2002,,WPR LMIC,Drowning,6.62184
+2003,,WPR LMIC,Drowning,6.189342
+2004,,WPR LMIC,Drowning,6.013834
+2005,,WPR LMIC,Drowning,5.784156
+2006,,WPR LMIC,Drowning,5.531868
+2007,,WPR LMIC,Drowning,5.473286
+2008,,WPR LMIC,Drowning,5.493696
+2009,,WPR LMIC,Drowning,5.380148
+2010,,WPR LMIC,Drowning,5.29807
+2011,,WPR LMIC,Drowning,5.175438
+2012,,WPR LMIC,Drowning,5.216517
+2013,,WPR LMIC,Drowning,5.244665
+2014,,WPR LMIC,Drowning,5.30047
+2015,,WPR LMIC,Drowning,5.254685
+2016,,WPR LMIC,Drowning,5.115404
+2000,,WPR LMIC,Interpersonal violence,4.71881
+2001,,WPR LMIC,Interpersonal violence,4.529306
+2002,,WPR LMIC,Interpersonal violence,4.056839
+2003,,WPR LMIC,Interpersonal violence,3.786058
+2004,,WPR LMIC,Interpersonal violence,3.56648
+2005,,WPR LMIC,Interpersonal violence,3.489496
+2006,,WPR LMIC,Interpersonal violence,3.378126
+2007,,WPR LMIC,Interpersonal violence,3.44993
+2008,,WPR LMIC,Interpersonal violence,3.353641
+2009,,WPR LMIC,Interpersonal violence,3.266469
+2010,,WPR LMIC,Interpersonal violence,3.182443
+2011,,WPR LMIC,Interpersonal violence,3.090531
+2012,,WPR LMIC,Interpersonal violence,3.247734
+2013,,WPR LMIC,Interpersonal violence,3.171167
+2014,,WPR LMIC,Interpersonal violence,3.22024
+2015,,WPR LMIC,Interpersonal violence,3.19996
+2016,,WPR LMIC,Interpersonal violence,3.149622
+2000,,WPR LMIC,Leukaemia,3.859953
+2001,,WPR LMIC,Leukaemia,3.704163
+2002,,WPR LMIC,Leukaemia,3.599382
+2003,,WPR LMIC,Leukaemia,3.586378
+2004,,WPR LMIC,Leukaemia,3.537217
+2005,,WPR LMIC,Leukaemia,3.397384
+2006,,WPR LMIC,Leukaemia,3.307849
+2007,,WPR LMIC,Leukaemia,3.153842
+2008,,WPR LMIC,Leukaemia,3.072215
+2009,,WPR LMIC,Leukaemia,2.995874
+2010,,WPR LMIC,Leukaemia,2.902547
+2011,,WPR LMIC,Leukaemia,2.822408
+2012,,WPR LMIC,Leukaemia,2.703921
+2013,,WPR LMIC,Leukaemia,2.582927
+2014,,WPR LMIC,Leukaemia,2.488295
+2015,,WPR LMIC,Leukaemia,2.489715
+2016,,WPR LMIC,Leukaemia,2.512214
