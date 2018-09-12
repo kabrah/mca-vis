@@ -241,7 +241,7 @@ function drawLines() {
 
     var lineFun15 = d3.svg.line()
         .x(function (d) { return xScale(d.year); })
-        .y(function (d) { return yScale(d.agegroup15); })
+        .y(function (d) { return yScale(d["agegroup15"]); })
         .interpolate("linear");
 
     var svg = d3.select("svg#graph3").append("svg").attr({
@@ -287,7 +287,7 @@ function drawLines() {
     var overFifteen = svg.append("text")
         .text("this has not been the case for 15 to 19 year olds.")
         .attr("x", w / 2)
-        .attr("y", h + padding * 2)
+        .attr("y", h + padding * 4)
         .attr("font-size", "60px")
         .attr("text-anchor", "middle")
         .attr("font-family", "adobe-garamond-pro")
@@ -298,8 +298,34 @@ function drawLines() {
         .attr("y", 3 * h / 4)
         .attr("text-anchor", "middle");
 
-}
+    var y_axis = d3.svg.axis()
+        .scale(yScale)
+        .ticks(20)
+        .orient("left")
+        .tickFormat(d3.format("d"));
 
+    var yaxis = svg.append("g")
+        .attr("class", "yaxis")
+        .attr("transform", "translate( "+ (w - 50) +",0)")
+        .call(y_axis);
+
+var yaxisText = yaxis
+    .selectAll("text")	
+    //.attr("transform", "translate(0, 0)")
+    .attr("font-family", "adobe-garamond-pro")
+    .attr("font-size", "15px")
+    .style("fill", "rgb(47,79,120)")
+    .style("opacity", 0.3);
+    
+    var yaxisLine = yaxis
+    //.selectAll("line")
+        .attr("fill", "none")
+        .attr("stroke", "rgb(47,79,120)")
+        .attr("shape-rendering", "crispEdges")
+        .style("opacity", 0.3);
+
+
+    };
 d3.csv("all-cause-mortality.csv", function (error, data) { //method that will pull in the csv data and parse it out into a dictionary or an object and callback
     if (error) {
         console.log(error);
@@ -736,17 +762,16 @@ var regLabel = svgContainer.append("text")
 var x_axis = d3.svg.axis()
     .scale(yearScale)
     .ticks(17)
-    .orient("top")
+    .orient("bottom")
     .tickFormat(d3.format("d"));
 
 var xaxis = svgContainer.append("g")
     .attr("class", "xaxis")
-    .attr("transform", "translate(0, 525)")
+    .attr("transform", "translate(0, 510)")
     .call(x_axis);
 
 var xaxisText = xaxis
     .selectAll("text")	
-    .attr("transform", "translate(0, 25)")
     .attr("font-family", "adobe-garamond-pro")
     .attr("font-size", "15px")
     .style("fill", "rgb(47,79,120)");
