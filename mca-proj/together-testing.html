@@ -230,7 +230,7 @@ function drawLines() {
             d3.min(dsPiv, function (d) { return 0; }), //usually y-axis starts at zero, but this could of course alternatively by the min sales value
             d3.max(dsPiv, function (d) { return sumAge(d); })
         ])
-        .range([h - 80, 0 + 100]); //top left not bottom left coord system so h,0 not 0,h
+        .range([h - 90, 120]); //top left not bottom left coord system so h,0 not 0,h
 
     function sumAge(dats) {return 1.0* dats["agegroup0"] + 1.0 * dats["agegroup1"] + 1.0 * dats["agegroup2"] + 1.0 * dats["agegroup5"]} 
 
@@ -402,8 +402,8 @@ function firstVis() {
         var h = 600;
 
         var words = [
-            { "word": "Over", "x": w / 3 - 40, "y": h / 7 - 20, "size": "30px" },
-            { "word": "1.1 million", "x": w / 3, "y": h / 4, "size": "80px" },
+            { "word": "Over", "x": w / 3 - 50, "y": h / 7 - 20, "size": "30px" },
+            { "word": "1.1 million", "x": w / 3 - 10, "y": h / 4, "size": "80px" },
             { "word": "adolescents", "x": w / 2, "y": 3.5 * h / 8 + 5, "size": "120px" },
             { "word": "aged", "x": 3 * w / 5, "y": 9 * h / 18 + 40, "size": "25px" },
             { "word": "10-19", "x": 3 * w / 5 + 30, "y": 9 * h / 18 + 75, "size": "30px" },
