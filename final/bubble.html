@@ -158,7 +158,7 @@ var simulation = d3.forceSimulation()
     .force("collide", forceCollide);
 
 d3.queue()
-    .defer(d3.csv, "bubbledata.csv")
+    .defer(d3.csv, "bubble-data.csv")
     .await(ready)
 
 function ready (error, datapoints) {
@@ -170,11 +170,11 @@ var circles = svgContainer.selectAll(".cause")
     .attr("class", "cause")
     .attr("r", function(d) {return radiusScale(d.twothousandsixteen);})
     .attr("fill", function(d) {
-        if ((d.twothousand-d.twothousandsixteen)/d.twothousandsixteen >= 0.4) {return "#228B22";}
-        else if ((d.twothousand-d.twothousandsixteen)/d.twothousandsixteen >= 0.3 && (d.twothousand-d.twothousandsixteen)/d.twothousandsixteen < 0.4) {return "#98FB98";}
+        if ((d.twothousand-d.twothousandsixteen)/d.twothousandsixteen >= 0.4) {return "#1f7a1f";}
+        else if ((d.twothousand-d.twothousandsixteen)/d.twothousandsixteen >= 0.3 && (d.twothousand-d.twothousandsixteen)/d.twothousandsixteen < 0.4) {return "#85e085";}
         else if ((d.twothousand-d.twothousandsixteen)/d.twothousandsixteen >= 0.2 && (d.twothousand-d.twothousandsixteen)/d.twothousandsixteen < 0.3) {return "#C0C0C0";}
-        else if ((d.twothousand-d.twothousandsixteen)/d.twothousandsixteen >= 0.1 && (d.twothousand-d.twothousandsixteen)/d.twothousandsixteen < 0.2) {return "#A52A2A";}
-        else {return "#800000";}
+        else if ((d.twothousand-d.twothousandsixteen)/d.twothousandsixteen >= 0.1 && (d.twothousand-d.twothousandsixteen)/d.twothousandsixteen < 0.2) {return "#ff6666";}
+        else {return "#ff0000";}
     })
     .attr("stroke", "grey")
     .attr("stroke-width", "2px")
@@ -242,8 +242,103 @@ function sexText(s) {
     }
 }
 
+var drText = svgContainer.append("text")
+    .text("Death rate per 100'000")
+    .attr("x", w - 210)
+    .attr("y", h - 117)
+    .attr("text-anchor", "left")
+    .attr("font-family", "adobe-garamond-pro")
+    .attr("fill", "rgb(47,79,120)")
+    .attr("font-size", 12);
+
+var legendC1 = svgContainer.append("circle")
+    .attr("cx", w - 210)
+    .attr("cy", h - 100)
+    .attr("r", 4)
+    .attr("fill", "#1f7a1f")
+    .attr("stroke", "grey")
+    .attr("stroke-width", "1px");
+
+var legendC1text = svgContainer.append("text")
+    .text("> 40% improvement over 16 years")
+    .attr("x", w - 200)
+    .attr("y", h - 96)
+    //.attr("text-anchor", "middle")
+    .attr("font-family", "adobe-garamond-pro")
+    .attr("fill", "rgb(47,79,120)")
+    .attr("font-size", 12);
+
+var legendC2 = svgContainer.append("circle")
+    .attr("cx", w - 210)
+    .attr("cy", h - 85)
+    .attr("r", 4)
+    .attr("fill", "#85e085")
+    .attr("stroke", "grey")
+    .attr("stroke-width", "1px");
+
+var legendC2text = svgContainer.append("text")
+    .text("30%-40% improvement")
+    .attr("x", w - 200)
+    .attr("y", h - 81)
+    //.attr("text-anchor", "middle")
+    .attr("font-family", "adobe-garamond-pro")
+    .attr("fill", "rgb(47,79,120)")
+    .attr("font-size", 12);
+
+var legendC3 = svgContainer.append("circle")
+    .attr("cx", w - 210)
+    .attr("cy", h - 70)
+    .attr("r", 4)
+    .attr("fill", "#C0C0C0")
+    .attr("stroke", "grey")
+    .attr("stroke-width", "1px");
+
+var legendC3text = svgContainer.append("text")
+    .text("20%-30% improvement")
+    .attr("x", w - 200)
+    .attr("y", h - 66)
+    //.attr("text-anchor", "middle")
+    .attr("font-family", "adobe-garamond-pro")
+    .attr("fill", "rgb(47,79,120)")
+    .attr("font-size", 12);
+
+var legendC4 = svgContainer.append("circle")
+    .attr("cx", w - 210)
+    .attr("cy", h - 55)
+    .attr("r", 4)
+    .attr("fill", "#ff6666")
+    .attr("stroke", "grey")
+    .attr("stroke-width", "1px");
+
+var legendC4text = svgContainer.append("text")
+    .text("10%-20% improvement")
+    .attr("x", w - 200)
+    .attr("y", h - 51)
+    //.attr("text-anchor", "middle")
+    .attr("font-family", "adobe-garamond-pro")
+    .attr("fill", "rgb(47,79,120)")
+    .attr("font-size", 12);
+
+
+var legendC5 = svgContainer.append("circle")
+    .attr("cx", w - 210)
+    .attr("cy", h - 40)
+    .attr("r", 4)
+    .attr("fill", "#ff0000")
+    .attr("stroke", "grey")
+    .attr("stroke-width", "1px");
+
+var legendC5text = svgContainer.append("text")
+    .text("< 10% improvement over 16 years")
+    .attr("x", w - 200)
+    .attr("y", h - 36)
+    //.attr("text-anchor", "middle")
+    .attr("font-family", "adobe-garamond-pro")
+    .attr("fill", "rgb(47,79,120)")
+    .attr("font-size", 12);
+
 function mouseover(d) {
-    div.html("Cause: " + d.causename + ", Death rate 2016: " + Math.round( d.twothousandsixteen * 10 ) / 10 + ", Death rate 2000: " + Math.round( d.twothousand * 10 ) / 10 + ", " + percImpr(d) + ", Age:" 
+    div.html("Cause: " + d.causename + ", Death rate (2016): " + Math.round( d.twothousandsixteen * 10 ) / 10 + ", Death rate 2000: " + Math.round( d.twothousand * 10 ) / 10 + ", " + percImpr(d) + ", Age:" 
 + ageText(d.age) + ", Sex: " + sexText(d.sex))
     .style("left", (d3.event.pageX) + "px")
     .style("top",  (d3.event.pageY) + "px")
