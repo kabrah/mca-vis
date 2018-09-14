@@ -455,21 +455,21 @@ svgContainer.append("rect")
     .attr("fill", randomColor())
     .style("opacity", 0.05);
 
-var region = svgContainer
+var region = svgContainer //text that is on the rectangles
     .selectAll("text")
     .data(ds)
     .enter()
     .append("text")
     .text(function(d) {return Math.round((d["dr_m"]/(1*d["dr_m"]+1*d["dr_f"]))*100) + "% of deaths in " + regName[d["region"]] + ".";})
     .attr("x", w/2)
-    .attr("y", function(d,i) {return 260 + 40*i;})
+    .attr("y", function(d,i) {return 260 + barWidth*i;})
     .attr("font-size", "30px")
     .attr("font-family", "adobe-garamond-pro")
     .attr("text-anchor", "middle")
     .style("fill", function(d,i) {return color(i);});
 
-//text,text1,text3,lmictext are all specific to the vis, are added individually because I didn't bind them to data
-var text = svgContainer
+//text,text1,text3,lmictext are added individually because I didn't bind them to data
+var text = svgContainer 
     .append("text")
     .text("boys")
     .attr("x", w/2)
@@ -527,20 +527,6 @@ var boyRectangles = svgContainer
     .ease("bounce")
     .attr("width", function(d) {return w * d["dr_m"]/(1*d["dr_m"]+1*d["dr_f"]);});
 
-var boytextRect = svgContainer
-    .append("rect")
-    .attr("x", 0)
-    .attr("y", 90) 
-    .attr("width", 0)
-    .attr("height", 76)
-    .style("opacity",0.2)
-    .style("fill", "blue")
-    .transition()
-    .delay(500)
-    .duration(1000)
-    .ease("bounce")
-    .attr("width", getWidth());
-
 var girlRectangles = svgContainer
     .selectAll("rect.girls")
     .data(ds)
@@ -557,6 +543,20 @@ var girlRectangles = svgContainer
     .duration(1000)
     .ease("bounce")
     .attr("x", function(d) {return w * d["dr_m"]/(1*d["dr_m"]+1*d["dr_f"]);}); //equal to the width of the boyRectangles
+
+var boytextRect = svgContainer //an individual rectangle that shows blue indicates boys
+    .append("rect")
+    .attr("x", 0)
+    .attr("y", 90) 
+    .attr("width", 0)
+    .attr("height", 76)
+    .style("opacity",0.2)
+    .style("fill", "blue")
+    .transition()
+    .delay(500)
+    .duration(1000)
+    .ease("bounce")
+    .attr("width", getWidth());
 }
 
 d3.csv("reg-comp.csv", function(error, data) { 
@@ -651,7 +651,7 @@ var colorMap = {
 "Collective violence and legal intervention": "darkblue",
 "Drug use disorders":"maroon"}; //DarkOliveGreen 
 
-//there must be a smarter
+//has the y position for the legend, but there must be a smarter way to do this...
 var placeMap = {
 "Collective violence and legal intervention": 175,
 "Diarrhoeal diseases": 200,
@@ -666,7 +666,7 @@ var placeMap = {
 "Self-harm": 425,
 "Tuberculosis": 450};
 
-var causeList = ["Drowning", "Interpersonal violence", "Self-harm", "Road injury", "HIV/AIDS", "Tuberculosis", "Meningitis", "Diarrhoeal diseases","Lower respiratory infections","Leukaemia", "Collective violence and legal intervention", "Drug use disorders"];
+//var causeList = ["Drowning", "Interpersonal violence", "Self-harm", "Road injury", "HIV/AIDS", "Tuberculosis", "Meningitis", "Diarrhoeal diseases","Lower respiratory infections","Leukaemia", "Collective violence and legal intervention", "Drug use disorders"];
 var yearScale = d3.scale.linear().domain([2000, 2016]).range([margin.left, w - margin.right]);
 var drScale = d3.scale.linear().domain([0,80]).range([h, 60]);
 
