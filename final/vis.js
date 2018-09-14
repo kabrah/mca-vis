@@ -1,4 +1,21 @@
+/*
+Each visualisation lives inside an svg container that is nested in another svg container
+The first svg containers are created in the index.html and then using the ids the next containers are created within the functions that create the visualisation
+
+I have always used svg coordinates directly instead of flipping the visualisations afterwards
+Could make more sense conceptually to add a function to transform visualisations and apply it to every vis
+
+No classes added, simply because I wanted to define everything individually, but text would have been a good thing to class together
+*/
+
+function randomColor() {
+    return d3.rgb(Math.random()*255, Math.random()*255, Math.random()*255);
+}
+
+//draw background rectangles in svgContainer, here they are simply random colors
 function backgrounds() {
+//This should actually be customized in a way that suits the colors of the actual vis
+
     d3.select("body")
         .append("svg")
         .attr("width", "100%")
@@ -6,90 +23,91 @@ function backgrounds() {
         .append("rect")
         .attr("width", "100%")
         .attr("height", "100%")
-        .attr("fill", "fill", function() {return d3.rgb(Math.random()*255, Math.random()*255, Math.random()*255);})
+        .attr("fill", randomColor())
         .style("opacity", 0.2);
 
     d3.select("svg#graph1")
         .append("rect")
         .attr("width", "100%")
         .attr("height", "100%")
-        .attr("fill", function() {return d3.rgb(Math.random()*255, Math.random()*255, Math.random()*255);})
+        .attr("fill", randomColor())
         .style("opacity", 0.05);
     
     d3.select("svg#graph2")
         .append("rect")
         .attr("width", "100%")
         .attr("height", "100%")
-        .attr("fill", function() {return d3.rgb(Math.random()*255, Math.random()*255, Math.random()*255);})
+        .attr("fill", randomColor())
         .style("opacity", 0.05);
 
     d3.select("svg#graph3")
         .append("rect")
         .attr("width", "100%")
         .attr("height", "100%")
-        .attr("fill", function() {return d3.rgb(Math.random()*255, Math.random()*255, Math.random()*255);})
+        .attr("fill", randomColor())
         .style("opacity", 0.05);
 
     d3.select("svg#graph4")
         .append("rect")
         .attr("width", "100%")
         .attr("height", "100%")
-        .attr("fill", function() {return d3.rgb(Math.random()*255, Math.random()*255, Math.random()*255);})
+        .attr("fill", randomColor())
         .style("opacity", 0.05);
 
     d3.select("svg#graph5")
         .append("rect")
         .attr("width", "100%")
         .attr("height", "100%")
-        .attr("fill", function() {return d3.rgb(Math.random()*255, Math.random()*255, Math.random()*255);})
+        .attr("fill", randomColor())
         .style("opacity", 0.05);
 
     d3.select("svg#graph6")
         .append("rect")
         .attr("width", "100%")
         .attr("height", "100%")
-        .attr("fill", function() {return d3.rgb(Math.random()*255, Math.random()*255, Math.random()*255);})
+        .attr("fill", randomColor())
         .style("opacity", 0.05);
 
     d3.select("svg#graph7")
         .append("rect")
         .attr("width", "100%")
         .attr("height", "100%")
-        .attr("fill", function() {return d3.rgb(Math.random()*255, Math.random()*255, Math.random()*255);})
+        .attr("fill", randomColor())
         .style("opacity", 0.05);
     
     d3.select("svg#graph8")
         .append("rect")
         .attr("width", "100%")
         .attr("height", "100%")
-        .attr("fill", function() {return d3.rgb(Math.random()*255, Math.random()*255, Math.random()*255);})
+        .attr("fill", randomColor())
         .style("opacity", 0.05);
 
     d3.select("svg#graph9")
         .append("rect")
         .attr("width", "100%")
         .attr("height", "100%")
-        .attr("fill", function() {return d3.rgb(Math.random()*255, Math.random()*255, Math.random()*255);})
+        .attr("fill", randomColor())
         .style("opacity", 0.05);
 
     d3.select("svg#graph10")
         .append("rect")
         .attr("width", "100%")
         .attr("height", "100%")
-        .attr("fill", function() {return d3.rgb(Math.random()*255, Math.random()*255, Math.random()*255);})
+        .attr("fill", randomColor())
         .style("opacity", 0.05);
     
     d3.select("svg#graph-last")
         .append("rect")
         .attr("width", "100%")
         .attr("height", "100%")
-        .attr("fill", function() {return d3.rgb(Math.random()*255, Math.random()*255, Math.random()*255);})
+        .attr("fill", randomColor())
         .style("opacity", 0.05);
     
 }
 
 backgrounds();
-    
+
+//gets client's browser width
 function getWidth() {
 if (self.innerWidth) {
 return self.innerWidth;
@@ -103,45 +121,151 @@ if (document.body) {
 return document.body.clientWidth;
 }
 }
-    
-function fourthVis() {
 
-var w = getWidth();
-var h = 600;
+function firstVis() {
+//TEXT, WHERE EACH WORDS ATTRIBUTES ARE DEFINED
+//no data binding is required so no need for D3.js, but I was practicing 
+    var w = getWidth(); 
+    var h = 600;
 
-var words = [
-{"word": "Between the ages of 15 and 19,", "x": w/2, "y": h/2 - 230, "size": "25px"},
-{"word": "boys", "x": 3*w/8, "y": h/2 - 130, "size": "130px"},
-{"word": "are", "x": 3*w/7, "y": h/2 - 80, "size": "25px"},
-{"word": "particularly vulnerable,", "x": w/2, "y": h/2 - 10, "size": "70px"},
-{"word": "not just", "x": w/2, "y": h/2 + 34, "size": "30px"},
-{"word": "globally, ", "x": w/2, "y": h/2 + 100, "size": "60px"},
-{"word": "but across almost", "x": w/2, "y": h/2 + 150, "size": "25px"},
-{"word": "every region.", "x": w/2, "y": h/2 + 230, "size": "90px"} ]
+    //Defining words and their positions and sizes
+    var words = [
+        { "word": "Over", "x": w / 3 - 50, "y": h / 7 - 20, "size": "30px" },
+        { "word": "1.1 million", "x": w / 3 - 10, "y": h / 4, "size": "80px" },
+        { "word": "adolescents", "x": w / 2, "y": 3.5 * h / 8 + 5, "size": "120px" },
+        { "word": "aged", "x": 3 * w / 5, "y": 9 * h / 18 + 40, "size": "25px" },
+        { "word": "10-19", "x": 3 * w / 5 + 30, "y": 9 * h / 18 + 75, "size": "30px" },
+        { "word": "die", "x": w / 3, "y": 10 * h / 16 + 54, "size": "180px" },
+        { "word": "every year.", "x":  2* w / 5, "y": 6 * (h / 8) + 40, "size": "40px" },
+        {"word": "That's", "x": w /2, "y": 7.5 * h /8, "size": "40px"}]
 
-var svgContainer = d3.select("svg#graph4")
-.append("svg")
-.attr("width", w)
-.attr("height", h);
+    var svgContainer = d3.select("svg#graph1")
+        .append("svg")
+        .attr("width", w)
+        .attr("height", h);
 
-var text = svgContainer
-.selectAll("text")
-.data(words)
-.enter()
-.append("text")
-.text(function(d) {return d["word"];})
-.attr("x", function(d) {return d["x"];})
-.attr("y", function(d) {return d["y"];})
-.attr("font-size", function(d) {return d["size"];})
-.attr("font-family", "adobe-garamond-pro")
-.attr("text-anchor", "middle")
-.style("fill", "rgb(47,79,120)");
-    };
+    //adds and defines text to the container by binding the data in the words array to text
+    var text = svgContainer
+        .selectAll("text")
+        .data(words)
+        .enter()
+        .append("text")
+        .text(function (d) { return d["word"]; })
+        .attr("x", function (d) { return d["x"]; })
+        .attr("y", function (d) { return d["y"]; })
+        .attr("font-size", function (d) { return d["size"]; })
+        .attr("font-family", "adobe-garamond-pro")
+        .attr("text-anchor", "middle")
+        .style("fill", "rgb(47,79,120)");
+
+};
+
+function secondVis() {
+//GRID OF CIRCLES WITH NUMBER COUNTER
+/*The grid has the potential for a much more informative visualisation
+Each circle is actually bound to data, which might be unnecessary when you just want to show the number 3000, 
+but this means you could use colours and sizes to represent information
+E.g. colours represent the region, size represents the age and you could add a circle border of two colors to represent the sex
+*/ 
+            var w = getWidth();
+            var h = 600;
+            var margin = { right: 10, left: 10 };
+
+            /*
+            The actual number of daily deaths happens to be 3000
+            dailyDeaths = 3025 because that is the next highest squared number (so that there is a square grid)
+            */
+            var dailyDeaths = 3025;
+            var dailyDeathsArray = [];
+            var sqrtDeaths = Math.sqrt(dailyDeaths);
+
+            for (var i = 1; i <= dailyDeaths; i++) {
+                dailyDeathsArray.push(i);
+            }
+            
+            var svgContainer = d3.select("svg#graph2")
+                .append("svg")
+                .attr("width", w)
+                .attr("height", h);
+
+            var circle = svgContainer
+                .selectAll("circle")
+                .data(dailyDeathsArray)
+                .enter()
+                .append("circle") //adds one circle per data point so it seems like one since they overlap
+                //initial circles are centered and 50px from the edge of the svgcontainer
+                .attr("cx", w / 2)
+                .attr("cy", h / 2)
+                .attr("r", h/2 - 50)
+                //the opacity of all circles greater than 3000 is set to zero because the ACTUAL number of daily deaths is 3000
+                //did this to hide all additional circles
+                .style("opacity", function (d) {
+                    if (d > 3000) { return 0; }
+                    else { return 0.9; }                })
+                //color can be specified of course, I just used a random color
+                .attr("fill", d3.rgb(Math.random() * 255, Math.random() * 255, Math.random() * 255));
+
+            var circles = circle
+                //the transition does all the mathematics of converting the original svgs to the new svgs
+                .transition()
+                .delay(500)
+                .duration(5500)
+                //cx and cy are computed s.t. the circles align in a square grid
+                .attr("cx", function (d, i) {
+                    var a = d % sqrtDeaths;
+                    var b = w - (margin.right + margin.left)
+                    var c = sqrtDeaths
+                    return a * b / c + margin.left;
+                })
+                .attr("cy", function (d, i) {
+                    var a = (d - (d % sqrtDeaths)) / sqrtDeaths;
+                    var b = h - (margin.right + margin.left);
+                    var c = sqrtDeaths;
+                    return a * b / c + margin.left;
+                })
+                .attr("r", 4)
+                //the color was picked so that the text on top shows
+                .attr("fill", "#ebe83a");
+
+            var circlesDis = circles
+                .transition()
+                .delay(function (d, i) { return 6000 + i * 5 }) //this is so they don't just disappear at once
+                .duration(5000)
+                .attr('transform', function (d) {
+                    //circular falling motion seemed more effective than simply gradually reducing the opacity
+                    return "rotate(" + (-1) ** Math.round(Math.random()) * Math.random() * Math.PI + ")";
+                })
+                .attr("r", 0);
+
+            var text = svgContainer
+                .append("text")
+                .text(" ")
+                .attr("x", w / 2)
+                .attr("y", h / 2)
+                .attr("text-anchor", "middle")
+                .attr("font-family", "adobe-garamond-pro")
+                .attr("font-size", "45px")
+                .style("fill", "rgb(47,79,120)")
+                //.style("text-shadow", "3px 3px 3px")
+                .transition()
+                .delay(6000)
+                //the interpolate function has the same duration ans the whole set of circles disappearing
+                //it happens simultaneously but is actually independent of the circles disappearing
+                .duration(18500)
+                .tween("text", function () {
+                    var i = d3.interpolate(1, 3000)
+                    return function (t) {
+                        this.textContent = Math.round(i(t)) + " adolescent deaths a day.";
+                    };
+                });
+
+};
     
 function thirdVis() {
+//SIMPLE LINE CHART THAT TRANSITIONS WITH TEXT
+//Not really meant for reading off actual data values, but instead for just "proving" the accompanying text
 
-var ds;
-var dsPiv;
+var ds; //assigned the dataset from csv file later on
 
 function drawLines() {
 
@@ -150,19 +274,22 @@ var h = 600;
 padding = 20;
 
 var xScale = d3.scale.linear()
-    .domain([2000, 2016])
+    .domain([
+        d3.min(ds, function(d) {return d["year"]}), 
+        d3.max(ds, function(d) {return d["year"]})])
     .range([50, w - 50]);
 
 var yScale = d3.scale.linear()
     .domain([
-        d3.min(dsPiv, function (d) { return 0; }), //usually y-axis starts at zero, but this could of course alternatively by the min sales value
-        d3.max(dsPiv, function (d) { return sumAge(d); })
+        d3.min(ds, function (d) { return 0; }),
+        d3.max(ds, function (d) { return sumAge(d); })
     ])
-    .range([h - 90, 120]); //top left not bottom left coord system so h,0 not 0,h
+    .range([h - 90, 120]);
 
-function sumAge(dats) {return 1.0* dats["agegroup0"] + 1.0 * dats["agegroup1"] + 1.0 * dats["agegroup2"] + 1.0 * dats["agegroup5"]} 
+function sumAge(dats) {
+    return 1.0* dats["agegroup0"] + 1.0* dats["agegroup1"] + 1.0* dats["agegroup2"] + 1.0*  dats["agegroup5"]} //1.0 * avoiding concatenation
 
-var lineFun5 = d3.svg.line()
+var lineFun10 = d3.svg.line()
     .x(function (d) { return xScale(d.year); })
     .y(function (d) { return yScale(sumAge(d)); })
     .interpolate("linear");
@@ -180,8 +307,8 @@ var svg = d3.select("svg#graph3").append("svg").attr({
 
 var viz = svg.append("path")
     .attr({
-        id: "age5",
-        d: lineFun5(dsPiv),
+        id: "under10",
+        d: lineFun10(ds),
         "stroke": "green",
         "fill": "none",
         "stroke-width": 5
@@ -191,7 +318,8 @@ var viz = svg.append("path")
     .delay(3000)
     .duration(1500)
     .attr({
-        d: lineFun15(dsPiv),
+        id: "under10",
+        d: lineFun15(ds),
         "stroke": "red",
         "fill": "none",
         "stroke-width": 5
@@ -226,6 +354,7 @@ var overFifteen = svg.append("text")
     .attr("y", 3 * h / 4)
     .attr("text-anchor", "middle");
 
+//the axis is intentionally hiding in the background, because it should not be the focus
 var y_axis = d3.svg.axis()
     .scale(yScale)
     .ticks(20)
@@ -238,15 +367,13 @@ var yaxis = svg.append("g")
     .call(y_axis);
 
 var yaxisText = yaxis
-.selectAll("text")	
-//.attr("transform", "translate(0, 0)")
-.attr("font-family", "adobe-garamond-pro")
-.attr("font-size", "15px")
-.style("fill", "rgb(47,79,120)")
-.style("opacity", 0.3);
+    .selectAll("text")	
+    .attr("font-family", "adobe-garamond-pro")
+    .attr("font-size", "15px")
+    .style("fill", "rgb(47,79,120)")
+    .style("opacity", 0.3);
 
 var yaxisLine = yaxis
-//.selectAll("line")
     .attr("fill", "none")
     .attr("stroke", "rgb(47,79,120)")
     .attr("shape-rendering", "crispEdges")
@@ -254,13 +381,14 @@ var yaxisLine = yaxis
 
 
 };
-d3.csv("all-cause-mortality.csv", function (error, data) { //method that will pull in the csv data and parse it out into a dictionary or an object and callback
+d3.csv("all-cause-mortality.csv", function (error, data) { 
+    //method that will pull in the csv data and parse it out into a dictionary or an object and callback
 if (error) {
     console.log(error);
 }
 else {
     console.log("yay! (pivot)");
-    dsPiv = data;
+    ds = data;
 }
 
 drawLines();
@@ -268,144 +396,53 @@ drawLines();
 
 };
 
-function secondVis() {
-            var w = getWidth();
-            var h = 600;
-            var margin = { right: 10, left: 10 };
+function fourthVis() {
 
-            var dailyDeaths = 3025; // next highest square number, all additional circles have opacity 0
-            var dailyDeathsArray = [];
-            var sqrtDeaths = Math.sqrt(dailyDeaths);
+var w = getWidth();
+var h = 600;
 
+//again, the words are bound to the svgs in a very d3-manner simply because I was purely working with d3
+var words = [
+{"word": "Between the ages of 15 and 19,", "x": w/2, "y": h/2 - 230, "size": "25px"},
+{"word": "boys", "x": 3*w/8, "y": h/2 - 130, "size": "130px"},
+{"word": "are", "x": 3*w/7, "y": h/2 - 80, "size": "25px"},
+{"word": "particularly vulnerable,", "x": w/2, "y": h/2 - 10, "size": "70px"},
+{"word": "not just", "x": w/2, "y": h/2 + 34, "size": "30px"},
+{"word": "globally, ", "x": w/2, "y": h/2 + 100, "size": "60px"},
+{"word": "but across almost", "x": w/2, "y": h/2 + 150, "size": "25px"},
+{"word": "every region.", "x": w/2, "y": h/2 + 230, "size": "90px"} ]
 
-            for (var i = 1; i <= dailyDeaths; i++) {
-                dailyDeathsArray.push(i);
-            }
-            
-            var svgContainer = d3.select("svg#graph2")
-                .append("svg")
-                .attr("width", w)
-                .attr("height", h);
+var svgContainer = d3.select("svg#graph4")
+.append("svg")
+.attr("width", w)
+.attr("height", h);
 
-            var circle = svgContainer
-                .selectAll("circle")
-                .data(dailyDeathsArray)
-                .enter()
-                .append("circle")
-                .attr("cx", w / 2)
-                .attr("cy", h / 2)
-                .attr("r", h/2 - 50)
-                .attr("fill", d3.rgb(Math.random() * 255, Math.random() * 255, Math.random() * 255));
-
-            var circles = circle
-                .transition()
-                .delay(500)
-                .duration(5500)
-                .attr("cx", function (d, i) {
-                    var a = d % sqrtDeaths;
-                    var b = w - (margin.right + margin.left)
-                    var c = sqrtDeaths
-                    return a * b / c + margin.left;
-                })
-                .attr("cy", function (d, i) {
-                    var a = (d - (d % sqrtDeaths)) / sqrtDeaths;
-                    var b = h - (margin.right + margin.left);
-                    var c = sqrtDeaths;
-                    return a * b / c + margin.left;
-                })
-                .attr("r", 4)
-                .style("opacity", function (d) {
-                    if (d > 3000) { return 0; }
-                    else { return 0.9; }
-                })
-                .attr("fill", "#ebe83a")
-
-            var circlesDis = circles
-                .transition()
-                .delay(function (d, i) { return 6000 + i * 5 })
-                .duration(5000)
-                .attr('transform', function (d) {
-                    return "rotate(" + (-1) ** Math.round(Math.random()) * Math.random() * Math.PI + ")";
-                })
-                .attr("r", 0);
-
-            var text = svgContainer
-                .append("text")
-                .text(" ")
-                .attr("x", w / 2)
-                .attr("y", h / 2)
-                .attr("text-anchor", "middle")
-                .attr("font-family", "adobe-garamond-pro")
-                .attr("font-size", "45px")
-                .style("fill", "rgb(47,79,120)")
-                //.style("text-shadow", "3px 3px 3px")
-                .transition()
-                .delay(6000)
-                .duration(18500)
-                .tween("text", function () {
-                    var i = d3.interpolate(1, 3000)
-                    return function (t) {
-                        this.textContent = Math.round(i(t)) + " adolescent deaths a day.";
-                    };
-                });
-
-            }
-    
-function firstVis() {
-    var w = getWidth();
-    var h = 600;
-
-    var words = [
-        { "word": "Over", "x": w / 3 - 50, "y": h / 7 - 20, "size": "30px" },
-        { "word": "1.1 million", "x": w / 3 - 10, "y": h / 4, "size": "80px" },
-        { "word": "adolescents", "x": w / 2, "y": 3.5 * h / 8 + 5, "size": "120px" },
-        { "word": "aged", "x": 3 * w / 5, "y": 9 * h / 18 + 40, "size": "25px" },
-        { "word": "10-19", "x": 3 * w / 5 + 30, "y": 9 * h / 18 + 75, "size": "30px" },
-        { "word": "die", "x": w / 3, "y": 10 * h / 16 + 54, "size": "180px" },
-        { "word": "every year.", "x":  2* w / 5, "y": 6 * (h / 8) + 40, "size": "40px" },
-        {"word": "That's", "x": w /2, "y": 7.5 * h /8, "size": "40px"}]
-
-    var svgContainer = d3.select("svg#graph1")
-        .append("svg")
-        .attr("width", w)
-        .attr("height", h);
-
-    var text = svgContainer
-        .selectAll("text")
-        .data(words)
-        .enter()
-        .append("text")
-        .text(function (d) { return d["word"]; })
-        .attr("x", function (d) { return d["x"]; })
-        .attr("y", function (d) { return d["y"]; })
-        .attr("font-size", function (d) { return d["size"]; })
-        .attr("font-family", "adobe-garamond-pro")
-        .attr("text-anchor", "middle")
-        .style("fill", "rgb(47,79,120)");
-
+var text = svgContainer
+.selectAll("text")
+.data(words)
+.enter()
+.append("text")
+.text(function(d) {return d["word"];})
+.attr("x", function(d) {return d["x"];})
+.attr("y", function(d) {return d["y"];})
+.attr("font-size", function(d) {return d["size"];})
+.attr("font-family", "adobe-garamond-pro")
+.attr("text-anchor", "middle")
+.style("fill", "rgb(47,79,120)");
 };
-
+    
 function fifthVis() {
-        var ds;
+var ds;
 
 var w = getWidth();
 var h = 600;
 
 var regName = {"afr_lmic": "African Region LMIC*", "amr_lmic": "Region of the Americas LMIC*", "emr_lmic": "Eastern Mediterranean Region LMIC*", "eur_lmic": "European Region LMIC*", "sear_lmic": "South-East Asian Region LMIC*", "wpr_lmic": "Western Pacific Region LMIC*", "hi": "High Income Countries"};
 
-function tweenText( newValue ) {
-return function() {
-var currentValue = +this.textContent;
-  
-var i = d3.interpolateRound( currentValue, newValue );
-  
-return function(t) {
-    this.textContent = i(t);};
-}
-}
-
 function addComp() {
+//creates the whole vis
 var color = d3.scale.category10();
+barWidth = 40;
 
 var svgContainer = d3.select("svg#graph5")
     .append("svg")
@@ -415,7 +452,7 @@ var svgContainer = d3.select("svg#graph5")
 svgContainer.append("rect")
     .attr("width", "100%")
     .attr("height", "100%")
-    .attr("fill", function() {return d3.rgb(Math.random()*255, Math.random()*255, Math.random()*255);})
+    .attr("fill", randomColor())
     .style("opacity", 0.05);
 
 var region = svgContainer
@@ -431,6 +468,7 @@ var region = svgContainer
     .attr("text-anchor", "middle")
     .style("fill", function(d,i) {return color(i);});
 
+//text,text1,text3,lmictext are all specific to the vis, are added individually because I didn't bind them to data
 var text = svgContainer
     .append("text")
     .text("boys")
@@ -471,13 +509,14 @@ var lmicText = svgContainer
     .attr("text-anchor", "left")
     .style("fill", "rgb(47,79,120)");
 
+//boyRectangles, girlRectangles and boytextRect all are independently positioned
 var boyRectangles = svgContainer
     .selectAll("rect.boys")
     .data(ds)
     .enter()
     .append("rect")
     .attr("x", 0)
-    .attr("y", function(d,i) {return 260 + 40*i - 29;})
+    .attr("y", function(d,i) {return 260 + barWidth*i - 29;})
     .attr("width", 0)
     .attr("height", "38px")
     .attr("fill", "blue")
@@ -508,7 +547,7 @@ var girlRectangles = svgContainer
     .enter()
     .append("rect")
     .attr("x", w)
-    .attr("y", function(d,i) {return 260 + 40*i - 29;})
+    .attr("y", function(d,i) {return 260 + barWidth*i - 29;})
     .attr("width", function(d) {return w * d["dr_f"]/(1*d["dr_m"]+1*d["dr_f"]);})
     .attr("height", "38px")
     .attr("fill", "red")
@@ -517,10 +556,11 @@ var girlRectangles = svgContainer
     .delay(500)
     .duration(1000)
     .ease("bounce")
-    .attr("x", function(d) {return w * d["dr_m"]/(1*d["dr_m"]+1*d["dr_f"]);});
+    .attr("x", function(d) {return w * d["dr_m"]/(1*d["dr_m"]+1*d["dr_f"]);}); //equal to the width of the boyRectangles
 }
 
-d3.csv("reg-comp.csv", function(error, data) { //method that will pull in the csv data and parse it out into a dictionary or an object and callback
+d3.csv("reg-comp.csv", function(error, data) { 
+//method that will pull in the csv data and parse it out into a dictionary or an object and callback
 if(error) {
     console.log(error);}
 else {
@@ -529,48 +569,33 @@ else {
     
     addComp();
 });
-    };
+};
     
-function eighthVis() {
-    
-    var w = getWidth();
-    var h = 400;
+function sixthVis() {
+//simply appends a text element
+var w = getWidth();
+var h = 200;
 
-    var causes = ["Road Injuries", "Interpersonal Violence", "Self-harm"]
+var words = [
+{"word": "How are these boys dying?", "x": w/2, "y": h/2, "size": "60px"}]
 
-    var svgContainer = d3.select("svg#graph8")
-        .append("svg")
-        .attr("width", w)
-        .attr("height", h);
+var svgContainer = d3.select("svg#graph6")
+.append("svg")
+.attr("width", w)
+.attr("height", h);
 
-    var causesText = svgContainer
-        .selectAll("text")
-        .data(causes)
-        .enter()
-        .append("text")
-        .text(function (d) {return d;})
-        .attr("x", w/2)
-        .attr("y", -100)
-        .attr("font-size", "70px")
-        .attr("font-family", "adobe-garamond-pro")
-        .attr("text-anchor", "middle")
-        .style("fill", "rgb(47,79,120)")
-        .transition()
-        .delay(function(d,i) {return 200 + i*500;})
-        .duration(2000)
-        .attr("y", function(d,i) {return h/3 + 30 + i * 100;});
-
-    var topText = svgContainer
-        .append("text")
-        .text("For 15 to 19 year-old boys, the top 3 causes of death are")
-        .attr("x", w/2)
-        .attr("y", h/4 - 50)
-        .attr("font-size", "30px")
-        .attr("font-family", "adobe-garamond-pro")
-        .attr("text-anchor", "middle")
-        .style("fill", "rgb(47,79,120)");
-
-
+var text = svgContainer
+.selectAll("text")
+.data(words)
+.enter()
+.append("text")
+.text(function(d) {return d["word"];})
+.attr("x", function(d) {return d["x"];})
+.attr("y", function(d) {return d["y"];})
+.attr("font-size", function(d) {return d["size"];})
+.attr("font-family", "adobe-garamond-pro")
+.attr("text-anchor", "middle")
+.style("fill", "rgb(47,79,120)");
 };
 
 function seventhVis() {
@@ -611,6 +636,7 @@ else {
     drawCircles();}
 } );
 
+//the colorMap allows you to assign each cause a customized color
 var colorMap = {
 "Drowning": "lightblue", 
 "Interpersonal violence": "orange", 
@@ -625,6 +651,7 @@ var colorMap = {
 "Collective violence and legal intervention": "darkblue",
 "Drug use disorders":"maroon"}; //DarkOliveGreen 
 
+//there must be a smarter
 var placeMap = {
 "Collective violence and legal intervention": 175,
 "Diarrhoeal diseases": 200,
@@ -761,6 +788,8 @@ d3.select(this).attr("r", 6).style("opacity", 0.8);
 d3.select("div#seventh").append("button")
 .attr("class", "button")
 .text("GLOBAL")
+.style("font-family","adobe-garamond-pro")
+.style("font-size","18px")
 .on("click", function(d) {
 circles
 .transition()
@@ -778,6 +807,8 @@ regLabel
 d3.select("div#seventh").append("button")
 .attr("class", "button")
 .text("AFR, LMICs")
+.style("font-family","adobe-garamond-pro")
+.style("font-size","18px")
 .on("click", function(d) {
 circles
 .transition()
@@ -795,6 +826,8 @@ regLabel
 d3.select("div#seventh").append("button")
 .attr("class", "button")
 .text("AMR, LMICs")
+.style("font-family","adobe-garamond-pro")
+.style("font-size","18px")
 .on("click", function(d) {
 circles
 .transition()
@@ -812,6 +845,8 @@ regLabel
 d3.select("div#seventh").append("button")
 .attr("class", "button")
 .text("EMR, LMICs")
+.style("font-family","adobe-garamond-pro")
+.style("font-size","18px")
 .on("click", function(d) {
 circles
 .transition()
@@ -829,6 +864,8 @@ regLabel
 d3.select("div#seventh").append("button")
 .attr("class", "button")
 .text("EUR, LMICs")
+.style("font-family","adobe-garamond-pro")
+.style("font-size","18px")
 .on("click", function(d) {
 circles
 .transition()
@@ -846,6 +883,8 @@ regLabel
 d3.select("div#seventh").append("button")
 .attr("class", "button")
 .text("SEAR, LMICs")
+.style("font-family","adobe-garamond-pro")
+.style("font-size","18px")
 .on("click", function(d) {
 circles
 .transition()
@@ -863,6 +902,8 @@ regLabel
 d3.select("div#seventh").append("button")
 .attr("class", "button")
 .text("WPR, LMICs")
+.style("font-family","adobe-garamond-pro")
+.style("font-size","18px")
 .on("click", function(d) {
 circles
 .transition()
@@ -880,6 +921,8 @@ regLabel
 d3.select("div#seventh").append("button")
 .attr("class", "button")
 .text("HI")
+.style("font-family","adobe-garamond-pro")
+.style("font-size","18px")
 .on("click", function(d) {
 circles
 .transition()
@@ -896,6 +939,49 @@ regLabel
 
 };
 };
+
+function eighthVis() {
+    
+    var w = getWidth();
+    var h = 400;
+
+    var causes = ["Road Injuries", "Interpersonal Violence", "Self-harm"]
+
+    var svgContainer = d3.select("svg#graph8")
+        .append("svg")
+        .attr("width", w)
+        .attr("height", h);
+
+    var causesText = svgContainer
+        .selectAll("text")
+        .data(causes)
+        .enter()
+        .append("text")
+        .text(function (d) {return d;})
+        .attr("x", w/2)
+        .attr("y", -100)
+        .attr("font-size", "70px")
+        .attr("font-family", "adobe-garamond-pro")
+        .attr("text-anchor", "middle")
+        .style("fill", "rgb(47,79,120)")
+        .transition()
+        .delay(function(d,i) {return 200 + i*500;})
+        .duration(2000)
+        .attr("y", function(d,i) {return h/3 + 30 + i * 100;});
+
+    var topText = svgContainer
+        .append("text")
+        .text("For 15 to 19 year-old boys, the top 3 causes of death are")
+        .attr("x", w/2)
+        .attr("y", h/4 - 50)
+        .attr("font-size", "30px")
+        .attr("font-family", "adobe-garamond-pro")
+        .attr("text-anchor", "middle")
+        .style("fill", "rgb(47,79,120)");
+
+
+};
+
 
 function ninthVis() {
     
@@ -994,7 +1080,7 @@ var sectorCircle = svgContainer
 .attr("cx", function(d) {if (d%2 == 0) {return w - padding ;} else {return padding;}})
 .attr("cy", function(d) {if (d <= 2) {return padding;} else {return h - padding;}})
 .attr("r", padding)
-.attr("fill", function() {return d3.rgb(Math.random()*255, Math.random()*255, Math.random()*255);});
+.attr("fill", function() {return randomColor()});
 
 var moveCircle = sectorCircle
 .transition()
@@ -1113,35 +1199,11 @@ var text = svgContainer
 
     };
 
-function sixthVis() {
 
-var w = getWidth();
-var h = 200;
 
-var words = [
-{"word": "How are these boys dying?", "x": w/2, "y": h/2, "size": "60px"}]
-
-var svgContainer = d3.select("svg#graph6")
-.append("svg")
-.attr("width", w)
-.attr("height", h);
-
-var text = svgContainer
-.selectAll("text")
-.data(words)
-.enter()
-.append("text")
-.text(function(d) {return d["word"];})
-.attr("x", function(d) {return d["x"];})
-.attr("y", function(d) {return d["y"];})
-.attr("font-size", function(d) {return d["size"];})
-.attr("font-family", "adobe-garamond-pro")
-.attr("text-anchor", "middle")
-.style("fill", "rgb(47,79,120)");
-};
-
-var isThird;    // Boolean signals isThird completion
 var isSecond;
+var isThird;    // Boolean signals isThird completion
+var isFourth;
 var isFifth;
 var isSixth; // how are boys dying? 
 var isSeventh; // scatter

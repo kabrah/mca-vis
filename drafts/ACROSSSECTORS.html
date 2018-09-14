@@ -42,7 +42,7 @@ var sectorCircle = svgContainer
     .attr("cx", function(d) {if (d%2 == 0) {return w - padding ;} else {return padding;}})
     .attr("cy", function(d) {if (d <= 2) {return padding;} else {return h - padding;}})
     .attr("r", padding)
-    .attr("fill", function() {return d3.rgb(Math.random()*255, Math.random()*255, Math.random()*255);});
+    .attr("fill", randomColor());
 
 var moveCircle = sectorCircle
     .transition()

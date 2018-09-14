@@ -34,70 +34,70 @@
             .append("rect")
             .attr("width", "100%")
             .attr("height", "100%")
-            .attr("fill", "fill", function() {return d3.rgb(Math.random()*255, Math.random()*255, Math.random()*255);})
+            .attr("fill", "fill", randomColor())
             .style("opacity", 0.2);
 
         d3.select("svg#graph1")
             .append("rect")
             .attr("width", "100%")
             .attr("height", "100%")
-            .attr("fill", function() {return d3.rgb(Math.random()*255, Math.random()*255, Math.random()*255);})
+            .attr("fill", randomColor())
             .style("opacity", 0.05);
         
         d3.select("svg#graph2")
             .append("rect")
             .attr("width", "100%")
             .attr("height", "100%")
-            .attr("fill", function() {return d3.rgb(Math.random()*255, Math.random()*255, Math.random()*255);})
+            .attr("fill", randomColor())
             .style("opacity", 0.05);
 
         d3.select("svg#graph3")
             .append("rect")
             .attr("width", "100%")
             .attr("height", "100%")
-            .attr("fill", function() {return d3.rgb(Math.random()*255, Math.random()*255, Math.random()*255);})
+            .attr("fill", randomColor())
             .style("opacity", 0.05);
 
         d3.select("svg#graph4")
             .append("rect")
             .attr("width", "100%")
             .attr("height", "100%")
-            .attr("fill", function() {return d3.rgb(Math.random()*255, Math.random()*255, Math.random()*255);})
+            .attr("fill", randomColor())
             .style("opacity", 0.05);
 
         d3.select("svg#graph5")
             .append("rect")
             .attr("width", "100%")
             .attr("height", "100%")
-            .attr("fill", function() {return d3.rgb(Math.random()*255, Math.random()*255, Math.random()*255);})
+            .attr("fill", randomColor())
             .style("opacity", 0.05);
 
         d3.select("svg#graph6")
             .append("rect")
             .attr("width", "100%")
             .attr("height", "100%")
-            .attr("fill", function() {return d3.rgb(Math.random()*255, Math.random()*255, Math.random()*255);})
+            .attr("fill", randomColor())
             .style("opacity", 0.05);
 
         d3.select("svg#graph7")
             .append("rect")
             .attr("width", "100%")
             .attr("height", "100%")
-            .attr("fill", function() {return d3.rgb(Math.random()*255, Math.random()*255, Math.random()*255);})
+            .attr("fill", randomColor())
             .style("opacity", 0.05);
         
         d3.select("svg#graph8")
             .append("rect")
             .attr("width", "100%")
             .attr("height", "100%")
-            .attr("fill", function() {return d3.rgb(Math.random()*255, Math.random()*255, Math.random()*255);})
+            .attr("fill", randomColor())
             .style("opacity", 0.05);
         
         d3.select("svg#graph-last")
             .append("rect")
             .attr("width", "100%")
             .attr("height", "100%")
-            .attr("fill", function() {return d3.rgb(Math.random()*255, Math.random()*255, Math.random()*255);})
+            .attr("fill", randomColor())
             .style("opacity", 0.05);
         
     }
@@ -405,7 +405,7 @@ function addComp() {
     svgContainer.append("rect")
         .attr("width", "100%")
         .attr("height", "100%")
-        .attr("fill", function() {return d3.rgb(Math.random()*255, Math.random()*255, Math.random()*255);})
+        .attr("fill", randomColor())
         .style("opacity", 0.05);
 
     var region = svgContainer
@@ -625,7 +625,7 @@ var sectorCircle = svgContainer
     .attr("cx", function(d) {if (d%2 == 0) {return w - padding ;} else {return padding;}})
     .attr("cy", function(d) {if (d <= 2) {return padding;} else {return h - padding;}})
     .attr("r", padding)
-    .attr("fill", function() {return d3.rgb(Math.random()*255, Math.random()*255, Math.random()*255);});
+    .attr("fill", randomColor());
 
 var moveCircle = sectorCircle
     .transition()
