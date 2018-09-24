@@ -2,8 +2,11 @@
 Each visualisation lives inside an svg container that is nested in another svg container
 The first svg containers are created in the index.html and then using the ids the next containers are created within the functions that create the visualisation
 
+Potential solution for "undoing" a visualisation would be to set the variables isFirst, isSecond, etc to false after the consecutive vis has been reached
+This requires a function that can be called that removes each visualisation - e.g. place svgContainers outside of the function and call svgContainer.select("*").remove();
+
 I have always used svg coordinates directly instead of flipping the visualisations afterwards
-Could make more sense conceptually to add a function to transform visualisations and apply it to every vis
+Would make more sense conceptually to add a function to transform visualisations and apply it to every vis
 
 No classes added, simply because I wanted to define everything individually, but text would have been a good thing to class together
 */
@@ -14,7 +17,8 @@ function randomColor() {
 
 //draw background rectangles in svgContainer, here they are simply random colors
 function backgrounds() {
-//This should actually be customized in a way that suits the colors of the actual vis
+//This should be customized in a way that suits the colors of the actual vis
+//Since there were no requirements in terms of color I have set them to random colors for now
 
     d3.select("body")
         .append("svg")
@@ -109,22 +113,24 @@ backgrounds();
 
 //gets client's browser width
 function getWidth() {
-if (self.innerWidth) {
-return self.innerWidth;
-}
+    if (self.innerWidth) {
+        return self.innerWidth;
+    }
 
-if (document.documentElement && document.documentElement.clientWidth) {
-return document.documentElement.clientWidth;
-}
+    if (document.documentElement && document.documentElement.clientWidth) {
+        return document.documentElement.clientWidth;
+    }
 
-if (document.body) {
-return document.body.clientWidth;
-}
-}
+    if (document.body) {
+        return document.body.clientWidth;
+    }
+
+};
+
 
 function firstVis() {
-//TEXT, WHERE EACH WORDS ATTRIBUTES ARE DEFINED
-//no data binding is required so no need for D3.js, but I was practicing 
+    //TEXT, WHERE EACH WORDS ATTRIBUTES ARE DEFINED
+    //actually no data binding is required so no need for D3.js, but I was practicing 
     var w = getWidth(); 
     var h = 600;
 
@@ -160,13 +166,14 @@ function firstVis() {
 
 };
 
+
 function secondVis() {
-//GRID OF CIRCLES WITH NUMBER COUNTER
-/*The grid has the potential for a much more informative visualisation
-Each circle is actually bound to data, which might be unnecessary when you just want to show the number 3000, 
-but this means you could use colours and sizes to represent information
-E.g. colours represent the region, size represents the age and you could add a circle border of two colors to represent the sex
-*/ 
+    //GRID OF CIRCLES WITH NUMBER COUNTER
+    /*The grid has the potential for a much more informative visualisation
+    Each circle is actually bound to data, which might be unnecessary when you just want to show the number 3000, 
+    but this means you could use colours and sizes to represent information
+    E.g. colours represent the region, size represents the age and you could add a circle border of two colors to represent the sex
+    */ 
             var w = getWidth();
             var h = 600;
             var margin = { right: 10, left: 10 };
@@ -229,8 +236,8 @@ E.g. colours represent the region, size represents the age and you could add a c
 
             var circlesDis = circles
                 .transition()
-                .delay(function (d, i) { return 6000 + i * 5 }) //this is so they don't just disappear at once
-                .duration(5000)
+                .delay(function (d, i) { return 6000 + i }) //this is so they don't just disappear at once
+                .duration(1000)
                 .attr('transform', function (d) {
                     //circular falling motion seemed more effective than simply gradually reducing the opacity
                     return "rotate(" + (-1) ** Math.round(Math.random()) * Math.random() * Math.PI + ")";
@@ -251,7 +258,7 @@ E.g. colours represent the region, size represents the age and you could add a c
                 .delay(6000)
                 //the interpolate function has the same duration ans the whole set of circles disappearing
                 //it happens simultaneously but is actually independent of the circles disappearing
-                .duration(18500)
+                .duration(3500)
                 .tween("text", function () {
                     var i = d3.interpolate(1, 3000)
                     return function (t) {
@@ -287,7 +294,7 @@ var yScale = d3.scale.linear()
     .range([h - 90, 120]);
 
 function sumAge(dats) {
-    return 1.0* dats["agegroup0"] + 1.0* dats["agegroup1"] + 1.0* dats["agegroup2"] + 1.0*  dats["agegroup5"]} //1.0 * avoiding concatenation
+    return 1.0* dats["agegroup0"] + 1.0* dats["agegroup1"] + 1.0* dats["agegroup2"]} //1.0 * avoiding concatenation
 
 var lineFun10 = d3.svg.line()
     .x(function (d) { return xScale(d.year); })
@@ -306,53 +313,57 @@ var svg = d3.select("svg#graph3").append("svg").attr({
 
 
 var viz = svg.append("path")
-    .attr({
-        id: "under10",
-        d: lineFun10(ds),
-        "stroke": "green",
-        "fill": "none",
-        "stroke-width": 5
-    })
-    .style("opacity", 0.8)
+    .attr("id", "under10")
+    .attr("d", lineFun10(ds))
+    .attr("stroke", "green")
+    .attr("fill", "none")
+    .attr("stroke-width", 5)
+    .style("opacity", 1)
     .transition()
-    .delay(3000)
+    .delay(2000)
     .duration(1500)
-    .attr({
-        id: "under10",
-        d: lineFun15(ds),
-        "stroke": "red",
-        "fill": "none",
-        "stroke-width": 5
-    });
+    .style("opacity", 0.3);
+
+var viz2 = svg.append("path")
+    .attr("id", "under15")
+    .attr("d", lineFun15(ds))
+    .attr("stroke", "red")
+    .attr("fill", "none")
+    .attr("stroke-width", 5)
+    .style("opacity", 0.3)
+    .transition()
+    .delay(2000)
+    .duration(1500)
+    .style("opacity", 1);
 
 var underNine = svg.append("text")
-    .text("While there has been significant improvement for children under the age of 10,")
+    .text("While there has been significant improvement for children under the age of 5,")
     .attr("x", w / 2)
     .attr("y", 100)
     .attr("font-size", "40px")
     .attr("text-anchor", "middle")
     .attr("font-family", "adobe-garamond-pro")
     .style("fill", "rgb(47,79,120)")
+    .style("opacity", 1)
     .transition()
-    .duration(2000)
-    .delay(3500)
-    .attr("x", 0)
-    .attr("text-anchor", "end");
-    
+    .delay(2000)
+    .duration(1500)
+    .style("opacity", 0.3);    
 
 var overFifteen = svg.append("text")
     .text("this has not been the case for 15 to 19 year olds.")
     .attr("x", w / 2)
-    .attr("y", h + padding * 4)
+    .attr("y", h + 100)
     .attr("font-size", "60px")
     .attr("text-anchor", "middle")
     .attr("font-family", "adobe-garamond-pro")
     .style("fill", "rgb(47,79,120)")
+    .style("opacity",0.3)
     .transition()
-    .delay(3000)
-    .duration(2000)
+    .delay(2000)
+    .duration(1500)
     .attr("y", 3 * h / 4)
-    .attr("text-anchor", "middle");
+    .style("opacity", 1);
 
 //the axis is intentionally hiding in the background, because it should not be the focus
 var y_axis = d3.svg.axis()
@@ -406,7 +417,7 @@ var words = [
 {"word": "Between the ages of 15 and 19,", "x": w/2, "y": h/2 - 230, "size": "25px"},
 {"word": "boys", "x": 3*w/8, "y": h/2 - 130, "size": "130px"},
 {"word": "are", "x": 3*w/7, "y": h/2 - 80, "size": "25px"},
-{"word": "particularly vulnerable,", "x": w/2, "y": h/2 - 10, "size": "70px"},
+{"word": "more likely to die,", "x": w/2, "y": h/2 - 10, "size": "70px"},
 {"word": "not just", "x": w/2, "y": h/2 + 34, "size": "30px"},
 {"word": "globally, ", "x": w/2, "y": h/2 + 100, "size": "60px"},
 {"word": "but across almost", "x": w/2, "y": h/2 + 150, "size": "25px"},
@@ -577,7 +588,8 @@ var w = getWidth();
 var h = 200;
 
 var words = [
-{"word": "How are these boys dying?", "x": w/2, "y": h/2, "size": "60px"}]
+{"word": "What are these boys dying from?", "x": w/2, "y": h/2, "size": "60px"},
+{"word": "Click through the different regions to find out about the causes of death specific to each region.", "x": w/2, "y": 3*h/4, "size": "15px"}]
 
 var svgContainer = d3.select("svg#graph6")
 .append("svg")
@@ -638,18 +650,18 @@ else {
 
 //the colorMap allows you to assign each cause a customized color
 var colorMap = {
-"Drowning": "lightblue", 
-"Interpersonal violence": "orange", 
-"Self-harm": "lightgreen", 
-"Road injury": "purple", 
-"HIV/AIDS": "yellow", 
-"Tuberculosis": "grey", 
-"Meningitis": "red", 
-"Diarrhoeal diseases": "brown",
-"Lower respiratory infections": "darkgreen",
-"Leukaemia": "pink",
-"Collective violence and legal intervention": "darkblue",
-"Drug use disorders":"maroon"}; //DarkOliveGreen 
+"Drowning": "SteelBlue", 
+"Interpersonal violence": "Tan", 
+"Self-harm": "YellowGreen", 
+"Road injury": "Crimson", 
+"HIV/AIDS": "Teal", 
+"Tuberculosis": "SlateGray", 
+"Meningitis": "Tomato", 
+"Diarrhoeal diseases": "SaddleBrown",
+"Lower respiratory infections": "SeaGreen",
+"Leukaemia": "Violet",
+"Collective violence and legal intervention": "DarkBlue",
+"Drug use disorders":"Maroon"}; //DarkOliveGreen 
 
 //has the y position for the legend, but there must be a smarter way to do this...
 var placeMap = {
@@ -694,16 +706,32 @@ var circles = svgContainer
 
 
 var legend = svgContainer
+//adds all the causes as text
 .selectAll("text")
 .data(ds)
 .enter()
 .append("text")
-.attr("x", w - 130)
+.attr("x", w-100)
 .attr("y", function(d) {return placeMap[d.cause];})
 .text(function(d) {return d.cause})
 .style("font-weight", "bold")
 .style("opacity", function(d) {if (d.year == 2000) {return 0.8;} else {return 0;}})
 .attr("fill", function(d) {return colorMap[d.cause];});
+
+var legendSelect = svgContainer
+//adds circles next to the legend that indicate which causes apply, ellipses instead of circles bc it was easier than adding circles
+.selectAll("ellipse")
+.data(ds)
+.enter()
+.append("ellipse")
+.attr("cx", w-110)
+.attr("cy", function(d) {if (d.global == 1) {return placeMap[d.cause]-4} else {return hL + 30}})
+.attr("rx", 6)
+.attr("ry", 6)
+.attr("fill", function(d) {return colorMap[d.cause];})
+.attr("stroke", "black")
+.attr("stroke-width", "1px")
+.style("opacity", function(d) {if (d.global == 1) {return 0.07;} else {return 0;}});
 
 var regLabel = svgContainer.append("text")
 .attr("x", margin.left + (w - margin.right - margin.left)/2)
@@ -802,6 +830,10 @@ circles
 else {return 0;}})
 regLabel
 .text("Global");
+legendSelect
+.transition().delay(100).duration(1000)
+.attr("cy", function(d) {if (d.global == 1) {return placeMap[d.cause]-4} else {return hL + 30}})
+.style("opacity", function(d) {if (d.global == 1) {return 0.07;} else {return 0;}});
 ;});
 
 d3.select("div#seventh").append("button")
@@ -821,6 +853,10 @@ circles
 else {return 0;}})
 regLabel
 .text("African Region, Low and Middle Income Countries");
+legendSelect
+.transition().delay(100).duration(1000)
+.attr("cy", function(d) {if (d.mod_reg == "AFR LMIC") {return placeMap[d.cause]-4} else {return hL + 30}})
+.style("opacity", function(d) {if (d.mod_reg == "AFR LMIC") {return 0.07;} else {return 0;}});
 ;});
 
 d3.select("div#seventh").append("button")
@@ -840,6 +876,10 @@ circles
 else {return 0;}})
 regLabel
 .text("Region of the Americas, Low and Middle Income Countries");
+legendSelect
+.transition().delay(100).duration(1000)
+.attr("cy", function(d) {if (d.mod_reg == "AMR LMIC") {return placeMap[d.cause]-4} else {return hL + 30}})
+.style("opacity", function(d) {if (d.mod_reg == "AMR LMIC") {return 0.07;} else {return 0;}});
 ;});
 
 d3.select("div#seventh").append("button")
@@ -859,6 +899,10 @@ circles
 else {return 0;}})
 regLabel
 .text("Eastern Mediterranean Region, Low and Middle Income Countries");
+legendSelect
+.transition().delay(100).duration(1000)
+.attr("cy", function(d) {if (d.mod_reg == "EMR LMIC") {return placeMap[d.cause]-4} else {return hL + 30}})
+.style("opacity", function(d) {if (d.mod_reg == "EMR LMIC") {return 0.07;} else {return 0;}});
 ;});
 
 d3.select("div#seventh").append("button")
@@ -878,6 +922,10 @@ circles
 else {return 0;}})
 regLabel
 .text("European Region, Low and Middle Income Countries");
+legendSelect
+.transition().delay(100).duration(1000)
+.attr("cy", function(d) {if (d.mod_reg == "EUR LMIC") {return placeMap[d.cause]-4} else {return hL + 30}})
+.style("opacity", function(d) {if (d.mod_reg == "EUR LMIC") {return 0.07;} else {return 0;}});
 ;});
 
 d3.select("div#seventh").append("button")
@@ -897,6 +945,10 @@ circles
 else {return 0;}})
 regLabel
 .text("South-East Asian Region, Low and Middle Income Countries");
+legendSelect
+.transition().delay(100).duration(1000)
+.attr("cy", function(d) {if (d.mod_reg == "SEAR LMIC") {return placeMap[d.cause]-4} else {return hL + 30}})
+.style("opacity", function(d) {if (d.mod_reg == "SEAR LMIC") {return 0.07;} else {return 0;}});
 ;});
 
 d3.select("div#seventh").append("button")
@@ -916,6 +968,10 @@ circles
 else {return 0;}})
 regLabel
 .text("Western Pacific Region, Low and Middle Income Countries");
+legendSelect
+.transition().delay(100).duration(1000)
+.attr("cy", function(d) {if (d.mod_reg == "WPR LMIC") {return placeMap[d.cause]-4} else {return hL + 30}})
+.style("opacity", function(d) {if (d.mod_reg == "WPR LMIC") {return 0.07;} else {return 0;}});
 ;});
 
 d3.select("div#seventh").append("button")
@@ -935,6 +991,10 @@ circles
 else {return 0;}})
 regLabel
 .text("High Income Countries");
+legendSelect
+.transition().delay(100).duration(1000)
+.attr("cy", function(d) {if (d.mod_reg == "High Income") {return placeMap[d.cause]-4} else {return hL + 30}})
+.style("opacity", function(d) {if (d.mod_reg == "High Income") {return 0.07;} else {return 0;}});
 ;});
 
 };

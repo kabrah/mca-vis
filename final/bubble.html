@@ -6,6 +6,7 @@
     <button id ="bygroup" class="button" style="font-family:adobe-garamond-pro;font-size:18px">By Group</button>
     <button id="bychange" class="button" style="font-family:adobe-garamond-pro;font-size:18px">By Improvement</button>
     <button id="combined" class="button" style="font-family:adobe-garamond-pro;font-size:18px">Combined</button>
+    <a href="index.html" style="font-family:adobe-garamond-pro;font-size:18px;position:absolute;right:50px"><button class="button">Go back</button>></a>
     <p> </p>
     <div id="chart"></div>
 <script src="https://d3js.org/d3.v4.min.js"></script>
@@ -81,6 +82,16 @@ var labels = svgContainer
     .attr("fill", "rgb(47,79,120)")
     .attr("font-size", 18);
 
+var title = svgContainer
+    .append("text")
+    .text("Top 5 Causes of Death by Age and Sex Group")
+    .attr("text-anchor", "middle")
+    .attr("x", w/2)
+    .attr("y", 50)
+    .attr("font-family", "adobe-garamond-pro")
+    .attr("fill", "rgb(47,79,120)")
+    .attr("font-size", 25);
+
 var radiusScale = d3.scaleSqrt().domain([0, 30]).range([10,60]);
 
 var impScaleX = d3.scaleLinear().domain([0.7,-0.8]).range([50, w-50]);
@@ -148,6 +159,7 @@ var circles = svgContainer.selectAll(".cause")
             .alphaTarget(0.3)
             .restart();
             labels.style("opacity", 1);
+            title.text("Top 5 Causes of Death by Age and Sex Group");
         })
 
     d3.select("#combined")
@@ -158,6 +170,7 @@ var circles = svgContainer.selectAll(".cause")
             .alphaTarget(0.3)
             .restart();
             labels.style("opacity", 0);
+            title.text("Top 5 Causes of Death by Age and Sex Group, Combined");
         })
 
     d3.select("#bychange")
@@ -168,6 +181,7 @@ var circles = svgContainer.selectAll(".cause")
             .alphaTarget(0.4)
             .restart();
             labels.style("opacity", 0);
+            title.text("Top 5 Causes of Death by Age and Sex Group in order of Improvement over 16 Years");
         }) 
 
 
